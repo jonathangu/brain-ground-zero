@@ -1,0 +1,2 @@
+output_dir: runs
+random_seed: 1337

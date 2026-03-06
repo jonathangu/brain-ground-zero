@@ -1,0 +1,20 @@
+name: relational_drift
+seed: 1337
+params:
+  num_entities: 60
+  relation_types:
+    - manages
+    - reports_to
+    - owns
+    - partners_with
+    - depends_on
+  initial_density: 0.08
+  steps: 40
+  updates_per_step: 6
+  queries_per_step: 20
+  drift_rate: 0.35
+  contradiction_rate: 0.15
+budgets:
+  context_budget: 12
+  teacher_budget: 80
+  teacher_delay: 2

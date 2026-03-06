@@ -1,0 +1,77 @@
+baselines:
+  - name: oracle
+    kind: oracle
+    capabilities:
+      teacher: false
+      background_labels: false
+    params: {}
+
+  - name: vector_rag
+    kind: vector_rag
+    capabilities:
+      teacher: true
+      background_labels: false
+    params:
+      dim: 256
+      top_k: 1
+
+  - name: vector_rag_rerank
+    kind: vector_rag_rerank
+    capabilities:
+      teacher: true
+      background_labels: false
+    params:
+      dim: 256
+      top_k: 5
+      rerank_k: 3
+
+  - name: heuristic_stateful
+    kind: heuristic_stateful
+    capabilities:
+      teacher: true
+      background_labels: false
+    params:
+      update_threshold: 2
+
+  - name: static_graph
+    kind: static_graph
+    capabilities:
+      teacher: true
+      background_labels: false
+    params:
+      max_hops: 2
+
+  - name: route_fn_only
+    kind: route_fn_only
+    capabilities:
+      teacher: true
+      background_labels: false
+    params:
+      lr: 0.15
+      epsilon: 0.05
+
+  - name: graph_route_pg
+    kind: graph_route_pg
+    capabilities:
+      teacher: true
+      background_labels: false
+    params:
+      lr: 0.12
+      epsilon: 0.05
+      max_hops: 2
+
+  - name: full_brain
+    kind: full_brain
+    capabilities:
+      teacher: true
+      background_labels: true
+    params:
+      lr: 0.12
+      epsilon: 0.05
+      max_hops: 2
+      decay_rate: 0.02
+      prune_threshold: 0.15
+      cofire_boost: 0.2
+      merge_threshold: 0.85
+      split_threshold: 0.3
+

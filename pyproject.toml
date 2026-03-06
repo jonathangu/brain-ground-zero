@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brain-ground-zero"
+version = "0.1.0"
+description = "Standalone brain-vs-RAG ground-zero benchmark harness"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "OpenClaw"}]
+license = {text = "MIT"}
+dependencies = [
+  "pyyaml>=6.0",
+  "numpy>=1.24",
+  "matplotlib>=3.8"
+]
+
+[project.scripts]
+bgz = "brain_ground_zero.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
