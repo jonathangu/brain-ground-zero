@@ -84,6 +84,15 @@ Each run writes:
 - `runs/<run_id>/artifacts/win_rate_matrix.{csv,md}` -- per-seed win counts (multiseed only)
 - `runs/<run_id>/artifacts/worked_example_trace.md` -- single query traced across all baselines
 
+## Further reading on openclawbrain.ai
+
+- [Project home](https://openclawbrain.ai/) -- overview of the OpenClawBrain system
+- [Proof page](https://openclawbrain.ai/proof/) -- benchmark results and proof artifacts
+- [Technical paper (PDF)](https://openclawbrain.ai/openclawbrain.pdf)
+- [Reproduce this eval](https://openclawbrain.ai/docs/reproduce-eval.md) -- step-by-step reproduction guide
+- [v12.2.6 series blog](https://openclawbrain.ai/blog/v12.2.6-series/) -- latest development notes
+- [All materials](https://openclawbrain.ai/materials/)
+
 ## Non-goals
 
 - No deployment

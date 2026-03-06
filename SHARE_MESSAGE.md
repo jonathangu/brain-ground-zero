@@ -30,4 +30,7 @@ This is the first benchmark family (mechanism proof on drift). More families are
 
 https://github.com/jonathangu/brain-ground-zero
 
+<<<<<<< HEAD
 Architecture proposal for the production system: https://github.com/jonathangu/openclawbrain/blob/main/docs/openclawbrain-openclaw-rearchitecture-plan.md
+
+Full proof artifacts and technical paper: https://openclawbrain.ai/proof/

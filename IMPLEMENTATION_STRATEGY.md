@@ -4,6 +4,8 @@
 
 **Canonical rearchitecture plan:** [openclawbrain/docs/openclawbrain-openclaw-rearchitecture-plan.md](https://github.com/jonathangu/openclawbrain/blob/main/docs/openclawbrain-openclaw-rearchitecture-plan.md)
 
+**Public site:** [openclawbrain.ai](https://openclawbrain.ai/) · [Technical paper (PDF)](https://openclawbrain.ai/openclawbrain.pdf) · [Proof page](https://openclawbrain.ai/proof/)
+
 ## How the benchmark maps to the real design
 
 | Benchmark concept | Production equivalent |
