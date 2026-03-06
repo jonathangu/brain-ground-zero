@@ -245,3 +245,97 @@ def run_benchmark(run_config: RunConfig, run_id: Optional[str] = None, smoke: bo
         pass
 
     return run_dir
+
+
+def run_multi_seed(
+    run_config: RunConfig,
+    seeds: List[int],
+    run_id: Optional[str] = None,
+    smoke: bool = False,
+) -> Path:
+    """Run the benchmark across multiple seeds and aggregate results."""
+    family_cfg = run_config.family
+    system_cfg = run_config.system or {}
+
+    if run_id is None:
+        stamp = time.strftime("%Y%m%d_%H%M%S")
+        run_id = f"{family_cfg.get('name', 'bench')}_multiseed_{stamp}"
+
+    output_dir = Path(system_cfg.get("output_dir", "runs"))
+    agg_dir = output_dir / run_id
+    agg_dir.mkdir(parents=True, exist_ok=True)
+    (agg_dir / "artifacts").mkdir(exist_ok=True)
+    write_config_snapshot(agg_dir, run_config)
+
+    per_seed_summaries: List[Dict[str, Dict[str, float]]] = []
+
+    for seed in seeds:
+        seed_config = RunConfig(
+            family={**family_cfg, "seed": seed},
+            baselines=run_config.baselines,
+            system=run_config.system,
+        )
+        sub_id = f"{run_id}/seed_{seed}"
+        sub_dir = run_benchmark(seed_config, run_id=sub_id, smoke=smoke)
+        summary = json.loads((sub_dir / "summary.json").read_text(encoding="utf-8"))
+        per_seed_summaries.append(summary)
+
+    aggregated = _aggregate_summaries(per_seed_summaries)
+    (agg_dir / "summary.json").write_text(
+        json.dumps(aggregated, indent=2, sort_keys=True), encoding="utf-8"
+    )
+    (agg_dir / "per_seed_summaries.json").write_text(
+        json.dumps(per_seed_summaries, indent=2, sort_keys=True), encoding="utf-8"
+    )
+    (agg_dir / "seeds.json").write_text(json.dumps(seeds), encoding="utf-8")
+
+    latest = output_dir / "latest"
+    try:
+        if latest.is_symlink() or latest.exists():
+            latest.unlink()
+        latest.symlink_to(agg_dir, target_is_directory=True)
+    except OSError:
+        pass
+
+    return agg_dir
+
+
+def _aggregate_summaries(
+    summaries: List[Dict[str, Dict[str, float]]],
+) -> Dict[str, Dict[str, float]]:
+    """Compute mean and std across seeds for each baseline metric."""
+    import math
+
+    baselines = list(summaries[0].keys())
+    scalar_keys = [
+        "accuracy", "stale_rate", "false_rate", "unknown_rate",
+        "corrections_delivered", "context_used", "traversal_cost", "total_queries",
+    ]
+    out: Dict[str, Dict[str, float]] = {}
+    for name in baselines:
+        agg: Dict[str, float] = {}
+        for key in scalar_keys:
+            vals = [s[name][key] for s in summaries if name in s]
+            mean = sum(vals) / len(vals)
+            std = math.sqrt(sum((v - mean) ** 2 for v in vals) / len(vals)) if len(vals) > 1 else 0.0
+            agg[key] = round(mean, 6)
+            agg[f"{key}_std"] = round(std, 6)
+        agg["num_seeds"] = len(summaries)
+
+        # Aggregate learning curves by step
+        curves: Dict[int, List[float]] = {}
+        for s in summaries:
+            if name not in s:
+                continue
+            for point in s[name].get("learning_curve", []):
+                step = point["step"]
+                curves.setdefault(step, []).append(point["accuracy"])
+        agg_curve = []
+        for step in sorted(curves.keys()):
+            vals = curves[step]
+            mean = sum(vals) / len(vals)
+            std = math.sqrt(sum((v - mean) ** 2 for v in vals) / len(vals)) if len(vals) > 1 else 0.0
+            agg_curve.append({"step": step, "accuracy": round(mean, 6), "accuracy_std": round(std, 6)})
+        agg["learning_curve"] = agg_curve
+        out[name] = agg
+    return out

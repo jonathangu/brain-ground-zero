@@ -17,6 +17,13 @@ def _parse_args() -> argparse.Namespace:
     run_p.add_argument("--system", default="configs/systems/default.yaml", help="Path to system config YAML")
     run_p.add_argument("--run-id", default=None, help="Optional run id")
 
+    ms_p = sub.add_parser("multiseed", help="Run across multiple seeds and aggregate")
+    ms_p.add_argument("--family", required=True, help="Path to family config YAML")
+    ms_p.add_argument("--baselines", required=True, help="Path to baseline set YAML")
+    ms_p.add_argument("--system", default="configs/systems/default.yaml", help="Path to system config YAML")
+    ms_p.add_argument("--seeds", required=True, help="Comma-separated seed list, e.g. 1,2,3,4,5")
+    ms_p.add_argument("--run-id", default=None, help="Optional run id")
+
     rep_p = sub.add_parser("report", help="Generate report artifacts")
     rep_p.add_argument("--run-dir", required=True, help="Run directory")
 
@@ -31,7 +38,14 @@ def main() -> None:
     if args.command == "run":
         cfg = load_run_config(args.family, args.baselines, args.system)
         run_dir = runner.run_benchmark(cfg, run_id=args.run_id)
+        reporting.generate_report(run_dir)
         print(f"Run complete: {run_dir}")
+    elif args.command == "multiseed":
+        cfg = load_run_config(args.family, args.baselines, args.system)
+        seeds = [int(s.strip()) for s in args.seeds.split(",")]
+        run_dir = runner.run_multi_seed(cfg, seeds=seeds, run_id=args.run_id)
+        reporting.generate_report(run_dir)
+        print(f"Multi-seed run complete: {run_dir}")
     elif args.command == "report":
         reporting.generate_report(Path(args.run_dir))
     elif args.command == "smoke":
@@ -47,4 +61,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

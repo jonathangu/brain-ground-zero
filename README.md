@@ -9,7 +9,8 @@ Key intent: this is **not** a graph-vs-vector toy. It measures whether the full 
 - Reproducible configs for families and baselines
 - A runnable Python harness
 - The first implemented family: `relational_drift`
-- Reporting/plotting that outputs at least one artifact
+- Reporting with summary tables, learning curves, pairwise deltas, win-rate matrices, and worked-example traces
+- Multi-seed aggregation for stable comparisons (mean +/- std)
 - Smoke checks for validation
 
 ## Quickstart
@@ -25,6 +26,12 @@ python -m brain_ground_zero.cli smoke
 python -m brain_ground_zero.cli run \
   --family configs/families/relational_drift.yaml \
   --baselines configs/baselines/all.yaml
+
+# Multi-seed run (aggregated stats, win-rate matrix)
+python -m brain_ground_zero.cli multiseed \
+  --family configs/families/relational_drift.yaml \
+  --baselines configs/baselines/all.yaml \
+  --seeds 10,20,30,40,50
 
 # Generate a report/plot from the latest run
 python -m brain_ground_zero.cli report --run-dir runs/latest
@@ -49,9 +56,18 @@ PYTHONPATH=src python3 scripts/validate_configs.py
 
 ## Outputs
 Each run writes:
-- `runs/<run_id>/metrics.jsonl`
-- `runs/<run_id>/summary.json`
-- `runs/<run_id>/artifacts/` (tables/figures)
+- `runs/<run_id>/metrics.jsonl` — per-query record log
+- `runs/<run_id>/summary.json` — aggregated metrics per baseline
+- `runs/<run_id>/artifacts/summary_table.{csv,md}` — summary table
+- `runs/<run_id>/artifacts/learning_curve.png` — accuracy over steps (with std bands for multiseed)
+- `runs/<run_id>/artifacts/pairwise_accuracy_delta.{csv,md}` — row-minus-column accuracy delta
+- `runs/<run_id>/artifacts/win_rate_matrix.{csv,md}` — per-seed win counts (multiseed only)
+- `runs/<run_id>/artifacts/worked_example_trace.md` — single query traced across all baselines
+
+Multi-seed runs additionally write:
+- `runs/<run_id>/per_seed_summaries.json` — per-seed raw summaries
+- `runs/<run_id>/seeds.json` — seed list used
+- `runs/<run_id>/seed_<N>/` — individual seed run directories
 
 ## Status
 See `STATUS.md` for milestone progress, smoke checks, and next steps.
