@@ -15,3 +15,9 @@
 - Current milestone: M3 — Relational drift family
 - Next step: add reporting artifacts and smoke/validation scripts, then run smoke checks.
 
+## 2026-03-06 09:07 PST
+- What changed: ran smoke test and config validation.
+- Smoke checks: `PYTHONPATH=src python3 -m brain_ground_zero.cli smoke` (ok), `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+- Current milestone: M4 — Reporting and validation
+- Next step: finalize docs/code alignment and ensure clean committed state.
+

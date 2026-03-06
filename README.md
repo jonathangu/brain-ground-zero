@@ -30,6 +30,12 @@ python -m brain_ground_zero.cli run \
 python -m brain_ground_zero.cli report --run-dir runs/latest
 ```
 
+## Smoke checks
+```bash
+PYTHONPATH=src python3 -m brain_ground_zero.cli smoke
+PYTHONPATH=src python3 scripts/validate_configs.py
+```
+
 ## Repository layout
 - `benchmark_spec.md` – benchmark contract and families
 - `world_schema.md`, `task_schema.md` – world/task definitions
@@ -53,4 +59,3 @@ See `STATUS.md` for milestone progress, smoke checks, and next steps.
 ## Non-goals
 - No deployment
 - No heavy model dependencies
-
