@@ -1,6 +1,6 @@
 # Brain-vs-RAG Ground-Zero Benchmark
 
-**The full OpenClawBrain (OCB) method beats every RAG and stateful-memory baseline on relational drift -- by a wide margin, across 10 seeds.**
+**The full OpenClawBrain (OCB) method beats every RAG and stateful-memory baseline on relational drift -- by a clear margin, across 10 seeds.**
 
 ## Headline numbers (relational_drift, 10-seed mean)
 
@@ -24,7 +24,7 @@ It does **not** yet prove the thesis across all families (recurring workflows, s
 
 ## How this connects to the real implementation
 
-This benchmark validates the mechanism. The production architecture for OpenClawBrain is described in the [architecture proposal](https://github.com/jonathangu/openclawbrain/blob/main/docs/architecture-proposal-openclawbrain-vnext.md). See [IMPLEMENTATION_STRATEGY.md](IMPLEMENTATION_STRATEGY.md) for how the benchmark maps to that design.
+This benchmark validates the mechanism. The production architecture for OpenClawBrain is described in the [canonical rearchitecture plan](https://github.com/jonathangu/openclawbrain/blob/main/docs/openclawbrain-openclaw-rearchitecture-plan.md). See [IMPLEMENTATION_STRATEGY.md](IMPLEMENTATION_STRATEGY.md) for how the benchmark maps to that design.
 
 ## Quickstart
 

@@ -1,8 +1,8 @@
 # Implementation Strategy
 
-## This benchmark validates the mechanism. The architecture proposal describes the production system.
+## This benchmark validates the mechanism. The canonical rearchitecture plan describes the production system.
 
-**Architecture proposal:** [openclawbrain/docs/architecture-proposal-openclawbrain-vnext.md](https://github.com/jonathangu/openclawbrain/blob/main/docs/architecture-proposal-openclawbrain-vnext.md)
+**Canonical rearchitecture plan:** [openclawbrain/docs/openclawbrain-openclaw-rearchitecture-plan.md](https://github.com/jonathangu/openclawbrain/blob/main/docs/openclawbrain-openclaw-rearchitecture-plan.md)
 
 ## How the benchmark maps to the real design
 
