@@ -30,10 +30,20 @@ Baselines must declare what they update online. The benchmark records updates to
 4. **sparse feedback / teacher-assisted learning**
 5. **memory compaction / structural plasticity**
 
-**Implemented now:** `relational_drift` (drift + contradiction)
+**Implemented now:** `relational_drift` (drift + contradiction), `recurring_workflows`
 
 ## Relational drift family
 A long-lived world of entities and relations where relations change over time. The task stream asks for the **current** relation for entity pairs. Systems must adapt to drift, avoid stale recall, and minimize false recall under a bounded context window and teacher budget.
+
+## Recurring workflows family
+A world of workflow templates that recur over time. Each workflow has multiple **step slots** plus **preference slots** (e.g., channel or template). The task stream repeatedly “runs” workflows: queries ask for the **current action or preference** for each slot. Workflows are revised over time (steps and preferences change, sometimes reverting to older variants), and runs are drawn with a **recency bias** to simulate long-lived repeated tasks. The system must keep the latest workflow variant while avoiding stale recall under bounded context.
+
+Key parameters:
+- `num_workflows`, `steps_per_workflow`, `prefs_per_workflow`
+- `action_types`, `preference_types`
+- `workflows_per_step`, `query_steps_per_workflow`, `query_prefs_per_workflow`
+- `workflow_updates_per_step`, `step_updates_per_workflow`, `pref_updates_per_workflow`
+- `recurrence_bias`, `recent_window`, `update_query_ratio`, `contradiction_rate`
 
 ## Key metrics
 - **Task success** (accuracy)
@@ -52,4 +62,3 @@ A long-lived world of entities and relations where relations change over time. T
 - Same correction stream
 - Same scoring rubric
 - Explicit statement of allowed online updates per baseline
-

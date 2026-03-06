@@ -34,3 +34,11 @@
 - Current milestone: M5 — Publication-ready reporting
 - Next step: run larger multiseed experiments (5-10 seeds), add confidence intervals or bootstrap, consider additional families.
 
+## 2026-03-06 15:11 PST
+- What changed: implemented `recurring_workflows` family (world/task generation), added config, registry wiring, and reporting updates.
+  - CLI smoke now runs all families by default; config validation covers both families.
+  - Reporting now derives family name for titles and worked examples.
+- Smoke checks: `PYTHONPATH=src python3 -m brain_ground_zero.cli smoke` (ok), `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+- Proof-style run: `recurring_workflows` 3-seed spot-check recorded in `proof-results/recurring_workflows_3seed/`.
+- Current milestone: M6 — Recurring workflows family
+- Next step: scale recurring_workflows to 5-10 seeds and add sparse feedback family.

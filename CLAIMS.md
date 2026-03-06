@@ -23,7 +23,7 @@
 
 ## What is not yet proven
 
-- Performance on **recurring workflows** (family designed, not yet run)
+- Performance on **recurring workflows** (family implemented; small 3-seed spot-check exists but not proof-scale)
 - Performance on **sparse feedback / teacher-assisted learning** (family designed, not yet run)
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current world: 50 entities, 5 relation types)

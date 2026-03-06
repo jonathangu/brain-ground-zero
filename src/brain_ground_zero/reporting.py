@@ -128,7 +128,7 @@ def _write_win_rate_table(
             f.write("| " + " | ".join(str(row[k]) for k in fieldnames) + " |\n")
 
 
-def _write_worked_example(artifacts_dir: Path, run_dir: Path) -> None:
+def _write_worked_example(artifacts_dir: Path, run_dir: Path, family_name: str) -> None:
     """Extract a single query pair traced across all baselines/steps as a worked example."""
     metrics_path = run_dir / "metrics.jsonl"
     if not metrics_path.exists():
@@ -172,7 +172,9 @@ def _write_worked_example(artifacts_dir: Path, run_dir: Path) -> None:
     md_path = artifacts_dir / "worked_example_trace.md"
     with md_path.open("w", encoding="utf-8") as f:
         f.write(f"# Worked Example: {subject} -> {object_}\n\n")
-        f.write("How each baseline answers the same query as the ground-truth relation drifts over time.\n\n")
+        f.write(
+            "How each baseline answers the same query as the ground-truth relation changes over time.\n\n"
+        )
 
         # Header
         header = ["step", "truth"] + baselines_in_example
@@ -195,10 +197,12 @@ def _write_worked_example(artifacts_dir: Path, run_dir: Path) -> None:
                     cells.append(f"{ans} ({mark})")
             f.write("| " + " | ".join(cells) + " |\n")
 
-        f.write(f"\n*Source: metrics.jsonl, query pair `{best_key}`*\n")
+        f.write(f"\n*Source: metrics.jsonl, family `{family_name}`, query pair `{best_key}`*\n")
 
 
-def _plot_learning_curve(artifacts_dir: Path, summary: Dict[str, Dict[str, float]]) -> None:
+def _plot_learning_curve(
+    artifacts_dir: Path, summary: Dict[str, Dict[str, float]], family_name: str
+) -> None:
     has_std = any(
         "accuracy_std" in pt
         for m in summary.values()
@@ -221,7 +225,7 @@ def _plot_learning_curve(artifacts_dir: Path, summary: Dict[str, Dict[str, float
 
     plt.xlabel("Step")
     plt.ylabel("Accuracy")
-    title = "Learning Curve (Relational Drift)"
+    title = f"Learning Curve ({_pretty_family_name(family_name)})"
     if has_std:
         num_seeds = next(iter(summary.values())).get("num_seeds", "?")
         title += f" [{num_seeds} seeds, mean +/- 1 std]"
@@ -252,7 +256,26 @@ def generate_report(run_dir: Path) -> None:
     _write_summary_table(artifacts_dir, summary)
     _write_pairwise_deltas(artifacts_dir, summary)
     _write_win_rate_table(artifacts_dir, per_seed_summaries=per_seed_summaries, summary=summary)
-    _write_worked_example(artifacts_dir, run_dir)
-    _plot_learning_curve(artifacts_dir, summary)
+    family_name = _resolve_family_name(run_dir)
+    _write_worked_example(artifacts_dir, run_dir, family_name)
+    _plot_learning_curve(artifacts_dir, summary, family_name)
 
     print(f"Report artifacts written to {artifacts_dir}")
+
+
+def _resolve_family_name(run_dir: Path) -> str:
+    config_path = run_dir / "config_snapshot.json"
+    if config_path.exists():
+        try:
+            config = json.loads(config_path.read_text(encoding="utf-8"))
+            family = config.get("family", {})
+            name = family.get("name")
+            if name:
+                return str(name)
+        except json.JSONDecodeError:
+            pass
+    return "benchmark"
+
+
+def _pretty_family_name(name: str) -> str:
+    return name.replace("_", " ").title()

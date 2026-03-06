@@ -1,0 +1,38 @@
+name: recurring_workflows
+seed: 2026
+params:
+  num_workflows: 50
+  steps_per_workflow: 6
+  prefs_per_workflow: 2
+  action_types:
+    - draft
+    - review
+    - approve
+    - send
+    - file
+    - notify
+    - schedule
+    - reconcile
+    - archive
+  preference_types:
+    - email
+    - slack
+    - jira
+    - docs
+    - sheet
+    - calendar
+  steps: 40
+  workflows_per_step: 8
+  query_steps_per_workflow: 3
+  query_prefs_per_workflow: 1
+  workflow_updates_per_step: 3
+  step_updates_per_workflow: 2
+  pref_updates_per_workflow: 1
+  recurrence_bias: 0.75
+  recent_window: 14
+  update_query_ratio: 0.6
+  contradiction_rate: 0.2
+budgets:
+  context_budget: 12
+  teacher_budget: 100
+  teacher_delay: 2

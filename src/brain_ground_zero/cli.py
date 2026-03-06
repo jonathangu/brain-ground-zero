@@ -28,7 +28,12 @@ def _parse_args() -> argparse.Namespace:
     rep_p.add_argument("--run-dir", required=True, help="Run directory")
 
     smoke_p = sub.add_parser("smoke", help="Run a small smoke test")
-    smoke_p.add_argument("--run-id", default="smoke_relational_drift", help="Optional run id")
+    smoke_p.add_argument(
+        "--family",
+        default=None,
+        help="Optional family config path (default: run all smoke families)",
+    )
+    smoke_p.add_argument("--run-id", default="smoke", help="Optional run id base")
 
     return parser.parse_args()
 
@@ -49,14 +54,24 @@ def main() -> None:
     elif args.command == "report":
         reporting.generate_report(Path(args.run_dir))
     elif args.command == "smoke":
-        cfg = load_run_config(
-            "configs/families/relational_drift.yaml",
-            "configs/baselines/all.yaml",
-            "configs/systems/default.yaml",
-        )
-        run_dir = runner.run_benchmark(cfg, run_id=args.run_id, smoke=True)
-        reporting.generate_report(run_dir)
-        print(f"Smoke run complete: {run_dir}")
+        if args.family:
+            family_paths = [args.family]
+        else:
+            family_paths = [
+                "configs/families/relational_drift.yaml",
+                "configs/families/recurring_workflows.yaml",
+            ]
+        for family_path in family_paths:
+            cfg = load_run_config(
+                family_path,
+                "configs/baselines/all.yaml",
+                "configs/systems/default.yaml",
+            )
+            family_name = cfg.family.get("name", Path(family_path).stem)
+            run_id = args.run_id if args.family else f"{args.run_id}_{family_name}"
+            run_dir = runner.run_benchmark(cfg, run_id=run_id, smoke=True)
+            reporting.generate_report(run_dir)
+            print(f"Smoke run complete: {run_dir}")
 
 
 if __name__ == "__main__":
