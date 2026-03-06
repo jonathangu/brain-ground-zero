@@ -2,6 +2,15 @@
 
 **The full OpenClawBrain (OCB) method beats every RAG and stateful-memory baseline on relational drift -- by a wide margin, across 10 seeds.**
 
+> **Proof artifact:** [`proof-results/relational_drift_10seed/`](proof-results/relational_drift_10seed/)
+> **Exact reproduction:**
+> ```
+> python -m brain_ground_zero.cli multiseed \
+>   --family configs/families/relational_drift.yaml \
+>   --baselines configs/baselines/all.yaml \
+>   --seeds 10,20,30,40,50,60,70,80,90,100
+> ```
+
 ## Headline numbers (relational_drift, 10-seed mean)
 
 | System | Accuracy | vs Best RAG | Win-rate vs field |
@@ -14,13 +23,13 @@
 | route_fn_only | 64.7% +/- 1.6 | -- | |
 | oracle (ceiling) | 100% | -- | |
 
-Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/relational_drift_10seed/).
+Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/relational_drift_10seed/`](proof-results/relational_drift_10seed/).
 
 ## What this proves (and what it doesn't)
 
 This is the **first ground-zero benchmark family** (relational drift). It proves the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift.
 
-It does **not** yet prove the thesis across all families (recurring workflows, sparse feedback, memory compaction). Those are designed in the harness and ready to implement. See [CLAIMS.md](CLAIMS.md) for precise scope.
+It does **not** yet prove the thesis across all families (recurring workflows, sparse feedback, memory compaction). Those are designed in the harness and ready to implement. See [CLAIMS.md](CLAIMS.md) for precise scope and explicit limitations.
 
 ## How this connects to the real implementation
 
@@ -60,6 +69,7 @@ PYTHONPATH=src python3 scripts/validate_configs.py
 ```
 proof-results/          <- tracked 10-seed proof artifacts (the real numbers)
 CLAIMS.md               <- what is proven and what is not
+STATUS.md               <- current project status and next steps
 IMPLEMENTATION_STRATEGY.md <- bridge to the production architecture
 SHARE_MESSAGE.md        <- copy/paste message for sharing
 
