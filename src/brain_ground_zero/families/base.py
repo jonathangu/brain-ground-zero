@@ -13,6 +13,7 @@ class Step:
     updates: List[Fact]
     queries: List[Query]
     answers: List[str]
+    previous_relations: List[str | None]
 
 
 @dataclass
@@ -33,4 +34,3 @@ class BenchmarkFamily(ABC):
     @abstractmethod
     def build_steps(self, world_state: Dict[str, Fact]) -> List[Step]:
         """Return ordered steps with updates and queries."""
-

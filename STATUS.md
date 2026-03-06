@@ -10,3 +10,8 @@
 - Current milestone: M2 — Harness scaffold
 - Next step: implement relational_drift family, runner, and baseline logic.
 
+## 2026-03-06 09:06 PST
+- What changed: implemented relational_drift family, runner, baseline logic, memory/policy utilities, and reporting hooks.
+- Current milestone: M3 — Relational drift family
+- Next step: add reporting artifacts and smoke/validation scripts, then run smoke checks.
+

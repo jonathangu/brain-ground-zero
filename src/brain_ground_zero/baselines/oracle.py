@@ -16,5 +16,8 @@ class OracleBaseline(Baseline):
             self._world_state[key] = fact
 
     def answer(self, step: int, query: Query) -> Answer:
-        raise NotImplementedError("Oracle baseline to be implemented")
+        key = f"{query.subject}::{query.object}"
+        fact = self._world_state.get(key)
+        relation = fact.relation if fact else None
+        return Answer(relation=relation, source="oracle", context_used=1, traversal_cost=1)
 
