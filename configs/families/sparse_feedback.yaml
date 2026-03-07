@@ -1,0 +1,47 @@
+name: sparse_feedback
+seed: 3030
+params:
+  num_workflows: 70
+  steps_per_workflow: 6
+  prefs_per_workflow: 2
+  action_types:
+    - draft
+    - review
+    - approve
+    - send
+    - file
+    - notify
+    - schedule
+    - reconcile
+    - archive
+    - escalate
+  preference_types:
+    - email
+    - slack
+    - jira
+    - docs
+    - sheet
+    - calendar
+    - ticket
+  steps: 45
+  workflows_per_step: 10
+  query_steps_per_workflow: 3
+  query_prefs_per_workflow: 1
+  workflow_updates_per_step: 4
+  step_updates_per_workflow: 2
+  pref_updates_per_workflow: 1
+  revision_burst_rate: 0.35
+  burst_extra_step_updates: 2
+  burst_extra_pref_updates: 1
+  recurrence_bias: 0.8
+  recent_window: 16
+  update_query_ratio: 0.75
+  contradiction_rate: 0.2
+  explicit_feedback_rate: 0.06
+  focused_feedback_rate: 0.45
+  feedback_focus_recent_steps: 2
+  min_feedback_per_step: 1
+budgets:
+  context_budget: 12
+  teacher_budget: 70
+  teacher_delay: 2

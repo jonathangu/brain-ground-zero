@@ -45,5 +45,5 @@ Drift is defined as a change to an existing relation for a subject-object pair.
 - `initial_density`
 - `drift_rate`
 - `contradiction_rate`
+- `explicit_feedback_rate` (family-dependent, for sparse supervision)
 - `seed`
-

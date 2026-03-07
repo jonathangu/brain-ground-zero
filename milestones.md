@@ -22,7 +22,6 @@
 
 ## M5 — Extension families (planned)
 - Pointer + relation retrieval
-- Recurring workflows
-- Sparse feedback / teacher-assisted learning
+- Recurring workflows (implemented)
+- Sparse feedback / teacher-assisted learning (implemented)
 - Memory compaction / structural plasticity
-

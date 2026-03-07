@@ -33,23 +33,23 @@ class FullBrainBaseline(Baseline):
         self.short_term = SlidingVectorIndex(dim, self.short_term_size)
         self.long_term = VectorIndex(dim)
         self._facts_cache: List[Fact] = []
+        self._latest_facts: Dict[str, Fact] = {}
 
         for fact in world_state.values():
-            self.graph.add_fact(fact)
-            self.short_term.add(fact)
-            self.long_term.add(fact)
-            self._facts_cache.append(fact)
+            self._ingest_fact(fact)
 
     def _background_labels(self, step: int, corrections: List[Fact]) -> List[Fact]:
         if not corrections or self.label_per_correction <= 0:
             return []
         labels: List[Fact] = []
         for corr in corrections:
+            corr_key = f"{corr.subject}::{corr.object}"
             related = [
                 fact
-                for fact in self._facts_cache
-                if fact.subject == corr.subject or fact.object == corr.object
+                for key, fact in self._latest_facts.items()
+                if key != corr_key and (fact.subject == corr.subject or fact.object == corr.object)
             ]
+            related.sort(key=lambda f: f.time, reverse=True)
             for fact in related[: self.label_per_correction]:
                 labels.append(
                     Fact(
@@ -67,10 +67,7 @@ class FullBrainBaseline(Baseline):
         background = self._background_labels(step, corrections)
         all_facts = updates + corrections + background
         for fact in all_facts:
-            self.graph.add_fact(fact)
-            self.short_term.add(fact)
-            self.long_term.add(fact)
-            self._facts_cache.append(fact)
+            self._ingest_fact(fact)
         self.graph.cofire(all_facts)
         self.graph.merge_prune()
 
@@ -112,3 +109,12 @@ class FullBrainBaseline(Baseline):
         reward = 1.0 if correct else 0.0
         self.policy.update(answer.source, reward)
 
+    def _ingest_fact(self, fact: Fact) -> None:
+        key = f"{fact.subject}::{fact.object}"
+        self.graph.add_fact(fact)
+        self.short_term.add(fact)
+        self.long_term.add(fact)
+        self._facts_cache.append(fact)
+        current = self._latest_facts.get(key)
+        if current is None or fact.time >= current.time:
+            self._latest_facts[key] = fact

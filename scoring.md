@@ -18,6 +18,11 @@ Incorrect answers that are neither stale nor unknown.
 ### Correction count
 Number of teacher corrections delivered (bounded by teacher budget).
 
+### Feedback coverage
+Number/fraction of queries with explicit feedback available.
+
+`feedback_rate = feedback_events / total_queries`
+
 ### Context used
 Total number of memory items retrieved or read (proxy for prompt/context usage).
 
@@ -39,4 +44,3 @@ score = accuracy
 ```
 
 Composite weights are explicitly documented when used.
-

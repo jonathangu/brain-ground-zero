@@ -44,11 +44,16 @@
 ## What is not yet proven
 
 - **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results exist yet. This is the next proof rung.
-- Performance on **sparse feedback / teacher-assisted learning** (family designed, not yet run)
+- Performance on **sparse feedback / teacher-assisted learning** at proof scale (family implemented; small 3-seed spot-check exists)
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current proof scales are modest: relational uses 50 entities/5 relation types; recurring uses 80 workflows/11 slots)
 - Performance with **real LLM routing** (current harness uses simulated policy functions, not live model calls)
 - **Latency and cost** under production load
+
+## Spot-check evidence (not proof-scale)
+
+- **Recurring workflows, 3 seeds:** directionally consistent with the relational-drift ordering. See [`proof-results/recurring_workflows_3seed/`](proof-results/recurring_workflows_3seed/).
+- **Sparse feedback, 3 seeds:** full_brain 97.96% vs best RAG 67.70% (+30.26 pp) at ~19.8% explicit feedback coverage. See [`proof-results/sparse_feedback_3seed/`](proof-results/sparse_feedback_3seed/).
 
 ## Fairness guarantees
 

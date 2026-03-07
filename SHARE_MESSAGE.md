@@ -26,7 +26,7 @@ Results:
 
 The ablation tells a clean story: each layer adds value, and structural plasticity is the single biggest contributor (+20.8 pp). Win-rate matrix shows the full brain wins 9/10 or 10/10 seeds against every non-oracle baseline.
 
-This is the first benchmark family (mechanism proof on drift, not production proof). A recurring_workflows spot-check is directionally consistent; sparse feedback and memory compaction are designed but not yet implemented. Repo has the full harness, configs, reproduction commands, and tracked proof artifacts:
+This is the first benchmark family (mechanism proof on drift, not production proof). Recurring_workflows and sparse_feedback now both have small spot-check artifacts; memory compaction is still planned. Repo has the full harness, configs, reproduction commands, and tracked proof artifacts:
 
 https://github.com/jonathangu/brain-ground-zero
 

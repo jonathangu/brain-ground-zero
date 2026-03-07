@@ -24,6 +24,7 @@ class MetricsBucket:
     context_used: int = 0
     traversal_cost: int = 0
     corrections_delivered: int = 0
+    feedback_events: int = 0
     step_correct: Dict[int, int] = field(default_factory=dict)
     step_total: Dict[int, int] = field(default_factory=dict)
 
@@ -42,6 +43,7 @@ class MetricsTracker:
         unknown: bool,
         context_used: int,
         traversal_cost: int,
+        feedback_available: bool,
     ) -> None:
         bucket = self.data[baseline]
         bucket.total += 1
@@ -51,6 +53,7 @@ class MetricsTracker:
         bucket.unknown += 1 if unknown else 0
         bucket.context_used += context_used
         bucket.traversal_cost += traversal_cost
+        bucket.feedback_events += 1 if feedback_available else 0
         bucket.step_total[step] = bucket.step_total.get(step, 0) + 1
         bucket.step_correct[step] = bucket.step_correct.get(step, 0) + (1 if correct else 0)
 
@@ -75,6 +78,8 @@ class MetricsTracker:
                 "false_rate": false_rate,
                 "unknown_rate": bucket.unknown / incorrect if incorrect else 0.0,
                 "corrections_delivered": bucket.corrections_delivered,
+                "feedback_events": bucket.feedback_events,
+                "feedback_rate": bucket.feedback_events / bucket.total if bucket.total else 0.0,
                 "context_used": bucket.context_used,
                 "traversal_cost": bucket.traversal_cost,
                 "total_queries": bucket.total,
@@ -116,10 +121,11 @@ def _shrink_steps(steps: List[Step]) -> List[Step]:
         out.append(
             Step(
                 step=step.step,
-                updates=step.updates[:2],
+                updates=list(step.updates),
                 queries=step.queries[:5],
                 answers=step.answers[:5],
                 previous_relations=step.previous_relations[:5],
+                feedback_mask=step.feedback_mask[:5] if step.feedback_mask is not None else None,
             )
         )
     return out
@@ -174,6 +180,9 @@ def run_benchmark(run_config: RunConfig, run_id: Optional[str] = None, smoke: bo
             for idx, query in enumerate(step.queries):
                 truth = step.answers[idx]
                 prev = step.previous_relations[idx]
+                feedback_available = True
+                if step.feedback_mask is not None and idx < len(step.feedback_mask):
+                    feedback_available = bool(step.feedback_mask[idx])
                 for name, baseline in baselines.items():
                     answer = baseline.answer(step.step, query)
                     if answer.context_used > budget.context_budget:
@@ -192,12 +201,15 @@ def run_benchmark(run_config: RunConfig, run_id: Optional[str] = None, smoke: bo
                         unknown,
                         answer.context_used,
                         answer.traversal_cost,
+                        feedback_available,
                     )
 
-                    baseline.on_feedback(step.step, query, correct, truth, answer)
+                    if feedback_available:
+                        baseline.on_feedback(step.step, query, correct, truth, answer)
 
                     if (
-                        (not correct)
+                        feedback_available
+                        and (not correct)
                         and baseline.supports_teacher()
                         and teacher_remaining[name] > 0
                     ):
@@ -227,6 +239,7 @@ def run_benchmark(run_config: RunConfig, run_id: Optional[str] = None, smoke: bo
                         "context_used": answer.context_used,
                         "traversal_cost": answer.traversal_cost,
                         "route_source": answer.source,
+                        "feedback_available": feedback_available,
                     }
                     f.write(json.dumps(record) + "\n")
 
@@ -309,13 +322,14 @@ def _aggregate_summaries(
     baselines = list(summaries[0].keys())
     scalar_keys = [
         "accuracy", "stale_rate", "false_rate", "unknown_rate",
-        "corrections_delivered", "context_used", "traversal_cost", "total_queries",
+        "corrections_delivered", "feedback_events", "feedback_rate",
+        "context_used", "traversal_cost", "total_queries",
     ]
     out: Dict[str, Dict[str, float]] = {}
     for name in baselines:
         agg: Dict[str, float] = {}
         for key in scalar_keys:
-            vals = [s[name][key] for s in summaries if name in s]
+            vals = [s[name].get(key, 0.0) for s in summaries if name in s]
             mean = sum(vals) / len(vals)
             std = math.sqrt(sum((v - mean) ** 2 for v in vals) / len(vals)) if len(vals) > 1 else 0.0
             agg[key] = round(mean, 6)

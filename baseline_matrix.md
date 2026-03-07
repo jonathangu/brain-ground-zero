@@ -15,5 +15,5 @@ All baselines share the same world, task stream, context budget, and teacher bud
 
 Notes:
 - "Optional" teacher indicates the baseline can use teacher corrections if enabled in the run config.
+- In `sparse_feedback`, teacher and PG updates are gated by per-query feedback availability (`feedback_mask`).
 - Structural edits include connect/split/merge/prune.
-

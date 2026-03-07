@@ -83,6 +83,8 @@ def _write_summary_table(artifacts_dir: Path, summary: Dict[str, Dict[str, float
             "false_rate",
             "unknown_rate",
             "corrections_delivered",
+            "feedback_events",
+            "feedback_rate",
             "context_used",
             "traversal_cost",
             "total_queries",
@@ -527,6 +529,7 @@ def _write_worked_example(
         baseline_acc_summary[baseline] = {"accuracy": _baseline_accuracy_from_records(example_records, baseline)}
     baselines_in_example = _ordered_baselines(baseline_acc_summary)
     steps_in_example = sorted(set(int(r["step"]) for r in example_records))
+    has_feedback_flag = any("feedback_available" in r for r in example_records)
 
     subject, object_ = best_key.split("::")
     md_path = artifacts_dir / "worked_example_trace.md"
@@ -535,7 +538,10 @@ def _write_worked_example(
         if seed_label:
             f.write(f"Representative seed: `{seed_label}`\n\n")
         f.write("How each baseline answers the same query as the ground-truth relation changes over time.\n\n")
-        header = ["step", "truth"] + baselines_in_example
+        header = ["step", "truth"]
+        if has_feedback_flag:
+            header.append("explicit_feedback")
+        header += baselines_in_example
         f.write("| " + " | ".join(header) + " |\n")
         f.write("|" + "|".join(["---"] * len(header)) + "|\n")
 
@@ -545,6 +551,9 @@ def _write_worked_example(
                 continue
             truth = str(next(iter(step_recs.values()))["truth"])
             cells = [str(step), truth]
+            if has_feedback_flag:
+                feedback = any(bool(r.get("feedback_available")) for r in step_recs.values())
+                cells.append("yes" if feedback else "no")
             for baseline in baselines_in_example:
                 record = step_recs.get(baseline)
                 if record is None:

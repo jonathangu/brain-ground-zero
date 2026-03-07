@@ -29,6 +29,7 @@ Full results, pairwise deltas, win-rate matrix, and worked examples are in [`pro
 | oracle (ceiling) | 100% | -- | |
 
 See [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workflows_10seed/) for the full artifact set.
+A sparse-feedback 3-seed spot-check is tracked in [`proof-results/sparse_feedback_3seed/`](proof-results/sparse_feedback_3seed/).
 
 ## What this proves (and what it doesn't)
 
@@ -40,7 +41,7 @@ Together they show that the full-brain mechanism -- graph memory + learned route
 
 **Recorded-session head-to-head (next rung, in progress):** Replay real OpenClaw session traces against ablated baselines to prove the mechanism transfers to real product data. See [`recorded_session_spec.md`](recorded_session_spec.md) for the full spec, [`recorded_sessions/`](recorded_sessions/) for the fixture schema and example.
 
-It does **not** yet prove the thesis across all families; sparse feedback and memory compaction are designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
+It does **not** yet prove the thesis across all families; `sparse_feedback` is implemented with a 3-seed spot-check but not yet at proof scale; memory compaction is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
 ## How this connects to the real implementation
 
@@ -66,6 +67,11 @@ python -m brain_ground_zero.cli run \
   --family configs/families/recurring_workflows.yaml \
   --baselines configs/baselines/all.yaml
 
+# Run sparse_feedback for all baselines
+python -m brain_ground_zero.cli run \
+  --family configs/families/sparse_feedback.yaml \
+  --baselines configs/baselines/all.yaml
+
 # Multi-seed run (aggregated stats, win-rate matrix)
 python -m brain_ground_zero.cli multiseed \
   --family configs/families/relational_drift.yaml \
@@ -84,7 +90,7 @@ PYTHONPATH=src python3 -m brain_ground_zero.cli smoke
 
 # Or target a single family
 PYTHONPATH=src python3 -m brain_ground_zero.cli smoke \
-  --family configs/families/recurring_workflows.yaml
+  --family configs/families/sparse_feedback.yaml
 
 PYTHONPATH=src python3 scripts/validate_configs.py
 
@@ -99,6 +105,7 @@ proof-results/                  <- tracked proof artifacts
   relational_drift_10seed/      <- 10-seed simulation proof (the headline numbers)
   recurring_workflows_10seed/   <- 10-seed proof sweep (recurring workflows)
   recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
+  sparse_feedback_3seed/        <- 3-seed spot-check (sparse feedback)
   recorded_sessions/            <- (placeholder) real-session head-to-head results
 
 recorded_session_spec.md        <- spec for recorded-session head-to-head evaluation

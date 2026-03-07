@@ -30,7 +30,7 @@ Baselines must declare what they update online. The benchmark records updates to
 4. **sparse feedback / teacher-assisted learning**
 5. **memory compaction / structural plasticity**
 
-**Implemented now:** `relational_drift` (drift + contradiction), `recurring_workflows`
+**Implemented now:** `relational_drift`, `recurring_workflows`, `sparse_feedback`
 
 ## Relational drift family
 A long-lived world of entities and relations where relations change over time. The task stream asks for the **current** relation for entity pairs. Systems must adapt to drift, avoid stale recall, and minimize false recall under a bounded context window and teacher budget.
@@ -45,11 +45,24 @@ Key parameters:
 - `workflow_updates_per_step`, `step_updates_per_workflow`, `pref_updates_per_workflow`
 - `recurrence_bias`, `recent_window`, `update_query_ratio`, `contradiction_rate`
 
+## Sparse feedback family
+A recurring-workflow world with bursty revisions, but where only a small subset of queries receives explicit feedback. Each step emits a per-query `feedback_mask`; only masked queries can drive policy-gradient updates and teacher-correction scheduling. This stresses the intended mechanism:
+- learned hot-path routing under limited supervision
+- async teacher corrections delayed and budgeted
+- full-brain background labels amplifying sparse corrections into denser offline signal
+
+Key parameters:
+- all recurring-workflow controls above
+- `revision_burst_rate`, `burst_extra_step_updates`, `burst_extra_pref_updates`
+- `explicit_feedback_rate`, `focused_feedback_rate`, `feedback_focus_recent_steps`
+- `min_feedback_per_step`
+
 ## Key metrics
 - **Task success** (accuracy)
 - **Stale recall rate** (returns old relation)
 - **False recall rate** (returns incorrect non-stale relation)
 - **Correction count** (teacher usage)
+- **Feedback coverage** (`feedback_events`, `feedback_rate`)
 - **Context used** (retrieval/memory reads proxy)
 - **Traversal/latency proxy** (edges or hops)
 - **Learning curve over time** (accuracy by step)

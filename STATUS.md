@@ -57,6 +57,19 @@
 - Current milestone: M7 — Recurring workflows proof sweep
 - Next step: carry the same proof-scale packaging to sparse feedback / teacher-assisted family.
 
+## 2026-03-06 20:40 PST
+- What changed: implemented `sparse_feedback` family end-to-end (world/task generation + sparse per-query feedback masks), and wired sparse feedback gating into runner/scoring/reporting.
+  - Runner now honors step-level `feedback_mask` for PG updates and teacher scheduling.
+  - Metrics/reporting now include `feedback_events` and `feedback_rate`.
+  - Added `configs/families/sparse_feedback.yaml`; wired family into registry, CLI smoke, and config validation.
+  - Improved `full_brain` background labels to use latest related facts, making sparse teacher signals usable for offline label amplification.
+- Validation checks:
+  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+  - `PYTHONPATH=src python3 -m brain_ground_zero.cli smoke --family configs/families/sparse_feedback.yaml --run-id smoke_sparse_feedback` (ok)
+- Proof-style run: `sparse_feedback` 3-seed spot-check recorded in `proof-results/sparse_feedback_3seed/`.
+- Current milestone: M8 — Sparse feedback family
+- Next step: scale `sparse_feedback` to proof-grade runs.
+
 ## 2026-03-06 (recorded-session head-to-head scaffold)
 - What changed: added recorded-session / fixed-session head-to-head evaluation scaffold.
   - `recorded_session_spec.md` — full spec: purpose, proof boundary, modes, scoring rubric, fairness rules, operator workflow.
@@ -66,5 +79,5 @@
   - `proof-results/recorded_sessions/README.md` — placeholder for scored artifacts.
   - Updated README.md, benchmark_spec.md, CLAIMS.md, proof-results/README.md.
 - Validation: `python3 scripts/validate_fixture.py --all` (ok, all fixtures valid)
-- Current milestone: M8 — Recorded-session head-to-head spec and scaffold
+- Current milestone: M9 — Recorded-session head-to-head spec and scaffold
 - Next step: capture real session traces, convert to fixtures, and produce first scored head-to-head artifacts.
