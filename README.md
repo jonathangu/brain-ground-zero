@@ -39,7 +39,7 @@ This benchmark now includes two proof-scale families:
 
 Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift and repeated workflow tasks.
 
-**Recorded-session head-to-head (next rung, in progress):** Replay real OpenClaw session traces against ablated baselines to prove the mechanism transfers to real product data. See [`recorded_session_spec.md`](recorded_session_spec.md) for the full spec, [`recorded_sessions/`](recorded_sessions/) for the fixture schema and example.
+**Recorded head-to-head (first artifact shipped):** The first scored recorded-h2h bundle replays a deterministic fixture (800 queries, seed 42) against all 8 baselines with full JSONL traces and verification hashes. full_brain achieves 97.5% vs best RAG 89.6% (+7.9 pp). See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/). The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
 
 It does **not** yet prove the thesis across all families; `sparse_feedback` is implemented with a 3-seed spot-check but not yet at proof scale; memory compaction is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
@@ -80,6 +80,18 @@ python -m brain_ground_zero.cli multiseed \
 
 # Recurring-workflows proof sweep + publish to proof-results/
 ./scripts/run_recurring_workflows_proof.sh
+
+# Recorded head-to-head: generate fixture + run + validate
+python -m brain_ground_zero.cli generate_fixture \
+  --family configs/families/relational_drift.yaml \
+  --seed 42 --output /tmp/fixture.yaml
+
+python -m brain_ground_zero.cli recorded_h2h \
+  --fixture /tmp/fixture.yaml \
+  --baselines configs/baselines/all.yaml \
+  --output /tmp/h2h_output/
+
+python scripts/validate_recorded_h2h.py /tmp/h2h_output/
 ```
 
 ## Smoke checks
@@ -96,6 +108,9 @@ PYTHONPATH=src python3 scripts/validate_configs.py
 
 # Validate recorded-session fixtures
 python3 scripts/validate_fixture.py --all
+
+# Validate recorded h2h bundles
+python3 scripts/validate_recorded_h2h.py
 ```
 
 ## Repository layout
@@ -106,6 +121,7 @@ proof-results/                  <- tracked proof artifacts
   recurring_workflows_10seed/   <- 10-seed proof sweep (recurring workflows)
   recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
   sparse_feedback_3seed/        <- 3-seed spot-check (sparse feedback)
+  recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle
   recorded_sessions/            <- (placeholder) real-session head-to-head results
 
 recorded_session_spec.md        <- spec for recorded-session head-to-head evaluation

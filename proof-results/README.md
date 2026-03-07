@@ -13,13 +13,14 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 
 **Start here:** `relational_drift_10seed/` and `recurring_workflows_10seed/` are the strongest artifacts -- each is a 10-seed, 8-baseline proof run with full tables and worked traces.
 
-## Recorded-session head-to-head (next rung)
+## Recorded head-to-head
 
 | Directory | Status | Description |
 |---|---|---|
+| [recorded_h2h_relational_drift_001](recorded_h2h_relational_drift_001/) | **Draft (first bundle)** | 8 baselines, 800 queries, seed 42 -- full_brain 97.5% vs best RAG 89.6% (+7.9 pp) |
 | [recorded_sessions/](recorded_sessions/) | **Placeholder** | Real product session head-to-head results (none yet) |
 
-The spec, fixture schema, and example fixture are in [`recorded_sessions/`](../recorded_sessions/) at the repo root. See [`recorded_session_spec.md`](../recorded_session_spec.md) for the full evaluation protocol.
+The recorded-h2h lane replays a deterministic fixture against all baselines with full JSONL trace logging and verification hashes. See [`recorded_session_spec.md`](../recorded_session_spec.md) for the evaluation protocol.
 
 ## Scope
 

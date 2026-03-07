@@ -81,3 +81,20 @@
 - Validation: `python3 scripts/validate_fixture.py --all` (ok, all fixtures valid)
 - Current milestone: M9 — Recorded-session head-to-head spec and scaffold
 - Next step: capture real session traces, convert to fixtures, and produce first scored head-to-head artifacts.
+
+## 2026-03-07 (recorded head-to-head: first scored artifact)
+- What changed: shipped first scored recorded-h2h bundle and implementation code.
+  - `src/brain_ground_zero/recorded_h2h.py` — fixture generation + deterministic replay harness with full JSONL trace logging.
+  - `scripts/validate_recorded_h2h.py` — 8-criterion bundle validator (fixture hash, trace hashes, completeness, reproducibility, metadata, baselines, summary).
+  - CLI: `generate_fixture` and `recorded_h2h` commands wired into `cli.py`.
+  - `proof-results/recorded_h2h_relational_drift_001/` — first artifact bundle:
+    - 800 queries across 41 steps, seed 42, 8 baselines.
+    - full_brain 97.5% vs vector_rag_rerank 89.6% (+7.9 pp).
+    - Full traces, scoring tables, pairwise deltas, per-query verdicts, SHA-256 verification, reproducibility check.
+  - Updated README.md, STATUS.md, CLAIMS.md, proof-results/README.md.
+- Validation:
+  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+  - `python3 scripts/validate_fixture.py --all` (ok)
+  - `python3 scripts/validate_recorded_h2h.py` (ok)
+- Current milestone: M10 — Recorded head-to-head first artifact
+- Next step: scale recorded h2h to multi-seed proof bundles; capture real product session traces.

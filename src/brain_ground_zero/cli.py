@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from brain_ground_zero import reporting, runner
+from brain_ground_zero import recorded_h2h, reporting, runner
 from brain_ground_zero.config import load_run_config
 
 
@@ -26,6 +26,16 @@ def _parse_args() -> argparse.Namespace:
 
     rep_p = sub.add_parser("report", help="Generate report artifacts")
     rep_p.add_argument("--run-dir", required=True, help="Run directory")
+
+    gf_p = sub.add_parser("generate_fixture", help="Generate a fixed session fixture from a family config")
+    gf_p.add_argument("--family", required=True, help="Path to family config YAML")
+    gf_p.add_argument("--seed", type=int, default=42, help="Generator seed (default: 42)")
+    gf_p.add_argument("--output", required=True, help="Output fixture YAML path")
+
+    rh_p = sub.add_parser("recorded_h2h", help="Run baselines against a fixed fixture with trace logging")
+    rh_p.add_argument("--fixture", required=True, help="Path to fixture YAML")
+    rh_p.add_argument("--baselines", required=True, help="Path to baseline set YAML")
+    rh_p.add_argument("--output", required=True, help="Output bundle directory")
 
     smoke_p = sub.add_parser("smoke", help="Run a small smoke test")
     smoke_p.add_argument(
@@ -53,6 +63,10 @@ def main() -> None:
         print(f"Multi-seed run complete: {run_dir}")
     elif args.command == "report":
         reporting.generate_report(Path(args.run_dir))
+    elif args.command == "generate_fixture":
+        recorded_h2h.generate_fixture(args.family, args.seed, args.output)
+    elif args.command == "recorded_h2h":
+        recorded_h2h.run_recorded_h2h(args.fixture, args.baselines, args.output)
     elif args.command == "smoke":
         if args.family:
             family_paths = [args.family]

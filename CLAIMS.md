@@ -41,9 +41,19 @@
 
 5. **full_brain uses 5x less context than vector_rag_rerank** (1.0 vs 5.0 context/query) while achieving much higher accuracy.
 
+## Spot-check evidence: recorded head-to-head
+
+**Recorded head-to-head: relational_drift_001** | **1 seed (42)** | **800 queries** | **8 baselines**
+
+- First scored recorded-h2h bundle with deterministic fixture, full JSONL traces, and SHA-256 verification.
+- full_brain 97.5% vs best RAG (vector_rag_rerank) 89.6% (+7.9 pp). Directionally consistent with the 10-seed simulation proof.
+- See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/).
+- **Not yet proof-scale** (single seed). Multi-seed recorded h2h is the next rung.
+
 ## What is not yet proven
 
-- **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results exist yet. This is the next proof rung.
+- **Recorded head-to-head at proof scale.** The first single-seed bundle is shipped, but multi-seed recorded h2h is needed for a full proof claim.
+- **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results from real sessions exist yet.
 - Performance on **sparse feedback / teacher-assisted learning** at proof scale (family implemented; small 3-seed spot-check exists)
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current proof scales are modest: relational uses 50 entities/5 relation types; recurring uses 80 workflows/11 slots)
