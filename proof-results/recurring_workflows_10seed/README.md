@@ -13,6 +13,11 @@ Updates: 5 workflows/step, 2 step updates + 1 preference updates
 - best RAG (`vector_rag_rerank`) accuracy: **70.64% +/- 1.18%**
 - margin: **+26.92 pp**
 
+## Publishable assets
+
+- `chart_seed_h2h_full_brain_vs_best_rag.png` -- seed-by-seed dumbbell chart (full_brain vs vector_rag_rerank), showing the 10-0 head-to-head sweep directly
+- `publishable_key_results.md` / `.csv` -- one-row publication scorecard for this bundle
+
 ## Files
 
 - `summary_table.md` / `.csv` -- aggregate metrics for each baseline

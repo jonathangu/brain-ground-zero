@@ -19,6 +19,11 @@ Updates: 4 workflows/step, 2 step updates + 1 preference updates, contradiction 
 
 Sparse feedback simulates a teacher-assisted learning scenario where the system receives explicit correctness signals on only ~19% of queries. The full-brain mechanism must amplify these sparse signals via its graph memory and structural plasticity to maintain high accuracy across the remaining ~81% of unlabeled queries.
 
+## Publishable assets
+
+- `chart_seed_h2h_full_brain_vs_best_rag.png` -- seed-by-seed dumbbell chart (full_brain vs vector_rag_rerank), showing the 9-1 head-to-head split directly
+- `publishable_key_results.md` / `.csv` -- one-row publication scorecard for this bundle
+
 ## Files
 
 - `summary_table.md` / `.csv` -- aggregate metrics for each baseline

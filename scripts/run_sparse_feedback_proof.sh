@@ -26,7 +26,7 @@ cp "${RUN_DIR}/seeds.json" "${PROOF_DIR}/seeds.json"
 cp "${RUN_DIR}/config_snapshot.json" "${PROOF_DIR}/config_snapshot.json"
 cp "${RUN_DIR}/artifacts/"* "${PROOF_DIR}/"
 
-echo "[3/3] Writing proof README"
+echo "[3/4] Writing proof README"
 RUN_ID_ENV="${RUN_ID}" python3 - <<'PY'
 import json
 import os
@@ -88,5 +88,8 @@ Updates: {params.get("workflow_updates_per_step")} workflows/step, {params.get("
 
 (proof_dir / "README.md").write_text(readme, encoding="utf-8")
 PY
+
+echo "[4/4] Refreshing publishable proof pack"
+python3 scripts/generate_publishable_proof_assets.py
 
 echo "Done: ${PROOF_DIR}"

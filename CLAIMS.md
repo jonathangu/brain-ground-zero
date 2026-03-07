@@ -1,5 +1,21 @@
 # Claims
 
+## Fast citation map (publishable artifacts)
+
+- Cross-bundle evidence table: [`proof-results/publishable/tables/focus_evidence_table.md`](proof-results/publishable/tables/focus_evidence_table.md)
+- Cross-bundle charts:
+  - [`proof-results/publishable/charts/focus_margin_context.png`](proof-results/publishable/charts/focus_margin_context.png)
+  - [`proof-results/publishable/charts/focus_ablation_ladder.png`](proof-results/publishable/charts/focus_ablation_ladder.png)
+- Recorded H2H chart + scorecard:
+  - [`proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`](proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)
+  - [`proof-results/recorded_h2h_relational_drift_001/publishable_key_results.md`](proof-results/recorded_h2h_relational_drift_001/publishable_key_results.md)
+- Sparse-feedback chart + scorecard:
+  - [`proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+  - [`proof-results/sparse_feedback_10seed/publishable_key_results.md`](proof-results/sparse_feedback_10seed/publishable_key_results.md)
+- Recurring-workflows chart + scorecard:
+  - [`proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+  - [`proof-results/recurring_workflows_10seed/publishable_key_results.md`](proof-results/recurring_workflows_10seed/publishable_key_results.md)
+
 ## What is proven
 
 **Family: relational_drift** | **10 seeds** | **800 queries per seed** | **8 baselines**

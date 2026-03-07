@@ -107,3 +107,20 @@
 - Headline: full_brain 92.0% vs best RAG 67.0% (+24.9 pp), 9-1-0 head-to-head, 10 seeds x 1800 queries.
 - Current milestone: M11 — Sparse feedback proof sweep
 - Next step: scale recorded h2h to multi-seed proof bundles; implement memory_compaction family.
+
+## 2026-03-07 07:03 PST
+- What changed: added a publishable proof chart/table pack and tightened artifact discovery docs.
+  - New generator: `scripts/generate_publishable_proof_assets.py`
+  - New cross-bundle artifacts: `proof-results/publishable/` (`focus_evidence_table.{md,csv}`, `focus_margin_context.png`, `focus_ablation_ladder.png`)
+  - New per-bundle publishable artifacts:
+    - `proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`
+    - `proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
+    - `proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
+    - `proof-results/*/publishable_key_results.{md,csv}` for each focus bundle
+  - Updated discovery/docs: `README.md`, `proof-results/README.md`, `CLAIMS.md`, and focus-bundle READMEs.
+- Validation checks:
+  - `python3 scripts/generate_publishable_proof_assets.py` (ok)
+  - `python3 scripts/validate_recorded_h2h.py` (ok)
+  - `python3 scripts/validate_fixture.py --all` (ok)
+- Current milestone: M12 — Publishable proof bundle packaging
+- Next step: expand recorded h2h beyond single-seed fixture into proof-scale multi-seed and real-session bundles.

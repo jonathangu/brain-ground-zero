@@ -2,6 +2,16 @@
 
 Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 
+## Start here (publishable assets)
+
+- [publishable/README.md](publishable/README.md) -- index for site/blog/paper-ready artifacts
+- [publishable/tables/focus_evidence_table.md](publishable/tables/focus_evidence_table.md) -- compact cross-bundle evidence table
+- [publishable/charts/focus_margin_context.png](publishable/charts/focus_margin_context.png) -- margins + context efficiency in one figure
+- [publishable/charts/focus_ablation_ladder.png](publishable/charts/focus_ablation_ladder.png) -- ablation ladder across all focus bundles
+- [recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png](recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)
+- [sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+- [recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+
 ## Families
 
 | Family | Seeds | Status | Key result |
@@ -35,3 +45,10 @@ These results prove the full-brain **mechanism** (graph memory + learned routing
 - `worked_example_trace.md` -- single query traced across all baselines
 - `learning_curve.png` -- accuracy over steps with std-deviation bands
 - `seeds.json` -- seed list used
+- `publishable_key_results.md` / `.csv` -- one-row publication table for fast copy into site/blog/paper
+
+Generate/refresh the publishable pack with:
+
+```bash
+python3 scripts/generate_publishable_proof_assets.py
+```

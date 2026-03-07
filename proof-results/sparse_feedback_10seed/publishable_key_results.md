@@ -1,0 +1,5 @@
+# Publishable Key Results: sparse_feedback_10seed
+
+| bundle | family | seeds | queries_per_seed | steps | baselines | full_brain_accuracy_pct | full_brain_accuracy_std_pct | best_rag | best_rag_accuracy_pct | best_rag_accuracy_std_pct | margin_vs_best_rag_pp | full_brain_h2h_vs_best_rag | full_brain_context_per_query | best_rag_context_per_query | context_ratio_best_rag_over_full_brain | route_fn_only_accuracy_pct | graph_route_pg_accuracy_pct | graph_minus_route_fn_pp | full_minus_graph_pp |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| sparse_feedback_10seed | sparse_feedback | 10 | 1800 | 45 | 8 | 91.9556 | 18.3024 | vector_rag_rerank | 67.05 | 1.3652 | 24.9056 | 9-1-0 | 1.0 | 5.0 | 5.0 | 37.0333 | 49.3944 | 12.3611 | 42.5612 |

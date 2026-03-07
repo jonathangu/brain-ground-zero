@@ -20,6 +20,11 @@ run against the `relational_drift` family with seed 42.
 
 **full_brain** achieves 97.5% accuracy vs the best RAG baseline (vector_rag_rerank) at 89.6%, a +7.9 pp advantage.
 
+## Publishable assets
+
+- `chart_accuracy_context_tradeoff.png` -- one-figure accuracy vs context/query comparison across all 8 baselines
+- `publishable_key_results.md` / `.csv` -- one-row publication scorecard for this bundle
+
 ## Bundle contents
 
 ```

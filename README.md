@@ -44,6 +44,28 @@ See [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workfl
 
 Sparse feedback tests teacher-assisted learning where explicit signals arrive on only ~19% of queries. See [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/) for the full artifact set.
 
+## Publishable chart/table pack (drop-in)
+
+For immediate site/blog/paper usage, start with:
+- [`proof-results/publishable/README.md`](proof-results/publishable/README.md)
+- [`proof-results/publishable/tables/focus_evidence_table.md`](proof-results/publishable/tables/focus_evidence_table.md)
+- [`proof-results/publishable/charts/focus_margin_context.png`](proof-results/publishable/charts/focus_margin_context.png)
+- [`proof-results/publishable/charts/focus_ablation_ladder.png`](proof-results/publishable/charts/focus_ablation_ladder.png)
+- [`proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`](proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)
+- [`proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+- [`proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+
+Per-focus, one-row publication tables are also tracked in:
+- `proof-results/recorded_h2h_relational_drift_001/publishable_key_results.{md,csv}`
+- `proof-results/sparse_feedback_10seed/publishable_key_results.{md,csv}`
+- `proof-results/recurring_workflows_10seed/publishable_key_results.{md,csv}`
+
+Refresh all publishable assets with:
+
+```bash
+python3 scripts/generate_publishable_proof_assets.py
+```
+
 ## What this proves (and what it doesn't)
 
 This benchmark now includes three proof-scale families:
@@ -98,6 +120,9 @@ python -m brain_ground_zero.cli multiseed \
 # Sparse-feedback proof sweep + publish to proof-results/
 ./scripts/run_sparse_feedback_proof.sh
 
+# Refresh cross-bundle publishable chart/table pack
+python3 scripts/generate_publishable_proof_assets.py
+
 # Recorded head-to-head: generate fixture + run + validate
 python -m brain_ground_zero.cli generate_fixture \
   --family configs/families/relational_drift.yaml \
@@ -134,6 +159,7 @@ python3 scripts/validate_recorded_h2h.py
 
 ```
 proof-results/                  <- tracked proof artifacts
+  publishable/                  <- cross-bundle chart/table pack for site/blog/paper
   relational_drift_10seed/      <- 10-seed simulation proof (the headline numbers)
   recurring_workflows_10seed/   <- 10-seed proof sweep (recurring workflows)
   sparse_feedback_10seed/       <- 10-seed proof sweep (sparse feedback)
@@ -161,6 +187,7 @@ execution_plan.md       <- reproducible run protocol
 src/brain_ground_zero/  <- harness implementation
 configs/                <- family and baseline configs
 scripts/                <- validation and smoke scripts
+  generate_publishable_proof_assets.py <- rebuilds publishable chart/table pack from tracked proof bundles
 runs/                   <- local run outputs (gitignored)
 ```
 
@@ -176,6 +203,8 @@ Each run writes:
 - `runs/<run_id>/artifacts/per_seed_accuracy_matrix.{csv,md}` -- seed-by-seed accuracy matrix
 - `runs/<run_id>/artifacts/proof_digest.md` -- concise publication-ready summary
 - `runs/<run_id>/artifacts/worked_example_trace.md` -- single query traced across all baselines
+- `proof-results/*/publishable_key_results.{csv,md}` -- one-row, publication-ready key result table for a tracked bundle
+- `proof-results/*/chart_*.png` -- high-signal, publication-ready charts for tracked bundles
 
 ## Further reading on openclawbrain.ai
 
