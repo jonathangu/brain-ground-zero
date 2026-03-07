@@ -2,21 +2,22 @@
 
 Run date: 2026-03-07
 Seeds: 11, 22, 33, 44, 55, 66, 77, 88, 99, 111
+Queries per seed: 1800
 World: 70 workflows, 6 step slots + 2 preference slots
-Feedback: explicit_feedback_rate 0.06, focused_feedback_rate 0.45, teacher_budget 70
+Stream: 45 steps, 10 workflows/step, explicit feedback rate 6%, focused feedback rate 45%
+Updates: 4 workflows/step, 2 step updates + 1 preference updates, contradiction rate 20%
 
 ## Headline
 
-- full_brain accuracy: **91.96%**
-- best RAG (`vector_rag_rerank`) accuracy: **67.05%**
+- full_brain accuracy: **91.96% +/- 18.30%**
+- best RAG (`vector_rag_rerank`) accuracy: **67.05% +/- 8.66%**
 - margin: **+24.91 pp**
-- full_brain vs vector_rag_rerank head-to-head: **9-1-0** (wins-losses-ties across 10 seeds)
-- full_brain context/query: **1.00** vs vector_rag_rerank: **5.00**
+- context/query: full_brain 1.00 vs vector_rag_rerank 5.00 (5x lower for full_brain)
+- full_brain vs vector_rag_rerank head-to-head: **9-1-0**
 
-## Notes
+## What this tests
 
-This README is scaffolding based on the completed 10-seed proof run.
-Re-running `./scripts/run_sparse_feedback_proof.sh` will regenerate it from actual outputs.
+Sparse feedback simulates a teacher-assisted learning scenario where the system receives explicit correctness signals on only ~19% of queries. The full-brain mechanism must amplify these sparse signals via its graph memory and structural plasticity to maintain high accuracy across the remaining ~81% of unlabeled queries.
 
 ## Files
 

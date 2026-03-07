@@ -3,7 +3,7 @@ set -euo pipefail
 
 RUN_ID="${RUN_ID:-sparse_feedback_10seed}"
 SEEDS="${SEEDS:-11,22,33,44,55,66,77,88,99,111}"
-FAMILY="${FAMILY:-configs/families/sparse_feedback_proof.yaml}"
+FAMILY="${FAMILY:-configs/families/sparse_feedback.yaml}"
 BASELINES="${BASELINES:-configs/baselines/all.yaml}"
 SYSTEM="${SYSTEM:-configs/systems/default.yaml}"
 
@@ -40,7 +40,6 @@ summary = json.loads((run_id / "summary.json").read_text(encoding="utf-8"))
 seeds = json.loads((run_id / "seeds.json").read_text(encoding="utf-8"))
 cfg = json.loads((run_id / "config_snapshot.json").read_text(encoding="utf-8"))
 params = cfg.get("family", {}).get("params", {})
-budgets = cfg.get("family", {}).get("budgets", {})
 
 def pct(v: float) -> str:
     return f"{v * 100:.2f}%"
@@ -58,9 +57,8 @@ Run date: {date.today().isoformat()}
 Seeds: {", ".join(str(seed) for seed in seeds)}
 Queries per seed: {int(full.get("total_queries", 0))}
 World: {params.get("num_workflows")} workflows, {params.get("steps_per_workflow")} step slots + {params.get("prefs_per_workflow")} preference slots
-Stream: {params.get("steps")} steps, {params.get("workflows_per_step")} workflows/step
+Stream: {params.get("steps")} steps, {params.get("workflows_per_step")} workflows/step, explicit feedback rate {params.get("explicit_feedback_rate", 0)}
 Updates: {params.get("workflow_updates_per_step")} workflows/step, {params.get("step_updates_per_workflow")} step updates + {params.get("pref_updates_per_workflow")} preference updates
-Feedback: explicit_feedback_rate {params.get("explicit_feedback_rate")}, focused_feedback_rate {params.get("focused_feedback_rate")}, teacher_budget {budgets.get("teacher_budget")}
 
 ## Headline
 

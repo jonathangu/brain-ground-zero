@@ -1,0 +1,162 @@
+{
+  "baselines": {
+    "baselines": [
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": false
+        },
+        "kind": "oracle",
+        "name": "oracle",
+        "params": {}
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "vector_rag",
+        "name": "vector_rag",
+        "params": {
+          "dim": 256,
+          "top_k": 1
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "vector_rag_rerank",
+        "name": "vector_rag_rerank",
+        "params": {
+          "dim": 256,
+          "rerank_k": 3,
+          "top_k": 5
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "heuristic_stateful",
+        "name": "heuristic_stateful",
+        "params": {
+          "update_threshold": 2
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "static_graph",
+        "name": "static_graph",
+        "params": {
+          "max_hops": 2
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "route_fn_only",
+        "name": "route_fn_only",
+        "params": {
+          "epsilon": 0.05,
+          "lr": 0.15
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "graph_route_pg",
+        "name": "graph_route_pg",
+        "params": {
+          "epsilon": 0.05,
+          "lr": 0.12,
+          "max_hops": 2
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": true,
+          "teacher": true
+        },
+        "kind": "full_brain",
+        "name": "full_brain",
+        "params": {
+          "cofire_boost": 0.2,
+          "decay_rate": 0.02,
+          "epsilon": 0.05,
+          "lr": 0.12,
+          "max_hops": 2,
+          "merge_threshold": 0.85,
+          "prune_threshold": 0.15,
+          "split_threshold": 0.3
+        }
+      }
+    ]
+  },
+  "family": {
+    "budgets": {
+      "context_budget": 12,
+      "teacher_budget": 70,
+      "teacher_delay": 2
+    },
+    "name": "sparse_feedback",
+    "params": {
+      "action_types": [
+        "draft",
+        "review",
+        "approve",
+        "send",
+        "file",
+        "notify",
+        "schedule",
+        "reconcile",
+        "archive",
+        "escalate"
+      ],
+      "burst_extra_pref_updates": 1,
+      "burst_extra_step_updates": 2,
+      "contradiction_rate": 0.2,
+      "explicit_feedback_rate": 0.06,
+      "feedback_focus_recent_steps": 2,
+      "focused_feedback_rate": 0.45,
+      "min_feedback_per_step": 1,
+      "num_workflows": 70,
+      "pref_updates_per_workflow": 1,
+      "preference_types": [
+        "email",
+        "slack",
+        "jira",
+        "docs",
+        "sheet",
+        "calendar",
+        "ticket"
+      ],
+      "prefs_per_workflow": 2,
+      "query_prefs_per_workflow": 1,
+      "query_steps_per_workflow": 3,
+      "recent_window": 16,
+      "recurrence_bias": 0.8,
+      "revision_burst_rate": 0.35,
+      "step_updates_per_workflow": 2,
+      "steps": 45,
+      "steps_per_workflow": 6,
+      "update_query_ratio": 0.75,
+      "workflow_updates_per_step": 4,
+      "workflows_per_step": 10
+    },
+    "seed": 3030
+  },
+  "system": {
+    "output_dir": "runs",
+    "random_seed": 1337
+  }
+}

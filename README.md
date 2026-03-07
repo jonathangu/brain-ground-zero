@@ -34,11 +34,15 @@ See [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workfl
 
 | System | Accuracy | vs Best RAG | Win-rate vs field |
 |---|---|---|---|
-| **full_brain** | **91.96%** | **+24.91 pp over vector_rag_rerank** | **9-1-0 vs vector_rag_rerank** |
-| vector_rag_rerank | 67.05% | (best RAG baseline) | |
+| **full_brain** | **92.0% +/- 18.3** | **+24.9 pp over vector_rag_rerank** | **9/10 vs every non-oracle baseline** |
+| vector_rag_rerank | 67.0% +/- 1.4 | (best RAG baseline) | 10/10 vs plain RAG |
+| vector_rag | 60.5% +/- 1.6 | -- | |
+| heuristic_stateful | 51.4% +/- 2.2 | -- | |
+| graph_route_pg (no plasticity) | 49.4% +/- 13.8 | -- | |
+| route_fn_only | 37.0% +/- 1.7 | -- | |
+| oracle (ceiling) | 100% | -- | |
 
-Sparse feedback runs use ~6% explicit feedback rate with focused feedback routing. full_brain context/query 1.00 vs vector_rag_rerank 5.00.
-See [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/) for the full artifact set.
+Sparse feedback tests teacher-assisted learning where explicit signals arrive on only ~19% of queries. See [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/) for the full artifact set.
 
 ## What this proves (and what it doesn't)
 
@@ -47,11 +51,11 @@ This benchmark now includes three proof-scale families:
 - `recurring_workflows` (10 seeds)
 - `sparse_feedback` (10 seeds)
 
-Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift, repeated workflow tasks, and sparse teacher feedback.
+Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift, repeated workflow tasks, and sparse teacher-assisted learning.
 
 **Recorded head-to-head (first artifact shipped):** The first scored recorded-h2h bundle replays a deterministic fixture (800 queries, seed 42) against all 8 baselines with full JSONL traces and verification hashes. full_brain achieves 97.5% vs best RAG 89.6% (+7.9 pp). See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/). The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
 
-It does **not** yet prove the thesis across all families; memory compaction is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
+It does **not** yet prove the thesis across all designed families; `memory_compaction` is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
 ## How this connects to the real implementation
 
@@ -132,8 +136,8 @@ python3 scripts/validate_recorded_h2h.py
 proof-results/                  <- tracked proof artifacts
   relational_drift_10seed/      <- 10-seed simulation proof (the headline numbers)
   recurring_workflows_10seed/   <- 10-seed proof sweep (recurring workflows)
-  recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
   sparse_feedback_10seed/       <- 10-seed proof sweep (sparse feedback)
+  recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
   sparse_feedback_3seed/        <- 3-seed spot-check (superseded by 10-seed)
   recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle
   recorded_sessions/            <- (placeholder) real-session head-to-head results

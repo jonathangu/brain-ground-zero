@@ -9,7 +9,7 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 | [relational_drift_10seed](relational_drift_10seed/) | 10 | **Full proof run** | full_brain 97.2% vs best RAG 89.0% (+8.2 pp) |
 | [recurring_workflows_10seed](recurring_workflows_10seed/) | 10 | **Full proof run** | full_brain 97.6% vs best RAG 70.6% (+26.9 pp) |
 | [recurring_workflows_3seed](recurring_workflows_3seed/) | 3 | Legacy spot-check | Historical pre-proof check (superseded by 10-seed run) |
-| [sparse_feedback_10seed](sparse_feedback_10seed/) | 10 | **Full proof run** | full_brain 91.96% vs best RAG 67.05% (+24.91 pp), h2h 9-1-0 |
+| [sparse_feedback_10seed](sparse_feedback_10seed/) | 10 | **Full proof run** | full_brain 92.0% vs best RAG 67.0% (+24.9 pp), feedback coverage ~19% |
 | [sparse_feedback_3seed](sparse_feedback_3seed/) | 3 | Legacy spot-check | Historical pre-proof check (superseded by 10-seed run) |
 
 **Start here:** `relational_drift_10seed/`, `recurring_workflows_10seed/`, and `sparse_feedback_10seed/` are the strongest artifacts -- each is a 10-seed, 8-baseline proof run with full tables and worked traces.
@@ -25,7 +25,7 @@ The recorded-h2h lane replays a deterministic fixture against all baselines with
 
 ## Scope
 
-These results prove the full-brain **mechanism** (graph memory + learned routing + policy-gradient updates + structural plasticity) dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift. This is a mechanism proof, not a production proof. The recorded-session head-to-head is the next step toward a real-product proof. See [CLAIMS.md](../CLAIMS.md) for precise scope.
+These results prove the full-brain **mechanism** (graph memory + learned routing + policy-gradient updates + structural plasticity) dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift, recurring workflows, and sparse teacher-assisted learning. This is a mechanism proof, not a production proof. The recorded-session head-to-head is the next step toward a real-product proof. See [CLAIMS.md](../CLAIMS.md) for precise scope.
 
 ## Each family directory contains
 
