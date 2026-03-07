@@ -10,6 +10,7 @@ Recurrence: bias 0.75 with recent window 14
 ## Notes
 
 This is a **small multiseed spot-check** for the new recurring_workflows family, not a full proof run.
+For proof-scale artifacts, see [`../recurring_workflows_10seed/`](../recurring_workflows_10seed/).
 
 ## Files
 

@@ -22,8 +22,15 @@ python -m brain_ground_zero.cli run \
 python -m brain_ground_zero.cli report --run-dir runs/demo_relational_drift
 ```
 
+## Proof sweeps
+
+Use the one-command recurring-workflow proof sweep to run multiseed, generate publication artifacts, and sync them into `proof-results/`:
+
+```bash
+./scripts/run_recurring_workflows_proof.sh
+```
+
 ## Budgets
 - `context_budget`: max items a baseline may read per query
 - `teacher_budget`: max corrections per run
 - `teacher_delay`: step delay for corrections
-
