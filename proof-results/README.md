@@ -7,9 +7,10 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 | Family | Seeds | Status | Key result |
 |---|---|---|---|
 | [relational_drift_10seed](relational_drift_10seed/) | 10 | **Full proof run** | full_brain 97.2% vs best RAG 89.0% (+8.2 pp) |
-| [recurring_workflows_3seed](recurring_workflows_3seed/) | 3 | Spot-check | Directionally consistent; not yet proven at scale |
+| [recurring_workflows_10seed](recurring_workflows_10seed/) | 10 | **Full proof run** | full_brain 97.6% vs best RAG 70.6% (+26.9 pp) |
+| [recurring_workflows_3seed](recurring_workflows_3seed/) | 3 | Legacy spot-check | Historical pre-proof check (superseded by 10-seed run) |
 
-**Start here:** `relational_drift_10seed/` is the strongest artifact -- 10 seeds, 8 baselines, full ablation story.
+**Start here:** `relational_drift_10seed/` and `recurring_workflows_10seed/` are the strongest artifacts -- each is a 10-seed, 8-baseline proof run with full tables and worked traces.
 
 ## Scope
 

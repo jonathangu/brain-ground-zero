@@ -21,12 +21,31 @@
 
 5. **full_brain uses 5x less context than vector_rag_rerank** (800 vs 4000 tokens) while achieving higher accuracy. The mechanism is more efficient.
 
+---
+
+**Family: recurring_workflows** | **10 seeds** | **3,522 queries per seed** | **8 baselines**
+
+1. **The full-brain method achieves 97.6% accuracy** (+/- 0.4% std) on recurring workflows with repeated task families, workflow-step updates, preference updates, and contradiction/reversion events.
+
+2. **full_brain beats every non-oracle baseline by a wide margin**, including:
+   - +26.9 pp over the best RAG baseline (vector_rag_rerank, 70.6%)
+   - +34.2 pp over plain vector RAG (63.4%)
+   - +37.2 pp over graph+route+PG without structural plasticity (60.4%)
+   - +63.5 pp over route_fn alone (34.1%)
+
+3. **The win is perfectly consistent across seeds.** full_brain wins 10/10 seeds against every non-oracle baseline.
+
+4. **Ablation ordering is consistent and strong.**
+   - route_fn_only (34.1%) < graph_route_pg (60.4%) < full_brain (97.6%)
+   - Structural plasticity contributes the largest jump: +37.2 pp from graph_route_pg to full_brain.
+
+5. **full_brain uses 5x less context than vector_rag_rerank** (1.0 vs 5.0 context/query) while achieving much higher accuracy.
+
 ## What is not yet proven
 
-- Performance on **recurring workflows** (family implemented; small 3-seed spot-check exists but not proof-scale)
 - Performance on **sparse feedback / teacher-assisted learning** (family designed, not yet run)
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
-- Behavior at **larger world sizes** (current world: 50 entities, 5 relation types)
+- Behavior at **larger world sizes** (current proof scales are modest: relational uses 50 entities/5 relation types; recurring uses 80 workflows/11 slots)
 - Performance with **real LLM routing** (current harness uses simulated policy functions, not live model calls)
 - **Latency and cost** under production load
 
@@ -51,3 +70,4 @@ python -m brain_ground_zero.cli multiseed \
 ```
 
 The verified proof artifacts are tracked in [`proof-results/relational_drift_10seed/`](proof-results/relational_drift_10seed/).
+Recurring-workflow proof artifacts are tracked in [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workflows_10seed/).

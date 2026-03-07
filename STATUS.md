@@ -42,3 +42,17 @@
 - Proof-style run: `recurring_workflows` 3-seed spot-check recorded in `proof-results/recurring_workflows_3seed/`.
 - Current milestone: M6 — Recurring workflows family
 - Next step: scale recurring_workflows to 5-10 seeds and add sparse feedback family.
+
+## 2026-03-06 20:34 PST
+- What changed: pushed recurring_workflows to full proof-sweep readiness and shipped a 10-seed proof artifact set.
+  - Family hardening: added recurring-workflow controls for hot-workflow bias, update-revisit bias, replay queries, and burst updates, plus explicit parameter validation.
+  - Reporting upgrade: added publication artifacts (`leaderboard`, `per_seed_breakdown`, `per_seed_accuracy_matrix`, `proof_digest`), ordered baseline tables, and improved representative worked-example selection.
+  - Proof workflow: added `configs/families/recurring_workflows_proof.yaml` and one-command sweep/publish script `scripts/run_recurring_workflows_proof.sh`.
+  - Proof run committed: `proof-results/recurring_workflows_10seed/` with 10 seeds and full artifact bundle.
+- Validation checks:
+  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+  - `PYTHONPATH=src python3 -m brain_ground_zero.cli smoke --family configs/families/recurring_workflows.yaml --run-id smoke_recurring_upgrade` (ok)
+  - `PYTHONPATH=src python3 -m brain_ground_zero.cli multiseed --family configs/families/recurring_workflows.yaml --baselines configs/baselines/all.yaml --seeds 1,2,3 --run-id recurring_workflows_reporting_check` (ok)
+  - `./scripts/run_recurring_workflows_proof.sh` (ok)
+- Current milestone: M7 — Recurring workflows proof sweep
+- Next step: carry the same proof-scale packaging to sparse feedback / teacher-assisted family.

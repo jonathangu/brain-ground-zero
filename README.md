@@ -1,6 +1,6 @@
 # Brain-vs-RAG Ground-Zero Benchmark
 
-**The full OpenClawBrain (OCB) method beats every RAG and stateful-memory baseline on relational drift -- by a clear margin, across 10 seeds.**
+**The full OpenClawBrain (OCB) method beats every RAG and stateful-memory baseline on both relational drift and recurring workflows -- by clear margins across 10 seeds.**
 
 ## Headline numbers (relational_drift, 10-seed mean)
 
@@ -15,11 +15,28 @@
 | oracle (ceiling) | 100% | -- | |
 
 Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/) (start with [`relational_drift_10seed/`](proof-results/relational_drift_10seed/)).
-A small 3-seed recurring_workflows spot-check is tracked in [`proof-results/recurring_workflows_3seed/`](proof-results/recurring_workflows_3seed/).
+
+## Headline numbers (recurring_workflows, 10-seed mean)
+
+| System | Accuracy | vs Best RAG | Win-rate vs field |
+|---|---|---|---|
+| **full_brain** | **97.6% +/- 0.4** | **+26.9 pp over vector_rag_rerank** | **10/10 vs every non-oracle baseline** |
+| vector_rag_rerank | 70.6% +/- 1.2 | (best RAG baseline) | 10/10 vs plain RAG |
+| vector_rag | 63.4% +/- 1.6 | -- | |
+| heuristic_stateful | 61.4% +/- 1.2 | -- | |
+| graph_route_pg (no plasticity) | 60.4% +/- 1.7 | -- | |
+| route_fn_only | 34.1% +/- 9.0 | -- | |
+| oracle (ceiling) | 100% | -- | |
+
+See [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workflows_10seed/) for the full artifact set.
 
 ## What this proves (and what it doesn't)
 
-This is the **first ground-zero benchmark family** (relational drift). It proves the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift.
+This benchmark now includes two proof-scale families:
+- `relational_drift` (10 seeds)
+- `recurring_workflows` (10 seeds)
+
+Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift and repeated workflow tasks.
 
 It does **not** yet prove the thesis across all families. `recurring_workflows` is now implemented but not yet proven at full scale; sparse feedback and memory compaction are designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
@@ -52,6 +69,9 @@ python -m brain_ground_zero.cli multiseed \
   --family configs/families/relational_drift.yaml \
   --baselines configs/baselines/all.yaml \
   --seeds 10,20,30,40,50,60,70,80,90,100
+
+# Recurring-workflows proof sweep + publish to proof-results/
+./scripts/run_recurring_workflows_proof.sh
 ```
 
 ## Smoke checks
@@ -91,9 +111,13 @@ runs/                   <- local run outputs (gitignored)
 
 Each run writes:
 - `runs/<run_id>/artifacts/summary_table.{csv,md}` -- summary table
+- `runs/<run_id>/artifacts/leaderboard.{csv,md}` -- ranked publication table with deltas vs best RAG/full_brain
 - `runs/<run_id>/artifacts/learning_curve.png` -- accuracy over steps (with std bands for multiseed)
 - `runs/<run_id>/artifacts/pairwise_accuracy_delta.{csv,md}` -- row-minus-column accuracy delta
 - `runs/<run_id>/artifacts/win_rate_matrix.{csv,md}` -- per-seed win counts (multiseed only)
+- `runs/<run_id>/artifacts/per_seed_breakdown.{csv,md}` -- long-form per-seed metrics
+- `runs/<run_id>/artifacts/per_seed_accuracy_matrix.{csv,md}` -- seed-by-seed accuracy matrix
+- `runs/<run_id>/artifacts/proof_digest.md` -- concise publication-ready summary
 - `runs/<run_id>/artifacts/worked_example_trace.md` -- single query traced across all baselines
 
 ## Further reading on openclawbrain.ai
