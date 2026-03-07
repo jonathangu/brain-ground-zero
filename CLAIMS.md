@@ -41,6 +41,19 @@
 
 5. **full_brain uses 5x less context than vector_rag_rerank** (1.0 vs 5.0 context/query) while achieving much higher accuracy.
 
+---
+
+**Family: sparse_feedback** | **10 seeds** | **8 baselines**
+
+1. **The full-brain method achieves 91.96% accuracy** on sparse feedback, where only ~6% of queries carry explicit feedback and teacher corrections are limited to 70 per run.
+
+2. **full_brain beats the best RAG baseline by a wide margin:**
+   - +24.91 pp over vector_rag_rerank (67.05%)
+
+3. **The win is consistent across seeds.** full_brain wins 9 of 10 seeds against vector_rag_rerank (9-1-0).
+
+4. **full_brain uses 5x less context than vector_rag_rerank** (1.00 vs 5.00 context/query) while achieving much higher accuracy.
+
 ## Spot-check evidence: recorded head-to-head
 
 **Recorded head-to-head: relational_drift_001** | **1 seed (42)** | **800 queries** | **8 baselines**
@@ -54,7 +67,7 @@
 
 - **Recorded head-to-head at proof scale.** The first single-seed bundle is shipped, but multi-seed recorded h2h is needed for a full proof claim.
 - **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results from real sessions exist yet.
-- Performance on **sparse feedback / teacher-assisted learning** at proof scale (family implemented; small 3-seed spot-check exists)
+- Performance on **sparse feedback / teacher-assisted learning** across a wider range of feedback rates (10-seed proof run completed at current config; see [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/))
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current proof scales are modest: relational uses 50 entities/5 relation types; recurring uses 80 workflows/11 slots)
 - Performance with **real LLM routing** (current harness uses simulated policy functions, not live model calls)
@@ -63,7 +76,7 @@
 ## Spot-check evidence (not proof-scale)
 
 - **Recurring workflows, 3 seeds:** directionally consistent with the relational-drift ordering. See [`proof-results/recurring_workflows_3seed/`](proof-results/recurring_workflows_3seed/).
-- **Sparse feedback, 3 seeds:** full_brain 97.96% vs best RAG 67.70% (+30.26 pp) at ~19.8% explicit feedback coverage. See [`proof-results/sparse_feedback_3seed/`](proof-results/sparse_feedback_3seed/).
+- **Sparse feedback, 3 seeds:** full_brain 97.96% vs best RAG 67.70% (+30.26 pp) at ~19.8% explicit feedback coverage. See [`proof-results/sparse_feedback_3seed/`](proof-results/sparse_feedback_3seed/). (Superseded by 10-seed proof run.)
 
 ## Fairness guarantees
 
@@ -87,3 +100,4 @@ python -m brain_ground_zero.cli multiseed \
 
 The verified proof artifacts are tracked in [`proof-results/relational_drift_10seed/`](proof-results/relational_drift_10seed/).
 Recurring-workflow proof artifacts are tracked in [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workflows_10seed/).
+Sparse-feedback proof artifacts are tracked in [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/).

@@ -29,19 +29,29 @@ Full results, pairwise deltas, win-rate matrix, and worked examples are in [`pro
 | oracle (ceiling) | 100% | -- | |
 
 See [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workflows_10seed/) for the full artifact set.
-A sparse-feedback 3-seed spot-check is tracked in [`proof-results/sparse_feedback_3seed/`](proof-results/sparse_feedback_3seed/).
+
+## Headline numbers (sparse_feedback, 10-seed mean)
+
+| System | Accuracy | vs Best RAG | Win-rate vs field |
+|---|---|---|---|
+| **full_brain** | **91.96%** | **+24.91 pp over vector_rag_rerank** | **9-1-0 vs vector_rag_rerank** |
+| vector_rag_rerank | 67.05% | (best RAG baseline) | |
+
+Sparse feedback runs use ~6% explicit feedback rate with focused feedback routing. full_brain context/query 1.00 vs vector_rag_rerank 5.00.
+See [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/) for the full artifact set.
 
 ## What this proves (and what it doesn't)
 
-This benchmark now includes two proof-scale families:
+This benchmark now includes three proof-scale families:
 - `relational_drift` (10 seeds)
 - `recurring_workflows` (10 seeds)
+- `sparse_feedback` (10 seeds)
 
-Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift and repeated workflow tasks.
+Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift, repeated workflow tasks, and sparse teacher feedback.
 
 **Recorded head-to-head (first artifact shipped):** The first scored recorded-h2h bundle replays a deterministic fixture (800 queries, seed 42) against all 8 baselines with full JSONL traces and verification hashes. full_brain achieves 97.5% vs best RAG 89.6% (+7.9 pp). See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/). The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
 
-It does **not** yet prove the thesis across all families; `sparse_feedback` is implemented with a 3-seed spot-check but not yet at proof scale; memory compaction is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
+It does **not** yet prove the thesis across all families; memory compaction is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
 ## How this connects to the real implementation
 
@@ -80,6 +90,9 @@ python -m brain_ground_zero.cli multiseed \
 
 # Recurring-workflows proof sweep + publish to proof-results/
 ./scripts/run_recurring_workflows_proof.sh
+
+# Sparse-feedback proof sweep + publish to proof-results/
+./scripts/run_sparse_feedback_proof.sh
 
 # Recorded head-to-head: generate fixture + run + validate
 python -m brain_ground_zero.cli generate_fixture \
@@ -120,7 +133,8 @@ proof-results/                  <- tracked proof artifacts
   relational_drift_10seed/      <- 10-seed simulation proof (the headline numbers)
   recurring_workflows_10seed/   <- 10-seed proof sweep (recurring workflows)
   recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
-  sparse_feedback_3seed/        <- 3-seed spot-check (sparse feedback)
+  sparse_feedback_10seed/       <- 10-seed proof sweep (sparse feedback)
+  sparse_feedback_3seed/        <- 3-seed spot-check (superseded by 10-seed)
   recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle
   recorded_sessions/            <- (placeholder) real-session head-to-head results
 

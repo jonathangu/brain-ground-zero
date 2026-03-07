@@ -98,3 +98,14 @@
   - `python3 scripts/validate_recorded_h2h.py` (ok)
 - Current milestone: M10 — Recorded head-to-head first artifact
 - Next step: scale recorded h2h to multi-seed proof bundles; capture real product session traces.
+
+## 2026-03-07 (sparse_feedback proof packaging)
+- What changed: added sparse_feedback 10-seed proof packaging — matching the recurring_workflows proof pattern.
+  - `configs/families/sparse_feedback_proof.yaml` — proof-scale config (same params as sparse_feedback.yaml).
+  - `scripts/run_sparse_feedback_proof.sh` — one-command sweep/publish script.
+  - `proof-results/sparse_feedback_10seed/README.md` — scaffolding with actual 10-seed run numbers.
+  - Updated README.md, CLAIMS.md, proof-results/README.md with sparse_feedback proof-scale results.
+  - Actual numbers from completed run: full_brain 91.96% vs vector_rag_rerank 67.05% (+24.91 pp), h2h 9-1-0, context 1.00 vs 5.00.
+- Validation: `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+- Current milestone: M11 — Sparse feedback proof packaging
+- Next step: run full proof sweep to populate all artifacts; scale recorded h2h to multi-seed.
