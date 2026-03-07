@@ -23,7 +23,8 @@
 
 ## What is not yet proven
 
-- Performance on **recurring workflows** (family implemented; small 3-seed spot-check exists but not proof-scale)
+- **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results exist yet. This is the next proof rung.
+- Performance on **recurring workflows** at proof scale (family implemented; small 3-seed spot-check exists)
 - Performance on **sparse feedback / teacher-assisted learning** (family designed, not yet run)
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current world: 50 entities, 5 relation types)

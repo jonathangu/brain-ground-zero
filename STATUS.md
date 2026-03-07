@@ -42,3 +42,15 @@
 - Proof-style run: `recurring_workflows` 3-seed spot-check recorded in `proof-results/recurring_workflows_3seed/`.
 - Current milestone: M6 — Recurring workflows family
 - Next step: scale recurring_workflows to 5-10 seeds and add sparse feedback family.
+
+## 2026-03-06 (recorded-session head-to-head scaffold)
+- What changed: added recorded-session / fixed-session head-to-head evaluation scaffold.
+  - `recorded_session_spec.md` — full spec: purpose, proof boundary, modes, scoring rubric, fairness rules, operator workflow.
+  - `recorded_sessions/schema/session_fixture.schema.json` — JSON Schema for session fixtures.
+  - `recorded_sessions/fixtures/example_minimal.json` — minimal 2-turn example fixture.
+  - `scripts/validate_fixture.py` — validates fixtures against the schema and prints a checklist summary.
+  - `proof-results/recorded_sessions/README.md` — placeholder for scored artifacts.
+  - Updated README.md, benchmark_spec.md, CLAIMS.md, proof-results/README.md.
+- Validation: `python3 scripts/validate_fixture.py --all` (ok, all fixtures valid)
+- Current milestone: M7 — Recorded-session head-to-head spec and scaffold
+- Next step: capture real session traces, convert to fixtures, and produce first scored head-to-head artifacts.

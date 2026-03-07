@@ -19,9 +19,11 @@ A small 3-seed recurring_workflows spot-check is tracked in [`proof-results/recu
 
 ## What this proves (and what it doesn't)
 
-This is the **first ground-zero benchmark family** (relational drift). It proves the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift.
+**Simulation (proven):** The full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity -- dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift (relational_drift, 10 seeds). `recurring_workflows` is implemented with a small spot-check.
 
-It does **not** yet prove the thesis across all families. `recurring_workflows` is now implemented but not yet proven at full scale; sparse feedback and memory compaction are designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
+**Recorded-session head-to-head (next rung, in progress):** Replay real OpenClaw session traces against ablated baselines to prove the mechanism transfers to real product data. See [`recorded_session_spec.md`](recorded_session_spec.md) for the full spec, [`recorded_sessions/`](recorded_sessions/) for the fixture schema and example.
+
+It does **not** yet prove the thesis across all families; sparse feedback and memory compaction are designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
 ## How this connects to the real implementation
 
@@ -65,12 +67,24 @@ PYTHONPATH=src python3 -m brain_ground_zero.cli smoke \
   --family configs/families/recurring_workflows.yaml
 
 PYTHONPATH=src python3 scripts/validate_configs.py
+
+# Validate recorded-session fixtures
+python3 scripts/validate_fixture.py --all
 ```
 
 ## Repository layout
 
 ```
-proof-results/          <- tracked 10-seed proof artifacts (the real numbers)
+proof-results/                  <- tracked proof artifacts
+  relational_drift_10seed/      <- 10-seed simulation proof (the headline numbers)
+  recurring_workflows_3seed/    <- 3-seed spot-check
+  recorded_sessions/            <- (placeholder) real-session head-to-head results
+
+recorded_session_spec.md        <- spec for recorded-session head-to-head evaluation
+recorded_sessions/              <- fixture schema, example fixtures, validation
+  schema/session_fixture.schema.json
+  fixtures/example_minimal.json
+
 CLAIMS.md               <- what is proven and what is not
 IMPLEMENTATION_STRATEGY.md <- bridge to the production architecture
 SHARE_MESSAGE.md        <- copy/paste message for sharing
@@ -84,6 +98,7 @@ execution_plan.md       <- reproducible run protocol
 
 src/brain_ground_zero/  <- harness implementation
 configs/                <- family and baseline configs
+scripts/                <- validation and smoke scripts
 runs/                   <- local run outputs (gitignored)
 ```
 

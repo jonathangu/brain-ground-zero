@@ -1,0 +1,96 @@
+{
+  "fixture_id": "example-minimal-001",
+  "source": {
+    "product_version": "12.2.6",
+    "tenant_anon_id": "anon-tenant-abc",
+    "capture_date": "2026-03-01",
+    "notes": "Minimal example fixture for schema validation. Not a real session."
+  },
+  "session_context": {
+    "matter_type": "contract_review",
+    "workspace_config": {
+      "jurisdiction": "US-CA",
+      "language": "en"
+    },
+    "user_role": "associate"
+  },
+  "turns": [
+    {
+      "turn_id": 0,
+      "user_input": "What is the termination clause in the Acme vendor agreement?",
+      "available_documents": [
+        {
+          "doc_id": "doc-001",
+          "content": "Section 8.1 Termination. Either party may terminate this Agreement upon 30 days written notice. In the event of material breach, the non-breaching party may terminate immediately upon written notice.",
+          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 12 }
+        },
+        {
+          "doc_id": "doc-002",
+          "content": "Section 5.2 Payment Terms. Payment is due within 45 days of invoice date.",
+          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 7 }
+        }
+      ],
+      "graph_snapshot": {
+        "nodes": [
+          { "id": "acme-agreement", "type": "contract", "label": "Acme Vendor Agreement v3" },
+          { "id": "termination-clause", "type": "clause", "label": "Section 8.1 Termination" }
+        ],
+        "edges": [
+          { "source": "acme-agreement", "target": "termination-clause", "relation": "contains" }
+        ]
+      },
+      "expected_output": "The termination clause (Section 8.1) allows either party to terminate with 30 days written notice. Material breach permits immediate termination by the non-breaching party.",
+      "rubric": {
+        "accept_criteria": "Must mention 30-day notice and immediate termination for material breach.",
+        "key_entities": ["Section 8.1", "30 days", "material breach"],
+        "partial_credit": true
+      }
+    },
+    {
+      "turn_id": 1,
+      "user_input": "Has this clause changed from the previous version of the agreement?",
+      "available_documents": [
+        {
+          "doc_id": "doc-001",
+          "content": "Section 8.1 Termination. Either party may terminate this Agreement upon 30 days written notice. In the event of material breach, the non-breaching party may terminate immediately upon written notice.",
+          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 12 }
+        },
+        {
+          "doc_id": "doc-003",
+          "content": "Section 7.1 Termination. This Agreement may be terminated by either party upon 60 days written notice.",
+          "metadata": { "source": "acme-vendor-agreement-v2.pdf", "page": 10 }
+        }
+      ],
+      "graph_snapshot": {
+        "nodes": [
+          { "id": "acme-agreement", "type": "contract", "label": "Acme Vendor Agreement v3" },
+          { "id": "acme-agreement-v2", "type": "contract", "label": "Acme Vendor Agreement v2" },
+          { "id": "termination-clause", "type": "clause", "label": "Section 8.1 Termination" },
+          { "id": "termination-clause-v2", "type": "clause", "label": "Section 7.1 Termination (v2)" }
+        ],
+        "edges": [
+          { "source": "acme-agreement", "target": "termination-clause", "relation": "contains" },
+          { "source": "acme-agreement-v2", "target": "termination-clause-v2", "relation": "contains" },
+          { "source": "termination-clause", "target": "termination-clause-v2", "relation": "supersedes" }
+        ]
+      },
+      "expected_output": "Yes. The notice period was reduced from 60 days (v2, Section 7.1) to 30 days (v3, Section 8.1), and v3 added an immediate termination right for material breach that was not present in v2.",
+      "rubric": {
+        "accept_criteria": "Must identify the notice period change (60 -> 30 days) and the new material breach clause.",
+        "key_entities": ["60 days", "30 days", "material breach", "v2"],
+        "partial_credit": true
+      }
+    }
+  ],
+  "ground_truth": {
+    "total_turns": 2,
+    "complexity_tier": "simple",
+    "notes": "Two-turn contract review session comparing agreement versions."
+  },
+  "held_fixed": {
+    "prompt_template_hash": "sha256:placeholder-not-a-real-hash",
+    "context_budget_tokens": 4096,
+    "correction_budget": 2,
+    "random_seed": 42
+  }
+}

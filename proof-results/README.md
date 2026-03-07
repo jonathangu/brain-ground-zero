@@ -11,9 +11,17 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 
 **Start here:** `relational_drift_10seed/` is the strongest artifact -- 10 seeds, 8 baselines, full ablation story.
 
+## Recorded-session head-to-head (next rung)
+
+| Directory | Status | Description |
+|---|---|---|
+| [recorded_sessions/](recorded_sessions/) | **Placeholder** | Real product session head-to-head results (none yet) |
+
+The spec, fixture schema, and example fixture are in [`recorded_sessions/`](../recorded_sessions/) at the repo root. See [`recorded_session_spec.md`](../recorded_session_spec.md) for the full evaluation protocol.
+
 ## Scope
 
-These results prove the full-brain **mechanism** (graph memory + learned routing + policy-gradient updates + structural plasticity) dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift. This is a mechanism proof, not a production proof. See [CLAIMS.md](../CLAIMS.md) for precise scope.
+These results prove the full-brain **mechanism** (graph memory + learned routing + policy-gradient updates + structural plasticity) dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift. This is a mechanism proof, not a production proof. The recorded-session head-to-head is the next step toward a real-product proof. See [CLAIMS.md](../CLAIMS.md) for precise scope.
 
 ## Each family directory contains
 

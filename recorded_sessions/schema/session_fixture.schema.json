@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "session_fixture.schema.json",
+  "title": "Recorded-Session Fixture",
+  "description": "A self-contained fixture for replaying one OpenClaw session against multiple evaluation modes.",
+  "type": "object",
+  "required": ["fixture_id", "source", "session_context", "turns", "ground_truth", "held_fixed"],
+  "additionalProperties": false,
+  "properties": {
+    "fixture_id": {
+      "type": "string",
+      "description": "Unique identifier for this fixture.",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "description": "Provenance metadata for the captured session.",
+      "required": ["product_version", "capture_date"],
+      "properties": {
+        "product_version": { "type": "string" },
+        "tenant_anon_id": { "type": "string" },
+        "capture_date": { "type": "string", "format": "date" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "session_context": {
+      "type": "object",
+      "description": "Initial session state shared across all evaluation modes.",
+      "required": ["matter_type"],
+      "properties": {
+        "matter_type": { "type": "string" },
+        "workspace_config": { "type": "object" },
+        "user_role": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "turns": {
+      "type": "array",
+      "description": "Ordered session turns.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["turn_id", "user_input", "available_documents", "expected_output", "rubric"],
+        "additionalProperties": false,
+        "properties": {
+          "turn_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "user_input": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available_documents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["doc_id", "content"],
+              "properties": {
+                "doc_id": { "type": "string" },
+                "content": { "type": "string" },
+                "metadata": { "type": "object" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "graph_snapshot": {
+            "oneOf": [
+              { "type": "null" },
+              {
+                "type": "object",
+                "description": "Graph state at turn start. Structure is implementation-defined.",
+                "properties": {
+                  "nodes": { "type": "array" },
+                  "edges": { "type": "array" }
+                }
+              }
+            ]
+          },
+          "expected_output": {
+            "type": "string"
+          },
+          "rubric": {
+            "type": "object",
+            "description": "Per-turn rubric for scoring.",
+            "required": ["accept_criteria"],
+            "properties": {
+              "accept_criteria": {
+                "type": "string",
+                "description": "Human-readable description of what counts as success."
+              },
+              "key_entities": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Entities that must appear in a correct response."
+              },
+              "partial_credit": {
+                "type": "boolean",
+                "description": "Whether partial credit is allowed for this turn."
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "ground_truth": {
+      "type": "object",
+      "description": "Aggregate ground-truth metadata for the session.",
+      "properties": {
+        "total_turns": { "type": "integer", "minimum": 1 },
+        "complexity_tier": {
+          "type": "string",
+          "enum": ["trivial", "simple", "moderate", "complex"]
+        },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "held_fixed": {
+      "type": "object",
+      "description": "Values that must be identical across all evaluation modes.",
+      "required": ["prompt_template_hash", "context_budget_tokens", "correction_budget"],
+      "properties": {
+        "prompt_template_hash": {
+          "type": "string",
+          "description": "Hash of the prompt template used (for verification)."
+        },
+        "context_budget_tokens": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum tokens of context allowed per turn."
+        },
+        "correction_budget": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum teacher/user corrections allowed in the session."
+        },
+        "random_seed": {
+          "type": "integer",
+          "description": "Seed for any stochastic components."
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

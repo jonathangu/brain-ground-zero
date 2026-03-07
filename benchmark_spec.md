@@ -62,3 +62,19 @@ Key parameters:
 - Same correction stream
 - Same scoring rubric
 - Explicit statement of allowed online updates per baseline
+
+## Recorded-session head-to-head (next proof rung)
+
+The simulation families above prove the mechanism in isolation.
+The **recorded-session head-to-head** evaluation replays real OpenClaw
+session traces against ablated baselines to prove the mechanism transfers
+to real product data.
+
+- **Spec:** [`recorded_session_spec.md`](recorded_session_spec.md)
+- **Fixture schema:** [`recorded_sessions/schema/session_fixture.schema.json`](recorded_sessions/schema/session_fixture.schema.json)
+- **Example fixture:** [`recorded_sessions/fixtures/example_minimal.json`](recorded_sessions/fixtures/example_minimal.json)
+- **Validation:** `python scripts/validate_fixture.py --all`
+- **Results (placeholder):** [`proof-results/recorded_sessions/`](proof-results/recorded_sessions/)
+
+Required evaluation modes: `no_brain`, `vector_only`, `graph_prior_only`, `learned_route`.
+Optional: `full_brain`, `online`. See the spec for full details.
