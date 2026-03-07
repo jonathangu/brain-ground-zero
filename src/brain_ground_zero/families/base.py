@@ -14,6 +14,7 @@ class Step:
     queries: List[Query]
     answers: List[str]
     previous_relations: List[str | None]
+    feedback_mask: List[bool] | None = None
 
 
 @dataclass

@@ -13,8 +13,18 @@ def _write_summary_table(artifacts_dir: Path, summary: Dict[str, Dict[str, float
     has_std = any("accuracy_std" in m for m in summary.values())
     for baseline, metrics in summary.items():
         row = {"baseline": baseline}
-        for key in ["accuracy", "stale_rate", "false_rate", "unknown_rate",
-                     "corrections_delivered", "context_used", "traversal_cost", "total_queries"]:
+        for key in [
+            "accuracy",
+            "stale_rate",
+            "false_rate",
+            "unknown_rate",
+            "corrections_delivered",
+            "feedback_events",
+            "feedback_rate",
+            "context_used",
+            "traversal_cost",
+            "total_queries",
+        ]:
             row[key] = metrics.get(key, "")
             if has_std and f"{key}_std" in metrics:
                 row[f"{key}_std"] = metrics[f"{key}_std"]
@@ -166,6 +176,7 @@ def _write_worked_example(artifacts_dir: Path, run_dir: Path, family_name: str) 
     example_records = pair_steps[best_key]
     baselines_in_example = sorted(set(r["baseline"] for r in example_records))
     steps_in_example = sorted(set(r["step"] for r in example_records))
+    has_feedback_flag = any("feedback_available" in r for r in example_records)
 
     subject, object_ = best_key.split("::")
 
@@ -177,7 +188,10 @@ def _write_worked_example(artifacts_dir: Path, run_dir: Path, family_name: str) 
         )
 
         # Header
-        header = ["step", "truth"] + baselines_in_example
+        header = ["step", "truth"]
+        if has_feedback_flag:
+            header.append("explicit_feedback")
+        header += baselines_in_example
         f.write("| " + " | ".join(header) + " |\n")
         f.write("|" + "|".join(["---"] * len(header)) + "|\n")
 
@@ -187,6 +201,9 @@ def _write_worked_example(artifacts_dir: Path, run_dir: Path, family_name: str) 
                 continue
             truth = next(iter(step_recs.values()))["truth"]
             cells = [str(step), truth]
+            if has_feedback_flag:
+                feedback = any(bool(r.get("feedback_available")) for r in step_recs.values())
+                cells.append("yes" if feedback else "no")
             for bl in baselines_in_example:
                 r = step_recs.get(bl)
                 if r is None:

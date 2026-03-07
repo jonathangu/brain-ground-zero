@@ -42,3 +42,16 @@
 - Proof-style run: `recurring_workflows` 3-seed spot-check recorded in `proof-results/recurring_workflows_3seed/`.
 - Current milestone: M6 — Recurring workflows family
 - Next step: scale recurring_workflows to 5-10 seeds and add sparse feedback family.
+
+## 2026-03-06 20:40 PST
+- What changed: implemented `sparse_feedback` family end-to-end (world/task generation + sparse per-query feedback masks), and wired sparse feedback gating into runner/scoring/reporting.
+  - Runner now honors step-level `feedback_mask` for PG updates and teacher scheduling.
+  - Metrics/reporting now include `feedback_events` and `feedback_rate`.
+  - Added `configs/families/sparse_feedback.yaml`; wired family into registry, CLI smoke, and config validation.
+  - Improved `full_brain` background labels to use latest related facts, making sparse teacher signals usable for offline label amplification.
+- Validation checks:
+  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+  - `PYTHONPATH=src python3 -m brain_ground_zero.cli smoke --family configs/families/sparse_feedback.yaml --run-id smoke_sparse_feedback` (ok)
+- Proof-style run: `sparse_feedback` 3-seed spot-check recorded in `proof-results/sparse_feedback_3seed/`.
+- Current milestone: M7 — Sparse feedback family
+- Next step: scale `sparse_feedback` and `recurring_workflows` to 5-10 seed proof-grade runs.

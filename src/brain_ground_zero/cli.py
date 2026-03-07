@@ -60,6 +60,7 @@ def main() -> None:
             family_paths = [
                 "configs/families/relational_drift.yaml",
                 "configs/families/recurring_workflows.yaml",
+                "configs/families/sparse_feedback.yaml",
             ]
         for family_path in family_paths:
             cfg = load_run_config(

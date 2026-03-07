@@ -15,6 +15,7 @@ A task stream is a sequence of steps. Each step has updates, queries, and option
   "answers": [
     {"relation": "reports_to"}
   ],
+  "feedback_mask": [true],
   "corrections": [
     {"subject": "E42", "object": "E07", "relation": "reports_to", "time": 12, "source": "teacher"}
   ]
@@ -40,3 +41,10 @@ Teacher feedback is delivered asynchronously and may be delayed.
 {"subject": "E42", "object": "E07", "relation": "reports_to", "time": 12, "source": "teacher"}
 ```
 
+## Feedback mask
+Optional per-query mask for explicit supervision availability.
+If absent, all queries are treated as feedback-eligible.
+
+```json
+[true, false, false, true]
+```

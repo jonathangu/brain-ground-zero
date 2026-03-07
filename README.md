@@ -16,12 +16,13 @@
 
 Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/) (start with [`relational_drift_10seed/`](proof-results/relational_drift_10seed/)).
 A small 3-seed recurring_workflows spot-check is tracked in [`proof-results/recurring_workflows_3seed/`](proof-results/recurring_workflows_3seed/).
+A sparse-feedback 3-seed spot-check is tracked in [`proof-results/sparse_feedback_3seed/`](proof-results/sparse_feedback_3seed/).
 
 ## What this proves (and what it doesn't)
 
 This is the **first ground-zero benchmark family** (relational drift). It proves the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift.
 
-It does **not** yet prove the thesis across all families. `recurring_workflows` is now implemented but not yet proven at full scale; sparse feedback and memory compaction are designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
+It does **not** yet prove the thesis across all families. `recurring_workflows` and `sparse_feedback` are implemented with small spot-check artifacts, but neither is proven at full scale yet; memory compaction is still planned. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
 ## How this connects to the real implementation
 
@@ -47,6 +48,11 @@ python -m brain_ground_zero.cli run \
   --family configs/families/recurring_workflows.yaml \
   --baselines configs/baselines/all.yaml
 
+# Run sparse_feedback for all baselines
+python -m brain_ground_zero.cli run \
+  --family configs/families/sparse_feedback.yaml \
+  --baselines configs/baselines/all.yaml
+
 # Multi-seed run (aggregated stats, win-rate matrix)
 python -m brain_ground_zero.cli multiseed \
   --family configs/families/relational_drift.yaml \
@@ -62,7 +68,7 @@ PYTHONPATH=src python3 -m brain_ground_zero.cli smoke
 
 # Or target a single family
 PYTHONPATH=src python3 -m brain_ground_zero.cli smoke \
-  --family configs/families/recurring_workflows.yaml
+  --family configs/families/sparse_feedback.yaml
 
 PYTHONPATH=src python3 scripts/validate_configs.py
 ```

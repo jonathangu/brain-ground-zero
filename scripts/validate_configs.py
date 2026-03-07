@@ -21,6 +21,7 @@ def main() -> int:
     families = [
         Path("configs/families/relational_drift.yaml"),
         Path("configs/families/recurring_workflows.yaml"),
+        Path("configs/families/sparse_feedback.yaml"),
     ]
     baselines = Path("configs/baselines/all.yaml")
     system = Path("configs/systems/default.yaml")

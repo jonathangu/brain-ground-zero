@@ -30,9 +30,11 @@ The benchmark's `relational_drift` family tests the ingredients that matter most
 
 ## What comes next
 
-The harness supports additional benchmark families (designed but not yet run):
+The harness now supports:
 1. Recurring workflows -- can the system learn and accelerate repeated patterns?
-2. Sparse feedback -- does the async teacher fill in gaps when human feedback is rare?
+2. Sparse feedback -- does async teacher + background labels help when explicit supervision is rare?
+
+Still planned:
 3. Memory compaction -- can structural edits keep the graph efficient as it grows?
 
 These will extend the proof story from "the mechanism works on drift" to "the mechanism works across the full problem space."
