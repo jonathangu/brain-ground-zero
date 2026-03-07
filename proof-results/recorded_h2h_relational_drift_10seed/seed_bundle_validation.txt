@@ -1,0 +1,30 @@
+OK    seed_11 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_111 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_22 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_33 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_44 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_55 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_66 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_77 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_88 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800
+OK    seed_99 (status=publishable)
+  Baselines: 8
+  Fixture queries: 800

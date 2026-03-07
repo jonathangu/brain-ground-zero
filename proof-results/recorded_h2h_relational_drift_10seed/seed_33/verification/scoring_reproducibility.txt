@@ -1,0 +1,18 @@
+Scoring Reproducibility Check
+========================================
+Date: 2026-03-07 08:15:09 PST
+
+full_brain: MATCH  (traces: 796/800, original: 796/800)
+graph_route_pg: MATCH  (traces: 576/800, original: 576/800)
+heuristic_stateful: MATCH  (traces: 654/800, original: 654/800)
+oracle: MATCH  (traces: 800/800, original: 800/800)
+route_fn_only: MATCH  (traces: 542/800, original: 542/800)
+static_graph: MATCH  (traces: 0/800, original: 0/800)
+vector_rag: MATCH  (traces: 661/800, original: 661/800)
+vector_rag_rerank: MATCH  (traces: 706/800, original: 706/800)
+
+Overall: PASS
+Fixture queries: 800
+Trace query_response events (all baselines): 6400
+Expected (queries x baselines): 6400
+Completeness: PASS

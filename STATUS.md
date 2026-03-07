@@ -125,26 +125,31 @@
 - Current milestone: M12 — Publishable proof bundle packaging
 - Next step: expand recorded h2h beyond single-seed fixture into proof-scale multi-seed and real-session bundles.
 
-## 2026-03-07 08:21 PST
-- What changed: moved recorded-session lane from schema-only scaffold to implementation-ready trace ingestion and artifact scaffolding.
-  - Added normalized trace contract: `recorded_sessions/schema/openclaw_session_trace.schema.json`.
-  - Upgraded fixture contract to `recorded_session_fixture.v2` with provenance, trace hashing, redaction, conversion metadata, and stricter per-turn references.
-  - Added conversion pipeline:
-    - `scripts/validate_openclaw_trace.py`
-    - `scripts/convert_openclaw_trace_to_fixture.py`
-    - `scripts/init_recorded_session_bundle.py`
-    - `scripts/validate_recorded_session_bundle.py`
-  - Added safe examples:
-    - `recorded_sessions/traces/redacted_sample_trace.json`
-    - `recorded_sessions/fixtures/redacted-sample-trace-001.json`
-    - `proof-results/recorded_sessions/redacted-sample-trace-001/` (scaffold status; no scored claims)
-  - Updated docs/specs: `recorded_session_spec.md`, `recorded_sessions/README.md`, `proof-results/recorded_sessions/README.md`, `README.md`, `benchmark_spec.md`, `proof-results/README.md`, `CLAIMS.md`.
+## 2026-03-07 08:15 PST
+- What changed: shipped recorded head-to-head to proof-scale multi-seed packaging.
+  - Harness upgrades:
+    - `src/brain_ground_zero/recorded_h2h.py`
+      - fixed `MetricsTracker.record(...)` compatibility with `feedback_available`
+      - writes `metrics.jsonl` for worked-example/reporting parity
+      - writes per-bundle `README.md` automatically
+      - added `run_recorded_h2h_multiseed(...)` orchestration and `seed_bundle_index.{md,csv}`
+    - `src/brain_ground_zero/cli.py`
+      - `recorded_h2h` now accepts `--status`
+      - new `recorded_h2h_multiseed` command
+  - Proof workflow:
+    - new one-command script: `scripts/run_recorded_h2h_proof.sh`
+    - new aggregate validator: `scripts/validate_recorded_h2h_multiseed.py`
+  - Published bundle:
+    - `proof-results/recorded_h2h_relational_drift_10seed/`
+    - includes per-seed deterministic bundles (`seed_<N>/`), aggregate tables (`summary_table`, `leaderboard`, `pairwise`, `win_rate`, `per_seed_*`), `proof_digest`, `learning_curve`, validation logs, and publishable key-results/chart artifacts.
+  - Publishable pack refresh:
+    - `scripts/generate_publishable_proof_assets.py` now tracks `recorded_h2h_relational_drift_10seed` as the recorded focus bundle.
+    - regenerated `proof-results/publishable/` outputs.
+- Headline: `recorded_h2h_relational_drift_10seed` (10 seeds x 800 queries x 8 baselines): full_brain 99.15% +/- 0.27% vs vector_rag_rerank 89.44% +/- 1.68% (+9.71 pp), head-to-head 10-0-0.
 - Validation checks:
-  - `python3 scripts/validate_openclaw_trace.py --all` (ok)
-  - `python3 scripts/validate_fixture.py --all` (ok)
-  - `python3 scripts/validate_fixture.py recorded_sessions/fixtures/redacted-sample-trace-001.json --check-trace-hash` (ok)
-  - `python3 scripts/validate_recorded_session_bundle.py` (ok)
-  - `python3 scripts/validate_recorded_h2h.py` (ok)
-  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
-- Current milestone: M13 — Real-session trace ingestion + scaffold bundle lane
-- Next step: wire replay/scoring into recorded-session bundle population for required modes and publish first scored real-session bundle.
+  - `python3 scripts/validate_recorded_h2h.py proof-results/recorded_h2h_relational_drift_10seed/seed_*/` (ok)
+  - `python3 scripts/validate_recorded_h2h_multiseed.py proof-results/recorded_h2h_relational_drift_10seed` (ok)
+  - `./scripts/run_recorded_h2h_proof.sh` (ok)
+  - `python3 scripts/generate_publishable_proof_assets.py` (ok)
+- Current milestone: M13 — Recorded H2H proof-scale multi-seed bundle
+- Next step: run recorded-session head-to-head on real product fixtures and publish first `proof-results/recorded_sessions/` scored bundle.

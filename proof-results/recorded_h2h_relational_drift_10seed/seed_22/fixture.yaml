@@ -1,0 +1,6278 @@
+format_version: '1'
+family: relational_drift
+generator_seed: 22
+generator_params:
+  num_entities: 60
+  relation_types:
+  - manages
+  - reports_to
+  - owns
+  - partners_with
+  - depends_on
+  initial_density: 0.08
+  steps: 40
+  updates_per_step: 6
+  queries_per_step: 20
+  drift_rate: 0.35
+  contradiction_rate: 0.15
+budgets:
+  context_budget: 12
+  teacher_budget: 80
+  teacher_delay: 2
+steps:
+- step: 0
+  world_updates:
+  - kind: set_relation
+    subject: E000
+    relation: partners_with
+    object: E007
+  - kind: set_relation
+    subject: E000
+    relation: manages
+    object: E013
+  - kind: set_relation
+    subject: E000
+    relation: manages
+    object: E015
+  - kind: set_relation
+    subject: E000
+    relation: reports_to
+    object: E019
+  - kind: set_relation
+    subject: E000
+    relation: depends_on
+    object: E020
+  - kind: set_relation
+    subject: E000
+    relation: partners_with
+    object: E050
+  - kind: set_relation
+    subject: E000
+    relation: reports_to
+    object: E054
+  - kind: set_relation
+    subject: E001
+    relation: partners_with
+    object: E003
+  - kind: set_relation
+    subject: E001
+    relation: depends_on
+    object: E020
+  - kind: set_relation
+    subject: E001
+    relation: partners_with
+    object: E036
+  - kind: set_relation
+    subject: E002
+    relation: partners_with
+    object: E001
+  - kind: set_relation
+    subject: E002
+    relation: owns
+    object: E014
+  - kind: set_relation
+    subject: E002
+    relation: owns
+    object: E023
+  - kind: set_relation
+    subject: E002
+    relation: manages
+    object: E038
+  - kind: set_relation
+    subject: E002
+    relation: owns
+    object: E042
+  - kind: set_relation
+    subject: E002
+    relation: reports_to
+    object: E047
+  - kind: set_relation
+    subject: E003
+    relation: reports_to
+    object: E048
+  - kind: set_relation
+    subject: E003
+    relation: partners_with
+    object: E053
+  - kind: set_relation
+    subject: E004
+    relation: manages
+    object: E018
+  - kind: set_relation
+    subject: E004
+    relation: owns
+    object: E030
+  - kind: set_relation
+    subject: E004
+    relation: reports_to
+    object: E033
+  - kind: set_relation
+    subject: E004
+    relation: depends_on
+    object: E056
+  - kind: set_relation
+    subject: E004
+    relation: partners_with
+    object: E059
+  - kind: set_relation
+    subject: E005
+    relation: partners_with
+    object: E004
+  - kind: set_relation
+    subject: E005
+    relation: manages
+    object: E014
+  - kind: set_relation
+    subject: E005
+    relation: depends_on
+    object: E015
+  - kind: set_relation
+    subject: E005
+    relation: manages
+    object: E021
+  - kind: set_relation
+    subject: E005
+    relation: depends_on
+    object: E022
+  - kind: set_relation
+    subject: E005
+    relation: depends_on
+    object: E024
+  - kind: set_relation
+    subject: E005
+    relation: owns
+    object: E027
+  - kind: set_relation
+    subject: E005
+    relation: reports_to
+    object: E035
+  - kind: set_relation
+    subject: E005
+    relation: manages
+    object: E044
+  - kind: set_relation
+    subject: E006
+    relation: manages
+    object: E001
+  - kind: set_relation
+    subject: E006
+    relation: partners_with
+    object: E009
+  - kind: set_relation
+    subject: E006
+    relation: manages
+    object: E051
+  - kind: set_relation
+    subject: E006
+    relation: depends_on
+    object: E057
+  - kind: set_relation
+    subject: E007
+    relation: depends_on
+    object: E015
+  - kind: set_relation
+    subject: E007
+    relation: owns
+    object: E031
+  - kind: set_relation
+    subject: E007
+    relation: depends_on
+    object: E043
+  - kind: set_relation
+    subject: E007
+    relation: partners_with
+    object: E057
+  - kind: set_relation
+    subject: E008
+    relation: owns
+    object: E009
+  - kind: set_relation
+    subject: E008
+    relation: depends_on
+    object: E023
+  - kind: set_relation
+    subject: E008
+    relation: owns
+    object: E032
+  - kind: set_relation
+    subject: E008
+    relation: owns
+    object: E057
+  - kind: set_relation
+    subject: E009
+    relation: depends_on
+    object: E020
+  - kind: set_relation
+    subject: E009
+    relation: partners_with
+    object: E024
+  - kind: set_relation
+    subject: E009
+    relation: depends_on
+    object: E039
+  - kind: set_relation
+    subject: E009
+    relation: owns
+    object: E043
+  - kind: set_relation
+    subject: E009
+    relation: owns
+    object: E046
+  - kind: set_relation
+    subject: E010
+    relation: partners_with
+    object: E022
+  - kind: set_relation
+    subject: E010
+    relation: manages
+    object: E032
+  - kind: set_relation
+    subject: E010
+    relation: partners_with
+    object: E041
+  - kind: set_relation
+    subject: E010
+    relation: owns
+    object: E048
+  - kind: set_relation
+    subject: E010
+    relation: depends_on
+    object: E053
+  - kind: set_relation
+    subject: E011
+    relation: manages
+    object: E003
+  - kind: set_relation
+    subject: E011
+    relation: manages
+    object: E012
+  - kind: set_relation
+    subject: E011
+    relation: owns
+    object: E017
+  - kind: set_relation
+    subject: E011
+    relation: reports_to
+    object: E018
+  - kind: set_relation
+    subject: E011
+    relation: depends_on
+    object: E024
+  - kind: set_relation
+    subject: E011
+    relation: owns
+    object: E025
+  - kind: set_relation
+    subject: E011
+    relation: reports_to
+    object: E039
+  - kind: set_relation
+    subject: E011
+    relation: depends_on
+    object: E043
+  - kind: set_relation
+    subject: E011
+    relation: depends_on
+    object: E049
+  - kind: set_relation
+    subject: E012
+    relation: reports_to
+    object: E006
+  - kind: set_relation
+    subject: E012
+    relation: owns
+    object: E009
+  - kind: set_relation
+    subject: E012
+    relation: partners_with
+    object: E033
+  - kind: set_relation
+    subject: E012
+    relation: manages
+    object: E052
+  - kind: set_relation
+    subject: E013
+    relation: owns
+    object: E007
+  - kind: set_relation
+    subject: E013
+    relation: owns
+    object: E034
+  - kind: set_relation
+    subject: E013
+    relation: depends_on
+    object: E042
+  - kind: set_relation
+    subject: E013
+    relation: manages
+    object: E052
+  - kind: set_relation
+    subject: E013
+    relation: owns
+    object: E053
+  - kind: set_relation
+    subject: E014
+    relation: depends_on
+    object: E004
+  - kind: set_relation
+    subject: E014
+    relation: depends_on
+    object: E021
+  - kind: set_relation
+    subject: E014
+    relation: depends_on
+    object: E026
+  - kind: set_relation
+    subject: E014
+    relation: partners_with
+    object: E028
+  - kind: set_relation
+    subject: E014
+    relation: depends_on
+    object: E032
+  - kind: set_relation
+    subject: E014
+    relation: reports_to
+    object: E039
+  - kind: set_relation
+    subject: E014
+    relation: manages
+    object: E048
+  - kind: set_relation
+    subject: E014
+    relation: owns
+    object: E049
+  - kind: set_relation
+    subject: E014
+    relation: manages
+    object: E058
+  - kind: set_relation
+    subject: E015
+    relation: partners_with
+    object: E012
+  - kind: set_relation
+    subject: E015
+    relation: reports_to
+    object: E028
+  - kind: set_relation
+    subject: E015
+    relation: reports_to
+    object: E033
+  - kind: set_relation
+    subject: E015
+    relation: reports_to
+    object: E038
+  - kind: set_relation
+    subject: E015
+    relation: owns
+    object: E049
+  - kind: set_relation
+    subject: E015
+    relation: partners_with
+    object: E053
+  - kind: set_relation
+    subject: E016
+    relation: reports_to
+    object: E006
+  - kind: set_relation
+    subject: E016
+    relation: reports_to
+    object: E009
+  - kind: set_relation
+    subject: E016
+    relation: depends_on
+    object: E027
+  - kind: set_relation
+    subject: E016
+    relation: owns
+    object: E029
+  - kind: set_relation
+    subject: E016
+    relation: depends_on
+    object: E046
+  - kind: set_relation
+    subject: E017
+    relation: owns
+    object: E010
+  - kind: set_relation
+    subject: E017
+    relation: partners_with
+    object: E014
+  - kind: set_relation
+    subject: E017
+    relation: partners_with
+    object: E044
+  - kind: set_relation
+    subject: E018
+    relation: manages
+    object: E002
+  - kind: set_relation
+    subject: E018
+    relation: reports_to
+    object: E007
+  - kind: set_relation
+    subject: E018
+    relation: reports_to
+    object: E011
+  - kind: set_relation
+    subject: E018
+    relation: reports_to
+    object: E014
+  - kind: set_relation
+    subject: E018
+    relation: owns
+    object: E021
+  - kind: set_relation
+    subject: E018
+    relation: manages
+    object: E038
+  - kind: set_relation
+    subject: E019
+    relation: owns
+    object: E003
+  - kind: set_relation
+    subject: E019
+    relation: depends_on
+    object: E014
+  - kind: set_relation
+    subject: E020
+    relation: reports_to
+    object: E000
+  - kind: set_relation
+    subject: E020
+    relation: partners_with
+    object: E003
+  - kind: set_relation
+    subject: E020
+    relation: depends_on
+    object: E019
+  - kind: set_relation
+    subject: E020
+    relation: manages
+    object: E048
+  - kind: set_relation
+    subject: E021
+    relation: partners_with
+    object: E055
+  - kind: set_relation
+    subject: E022
+    relation: owns
+    object: E002
+  - kind: set_relation
+    subject: E022
+    relation: depends_on
+    object: E011
+  - kind: set_relation
+    subject: E022
+    relation: reports_to
+    object: E051
+  - kind: set_relation
+    subject: E023
+    relation: partners_with
+    object: E026
+  - kind: set_relation
+    subject: E023
+    relation: depends_on
+    object: E054
+  - kind: set_relation
+    subject: E023
+    relation: depends_on
+    object: E057
+  - kind: set_relation
+    subject: E024
+    relation: reports_to
+    object: E013
+  - kind: set_relation
+    subject: E024
+    relation: manages
+    object: E026
+  - kind: set_relation
+    subject: E024
+    relation: manages
+    object: E043
+  - kind: set_relation
+    subject: E024
+    relation: partners_with
+    object: E054
+  - kind: set_relation
+    subject: E025
+    relation: partners_with
+    object: E006
+  - kind: set_relation
+    subject: E025
+    relation: reports_to
+    object: E009
+  - kind: set_relation
+    subject: E025
+    relation: depends_on
+    object: E016
+  - kind: set_relation
+    subject: E025
+    relation: reports_to
+    object: E019
+  - kind: set_relation
+    subject: E025
+    relation: manages
+    object: E035
+  - kind: set_relation
+    subject: E025
+    relation: manages
+    object: E037
+  - kind: set_relation
+    subject: E025
+    relation: owns
+    object: E039
+  - kind: set_relation
+    subject: E026
+    relation: partners_with
+    object: E003
+  - kind: set_relation
+    subject: E026
+    relation: owns
+    object: E047
+  - kind: set_relation
+    subject: E027
+    relation: partners_with
+    object: E000
+  - kind: set_relation
+    subject: E027
+    relation: owns
+    object: E003
+  - kind: set_relation
+    subject: E027
+    relation: owns
+    object: E010
+  - kind: set_relation
+    subject: E027
+    relation: reports_to
+    object: E014
+  - kind: set_relation
+    subject: E027
+    relation: owns
+    object: E032
+  - kind: set_relation
+    subject: E027
+    relation: manages
+    object: E048
+  - kind: set_relation
+    subject: E028
+    relation: owns
+    object: E005
+  - kind: set_relation
+    subject: E028
+    relation: manages
+    object: E007
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E008
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E016
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E029
+  - kind: set_relation
+    subject: E028
+    relation: partners_with
+    object: E047
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E049
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E054
+  - kind: set_relation
+    subject: E028
+    relation: manages
+    object: E058
+  - kind: set_relation
+    subject: E029
+    relation: depends_on
+    object: E010
+  - kind: set_relation
+    subject: E029
+    relation: manages
+    object: E019
+  - kind: set_relation
+    subject: E029
+    relation: owns
+    object: E024
+  - kind: set_relation
+    subject: E029
+    relation: depends_on
+    object: E032
+  - kind: set_relation
+    subject: E029
+    relation: manages
+    object: E033
+  - kind: set_relation
+    subject: E029
+    relation: depends_on
+    object: E041
+  - kind: set_relation
+    subject: E029
+    relation: depends_on
+    object: E042
+  - kind: set_relation
+    subject: E030
+    relation: depends_on
+    object: E008
+  - kind: set_relation
+    subject: E030
+    relation: reports_to
+    object: E018
+  - kind: set_relation
+    subject: E030
+    relation: depends_on
+    object: E035
+  - kind: set_relation
+    subject: E030
+    relation: partners_with
+    object: E040
+  - kind: set_relation
+    subject: E031
+    relation: partners_with
+    object: E016
+  - kind: set_relation
+    subject: E031
+    relation: partners_with
+    object: E039
+  - kind: set_relation
+    subject: E031
+    relation: manages
+    object: E040
+  - kind: set_relation
+    subject: E031
+    relation: partners_with
+    object: E045
+  - kind: set_relation
+    subject: E031
+    relation: partners_with
+    object: E046
+  - kind: set_relation
+    subject: E031
+    relation: partners_with
+    object: E048
+  - kind: set_relation
+    subject: E032
+    relation: partners_with
+    object: E011
+  - kind: set_relation
+    subject: E032
+    relation: depends_on
+    object: E016
+  - kind: set_relation
+    subject: E032
+    relation: manages
+    object: E022
+  - kind: set_relation
+    subject: E032
+    relation: depends_on
+    object: E039
+  - kind: set_relation
+    subject: E033
+    relation: partners_with
+    object: E000
+  - kind: set_relation
+    subject: E033
+    relation: manages
+    object: E025
+  - kind: set_relation
+    subject: E033
+    relation: depends_on
+    object: E043
+  - kind: set_relation
+    subject: E033
+    relation: owns
+    object: E054
+  - kind: set_relation
+    subject: E033
+    relation: reports_to
+    object: E058
+  - kind: set_relation
+    subject: E034
+    relation: depends_on
+    object: E029
+  - kind: set_relation
+    subject: E034
+    relation: owns
+    object: E046
+  - kind: set_relation
+    subject: E035
+    relation: depends_on
+    object: E020
+  - kind: set_relation
+    subject: E035
+    relation: owns
+    object: E021
+  - kind: set_relation
+    subject: E036
+    relation: owns
+    object: E001
+  - kind: set_relation
+    subject: E036
+    relation: manages
+    object: E027
+  - kind: set_relation
+    subject: E036
+    relation: depends_on
+    object: E030
+  - kind: set_relation
+    subject: E036
+    relation: owns
+    object: E039
+  - kind: set_relation
+    subject: E036
+    relation: owns
+    object: E045
+  - kind: set_relation
+    subject: E036
+    relation: manages
+    object: E059
+  - kind: set_relation
+    subject: E037
+    relation: reports_to
+    object: E008
+  - kind: set_relation
+    subject: E037
+    relation: partners_with
+    object: E014
+  - kind: set_relation
+    subject: E037
+    relation: owns
+    object: E036
+  - kind: set_relation
+    subject: E037
+    relation: owns
+    object: E038
+  - kind: set_relation
+    subject: E037
+    relation: reports_to
+    object: E040
+  - kind: set_relation
+    subject: E038
+    relation: owns
+    object: E015
+  - kind: set_relation
+    subject: E038
+    relation: manages
+    object: E041
+  - kind: set_relation
+    subject: E038
+    relation: manages
+    object: E048
+  - kind: set_relation
+    subject: E038
+    relation: reports_to
+    object: E051
+  - kind: set_relation
+    subject: E038
+    relation: depends_on
+    object: E059
+  - kind: set_relation
+    subject: E039
+    relation: manages
+    object: E005
+  - kind: set_relation
+    subject: E039
+    relation: reports_to
+    object: E030
+  - kind: set_relation
+    subject: E039
+    relation: partners_with
+    object: E054
+  - kind: set_relation
+    subject: E040
+    relation: manages
+    object: E009
+  - kind: set_relation
+    subject: E040
+    relation: manages
+    object: E016
+  - kind: set_relation
+    subject: E040
+    relation: partners_with
+    object: E038
+  - kind: set_relation
+    subject: E040
+    relation: partners_with
+    object: E039
+  - kind: set_relation
+    subject: E041
+    relation: partners_with
+    object: E015
+  - kind: set_relation
+    subject: E041
+    relation: manages
+    object: E017
+  - kind: set_relation
+    subject: E041
+    relation: reports_to
+    object: E028
+  - kind: set_relation
+    subject: E041
+    relation: depends_on
+    object: E033
+  - kind: set_relation
+    subject: E041
+    relation: partners_with
+    object: E058
+  - kind: set_relation
+    subject: E042
+    relation: depends_on
+    object: E019
+  - kind: set_relation
+    subject: E042
+    relation: depends_on
+    object: E025
+  - kind: set_relation
+    subject: E043
+    relation: manages
+    object: E034
+  - kind: set_relation
+    subject: E043
+    relation: depends_on
+    object: E037
+  - kind: set_relation
+    subject: E044
+    relation: owns
+    object: E000
+  - kind: set_relation
+    subject: E044
+    relation: owns
+    object: E010
+  - kind: set_relation
+    subject: E044
+    relation: manages
+    object: E014
+  - kind: set_relation
+    subject: E044
+    relation: manages
+    object: E023
+  - kind: set_relation
+    subject: E044
+    relation: partners_with
+    object: E028
+  - kind: set_relation
+    subject: E044
+    relation: depends_on
+    object: E032
+  - kind: set_relation
+    subject: E044
+    relation: partners_with
+    object: E033
+  - kind: set_relation
+    subject: E044
+    relation: owns
+    object: E037
+  - kind: set_relation
+    subject: E044
+    relation: manages
+    object: E053
+  - kind: set_relation
+    subject: E044
+    relation: reports_to
+    object: E058
+  - kind: set_relation
+    subject: E045
+    relation: depends_on
+    object: E002
+  - kind: set_relation
+    subject: E045
+    relation: reports_to
+    object: E020
+  - kind: set_relation
+    subject: E045
+    relation: reports_to
+    object: E028
+  - kind: set_relation
+    subject: E045
+    relation: depends_on
+    object: E044
+  - kind: set_relation
+    subject: E046
+    relation: depends_on
+    object: E003
+  - kind: set_relation
+    subject: E046
+    relation: depends_on
+    object: E008
+  - kind: set_relation
+    subject: E046
+    relation: depends_on
+    object: E023
+  - kind: set_relation
+    subject: E046
+    relation: depends_on
+    object: E038
+  - kind: set_relation
+    subject: E046
+    relation: owns
+    object: E041
+  - kind: set_relation
+    subject: E046
+    relation: reports_to
+    object: E049
+  - kind: set_relation
+    subject: E047
+    relation: partners_with
+    object: E023
+  - kind: set_relation
+    subject: E047
+    relation: depends_on
+    object: E026
+  - kind: set_relation
+    subject: E047
+    relation: manages
+    object: E043
+  - kind: set_relation
+    subject: E047
+    relation: owns
+    object: E048
+  - kind: set_relation
+    subject: E047
+    relation: partners_with
+    object: E052
+  - kind: set_relation
+    subject: E048
+    relation: owns
+    object: E051
+  - kind: set_relation
+    subject: E048
+    relation: reports_to
+    object: E057
+  - kind: set_relation
+    subject: E049
+    relation: reports_to
+    object: E022
+  - kind: set_relation
+    subject: E049
+    relation: reports_to
+    object: E028
+  - kind: set_relation
+    subject: E049
+    relation: reports_to
+    object: E031
+  - kind: set_relation
+    subject: E049
+    relation: partners_with
+    object: E032
+  - kind: set_relation
+    subject: E049
+    relation: depends_on
+    object: E041
+  - kind: set_relation
+    subject: E049
+    relation: owns
+    object: E044
+  - kind: set_relation
+    subject: E049
+    relation: manages
+    object: E048
+  - kind: set_relation
+    subject: E049
+    relation: reports_to
+    object: E055
+  - kind: set_relation
+    subject: E050
+    relation: owns
+    object: E002
+  - kind: set_relation
+    subject: E050
+    relation: reports_to
+    object: E015
+  - kind: set_relation
+    subject: E050
+    relation: partners_with
+    object: E023
+  - kind: set_relation
+    subject: E050
+    relation: owns
+    object: E051
+  - kind: set_relation
+    subject: E050
+    relation: owns
+    object: E055
+  - kind: set_relation
+    subject: E051
+    relation: owns
+    object: E045
+  - kind: set_relation
+    subject: E051
+    relation: reports_to
+    object: E058
+  - kind: set_relation
+    subject: E052
+    relation: manages
+    object: E022
+  - kind: set_relation
+    subject: E052
+    relation: partners_with
+    object: E024
+  - kind: set_relation
+    subject: E052
+    relation: manages
+    object: E038
+  - kind: set_relation
+    subject: E052
+    relation: manages
+    object: E045
+  - kind: set_relation
+    subject: E053
+    relation: reports_to
+    object: E013
+  - kind: set_relation
+    subject: E053
+    relation: manages
+    object: E022
+  - kind: set_relation
+    subject: E053
+    relation: partners_with
+    object: E044
+  - kind: set_relation
+    subject: E054
+    relation: depends_on
+    object: E014
+  - kind: set_relation
+    subject: E054
+    relation: partners_with
+    object: E018
+  - kind: set_relation
+    subject: E054
+    relation: reports_to
+    object: E040
+  - kind: set_relation
+    subject: E054
+    relation: reports_to
+    object: E041
+  - kind: set_relation
+    subject: E054
+    relation: partners_with
+    object: E056
+  - kind: set_relation
+    subject: E055
+    relation: depends_on
+    object: E004
+  - kind: set_relation
+    subject: E055
+    relation: partners_with
+    object: E042
+  - kind: set_relation
+    subject: E055
+    relation: owns
+    object: E049
+  - kind: set_relation
+    subject: E056
+    relation: depends_on
+    object: E009
+  - kind: set_relation
+    subject: E056
+    relation: partners_with
+    object: E036
+  - kind: set_relation
+    subject: E056
+    relation: partners_with
+    object: E044
+  - kind: set_relation
+    subject: E056
+    relation: owns
+    object: E046
+  - kind: set_relation
+    subject: E056
+    relation: owns
+    object: E049
+  - kind: set_relation
+    subject: E057
+    relation: partners_with
+    object: E006
+  - kind: set_relation
+    subject: E057
+    relation: manages
+    object: E011
+  - kind: set_relation
+    subject: E057
+    relation: depends_on
+    object: E035
+  - kind: set_relation
+    subject: E057
+    relation: depends_on
+    object: E044
+  - kind: set_relation
+    subject: E057
+    relation: owns
+    object: E050
+  - kind: set_relation
+    subject: E058
+    relation: partners_with
+    object: E025
+  - kind: set_relation
+    subject: E058
+    relation: depends_on
+    object: E035
+  - kind: set_relation
+    subject: E058
+    relation: reports_to
+    object: E038
+  - kind: set_relation
+    subject: E058
+    relation: depends_on
+    object: E042
+  - kind: set_relation
+    subject: E058
+    relation: owns
+    object: E045
+  - kind: set_relation
+    subject: E058
+    relation: reports_to
+    object: E047
+  - kind: set_relation
+    subject: E058
+    relation: owns
+    object: E051
+  - kind: set_relation
+    subject: E058
+    relation: reports_to
+    object: E052
+  - kind: set_relation
+    subject: E059
+    relation: reports_to
+    object: E008
+  - kind: set_relation
+    subject: E059
+    relation: partners_with
+    object: E027
+  - kind: set_relation
+    subject: E059
+    relation: owns
+    object: E040
+  - kind: set_relation
+    subject: E059
+    relation: owns
+    object: E043
+  queries: []
+  corrections: []
+- step: 1
+  world_updates:
+  - kind: set_relation
+    subject: E051
+    relation: manages
+    object: E004
+  - kind: set_relation
+    subject: E014
+    relation: partners_with
+    object: E048
+  - kind: set_relation
+    subject: E039
+    relation: manages
+    object: E054
+  - kind: set_relation
+    subject: E055
+    relation: manages
+    object: E049
+  - kind: set_relation
+    subject: E015
+    relation: depends_on
+    object: E038
+  - kind: set_relation
+    subject: E000
+    relation: reports_to
+    object: E028
+  queries:
+  - query_id: q_1_0
+    subject: E054
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_1_1
+    subject: E014
+    object: E058
+    expected: manages
+    previous_relation: null
+  - query_id: q_1_2
+    subject: E029
+    object: E033
+    expected: manages
+    previous_relation: null
+  - query_id: q_1_3
+    subject: E054
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_1_4
+    subject: E027
+    object: E003
+    expected: owns
+    previous_relation: null
+  - query_id: q_1_5
+    subject: E058
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_1_6
+    subject: E020
+    object: E003
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_1_7
+    subject: E055
+    object: E049
+    expected: manages
+    previous_relation: owns
+  - query_id: q_1_8
+    subject: E031
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_1_9
+    subject: E058
+    object: E052
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_1_10
+    subject: E014
+    object: E048
+    expected: partners_with
+    previous_relation: manages
+  - query_id: q_1_11
+    subject: E013
+    object: E034
+    expected: owns
+    previous_relation: null
+  - query_id: q_1_12
+    subject: E051
+    object: E004
+    expected: manages
+    previous_relation: null
+  - query_id: q_1_13
+    subject: E055
+    object: E049
+    expected: manages
+    previous_relation: owns
+  - query_id: q_1_14
+    subject: E039
+    object: E054
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_1_15
+    subject: E023
+    object: E057
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_1_16
+    subject: E042
+    object: E019
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_1_17
+    subject: E039
+    object: E054
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_1_18
+    subject: E055
+    object: E049
+    expected: manages
+    previous_relation: owns
+  - query_id: q_1_19
+    subject: E002
+    object: E038
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 2
+  world_updates:
+  - kind: set_relation
+    subject: E012
+    relation: depends_on
+    object: E006
+  - kind: set_relation
+    subject: E000
+    relation: manages
+    object: E050
+  - kind: set_relation
+    subject: E052
+    relation: partners_with
+    object: E021
+  - kind: set_relation
+    subject: E058
+    relation: partners_with
+    object: E016
+  - kind: set_relation
+    subject: E008
+    relation: reports_to
+    object: E034
+  - kind: set_relation
+    subject: E043
+    relation: manages
+    object: E001
+  queries:
+  - query_id: q_2_0
+    subject: E028
+    object: E049
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_2_1
+    subject: E044
+    object: E053
+    expected: manages
+    previous_relation: null
+  - query_id: q_2_2
+    subject: E058
+    object: E016
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_2_3
+    subject: E012
+    object: E006
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_2_4
+    subject: E058
+    object: E016
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_2_5
+    subject: E037
+    object: E038
+    expected: owns
+    previous_relation: null
+  - query_id: q_2_6
+    subject: E014
+    object: E058
+    expected: manages
+    previous_relation: null
+  - query_id: q_2_7
+    subject: E008
+    object: E034
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_2_8
+    subject: E007
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_2_9
+    subject: E052
+    object: E021
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_2_10
+    subject: E002
+    object: E001
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_2_11
+    subject: E000
+    object: E050
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_2_12
+    subject: E028
+    object: E049
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_2_13
+    subject: E058
+    object: E047
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_2_14
+    subject: E028
+    object: E058
+    expected: manages
+    previous_relation: null
+  - query_id: q_2_15
+    subject: E043
+    object: E001
+    expected: manages
+    previous_relation: null
+  - query_id: q_2_16
+    subject: E000
+    object: E050
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_2_17
+    subject: E058
+    object: E016
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_2_18
+    subject: E008
+    object: E034
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_2_19
+    subject: E018
+    object: E021
+    expected: owns
+    previous_relation: null
+  corrections: []
+- step: 3
+  world_updates:
+  - kind: set_relation
+    subject: E040
+    relation: manages
+    object: E026
+  - kind: set_relation
+    subject: E051
+    relation: depends_on
+    object: E040
+  - kind: set_relation
+    subject: E042
+    relation: reports_to
+    object: E026
+  - kind: set_relation
+    subject: E011
+    relation: manages
+    object: E018
+  - kind: set_relation
+    subject: E008
+    relation: depends_on
+    object: E034
+  - kind: set_relation
+    subject: E055
+    relation: manages
+    object: E053
+  queries:
+  - query_id: q_3_0
+    subject: E040
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_1
+    subject: E052
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_3_2
+    subject: E000
+    object: E015
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_3
+    subject: E055
+    object: E053
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_4
+    subject: E055
+    object: E053
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_5
+    subject: E011
+    object: E018
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_3_6
+    subject: E036
+    object: E045
+    expected: owns
+    previous_relation: null
+  - query_id: q_3_7
+    subject: E002
+    object: E042
+    expected: owns
+    previous_relation: null
+  - query_id: q_3_8
+    subject: E008
+    object: E023
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_3_9
+    subject: E018
+    object: E014
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_3_10
+    subject: E044
+    object: E033
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_3_11
+    subject: E040
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_12
+    subject: E040
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_13
+    subject: E005
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_3_14
+    subject: E040
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_3_15
+    subject: E036
+    object: E030
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_3_16
+    subject: E042
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_3_17
+    subject: E042
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_3_18
+    subject: E042
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_3_19
+    subject: E040
+    object: E026
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 4
+  world_updates:
+  - kind: set_relation
+    subject: E037
+    relation: partners_with
+    object: E025
+  - kind: set_relation
+    subject: E051
+    relation: depends_on
+    object: E019
+  - kind: set_relation
+    subject: E058
+    relation: owns
+    object: E025
+  - kind: set_relation
+    subject: E011
+    relation: depends_on
+    object: E046
+  - kind: set_relation
+    subject: E032
+    relation: partners_with
+    object: E047
+  - kind: set_relation
+    subject: E013
+    relation: depends_on
+    object: E044
+  queries:
+  - query_id: q_4_0
+    subject: E001
+    object: E003
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_1
+    subject: E002
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_4_2
+    subject: E010
+    object: E041
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_3
+    subject: E032
+    object: E047
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_4
+    subject: E043
+    object: E037
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_5
+    subject: E037
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_6
+    subject: E058
+    object: E025
+    expected: owns
+    previous_relation: partners_with
+  - query_id: q_4_7
+    subject: E045
+    object: E002
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_8
+    subject: E032
+    object: E047
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_9
+    subject: E013
+    object: E044
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_10
+    subject: E037
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_11
+    subject: E007
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_12
+    subject: E037
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_13
+    subject: E006
+    object: E057
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_14
+    subject: E015
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_15
+    subject: E027
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_4_16
+    subject: E014
+    object: E021
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_17
+    subject: E013
+    object: E044
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_4_18
+    subject: E037
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_4_19
+    subject: E024
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  corrections: []
+- step: 5
+  world_updates:
+  - kind: set_relation
+    subject: E040
+    relation: owns
+    object: E016
+  - kind: set_relation
+    subject: E057
+    relation: partners_with
+    object: E020
+  - kind: set_relation
+    subject: E034
+    relation: depends_on
+    object: E050
+  - kind: set_relation
+    subject: E027
+    relation: reports_to
+    object: E032
+  - kind: set_relation
+    subject: E005
+    relation: owns
+    object: E038
+  - kind: set_relation
+    subject: E044
+    relation: reports_to
+    object: E013
+  queries:
+  - query_id: q_5_0
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_1
+    subject: E018
+    object: E002
+    expected: manages
+    previous_relation: null
+  - query_id: q_5_2
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_3
+    subject: E007
+    object: E043
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_4
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_5
+    subject: E040
+    object: E016
+    expected: owns
+    previous_relation: manages
+  - query_id: q_5_6
+    subject: E044
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_5_7
+    subject: E057
+    object: E020
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_5_8
+    subject: E058
+    object: E047
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_5_9
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_10
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_11
+    subject: E057
+    object: E020
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_5_12
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_13
+    subject: E026
+    object: E047
+    expected: owns
+    previous_relation: null
+  - query_id: q_5_14
+    subject: E041
+    object: E015
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_5_15
+    subject: E006
+    object: E057
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_5_16
+    subject: E015
+    object: E053
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_5_17
+    subject: E049
+    object: E044
+    expected: owns
+    previous_relation: null
+  - query_id: q_5_18
+    subject: E014
+    object: E039
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_5_19
+    subject: E016
+    object: E006
+    expected: reports_to
+    previous_relation: null
+  corrections: []
+- step: 6
+  world_updates:
+  - kind: set_relation
+    subject: E008
+    relation: manages
+    object: E045
+  - kind: set_relation
+    subject: E039
+    relation: partners_with
+    object: E037
+  - kind: set_relation
+    subject: E006
+    relation: owns
+    object: E011
+  - kind: set_relation
+    subject: E014
+    relation: depends_on
+    object: E003
+  - kind: set_relation
+    subject: E003
+    relation: depends_on
+    object: E050
+  - kind: set_relation
+    subject: E040
+    relation: depends_on
+    object: E014
+  queries:
+  - query_id: q_6_0
+    subject: E054
+    object: E056
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_6_1
+    subject: E040
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_2
+    subject: E040
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_3
+    subject: E038
+    object: E041
+    expected: manages
+    previous_relation: null
+  - query_id: q_6_4
+    subject: E013
+    object: E034
+    expected: owns
+    previous_relation: null
+  - query_id: q_6_5
+    subject: E011
+    object: E024
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_6
+    subject: E044
+    object: E053
+    expected: manages
+    previous_relation: null
+  - query_id: q_6_7
+    subject: E033
+    object: E025
+    expected: manages
+    previous_relation: null
+  - query_id: q_6_8
+    subject: E006
+    object: E011
+    expected: owns
+    previous_relation: null
+  - query_id: q_6_9
+    subject: E003
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_10
+    subject: E059
+    object: E027
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_6_11
+    subject: E040
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_12
+    subject: E040
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_13
+    subject: E008
+    object: E034
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_6_14
+    subject: E040
+    object: E014
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_15
+    subject: E027
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_6_16
+    subject: E044
+    object: E000
+    expected: owns
+    previous_relation: null
+  - query_id: q_6_17
+    subject: E046
+    object: E038
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_6_18
+    subject: E010
+    object: E041
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_6_19
+    subject: E057
+    object: E020
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 7
+  world_updates:
+  - kind: set_relation
+    subject: E046
+    relation: manages
+    object: E041
+  - kind: set_relation
+    subject: E008
+    relation: manages
+    object: E030
+  - kind: set_relation
+    subject: E058
+    relation: depends_on
+    object: E033
+  - kind: set_relation
+    subject: E002
+    relation: manages
+    object: E028
+  - kind: set_relation
+    subject: E031
+    relation: manages
+    object: E043
+  - kind: set_relation
+    subject: E054
+    relation: reports_to
+    object: E027
+  queries:
+  - query_id: q_7_0
+    subject: E028
+    object: E008
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_7_1
+    subject: E054
+    object: E027
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_7_2
+    subject: E016
+    object: E029
+    expected: owns
+    previous_relation: null
+  - query_id: q_7_3
+    subject: E002
+    object: E047
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_7_4
+    subject: E033
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_7_5
+    subject: E042
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_7_6
+    subject: E036
+    object: E045
+    expected: owns
+    previous_relation: null
+  - query_id: q_7_7
+    subject: E052
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_7_8
+    subject: E046
+    object: E041
+    expected: manages
+    previous_relation: owns
+  - query_id: q_7_9
+    subject: E031
+    object: E043
+    expected: manages
+    previous_relation: null
+  - query_id: q_7_10
+    subject: E052
+    object: E021
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_7_11
+    subject: E058
+    object: E047
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_7_12
+    subject: E002
+    object: E028
+    expected: manages
+    previous_relation: null
+  - query_id: q_7_13
+    subject: E058
+    object: E033
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_7_14
+    subject: E054
+    object: E027
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_7_15
+    subject: E005
+    object: E044
+    expected: manages
+    previous_relation: null
+  - query_id: q_7_16
+    subject: E046
+    object: E041
+    expected: manages
+    previous_relation: owns
+  - query_id: q_7_17
+    subject: E008
+    object: E030
+    expected: manages
+    previous_relation: null
+  - query_id: q_7_18
+    subject: E010
+    object: E041
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_7_19
+    subject: E025
+    object: E016
+    expected: depends_on
+    previous_relation: null
+  corrections: []
+- step: 8
+  world_updates:
+  - kind: set_relation
+    subject: E058
+    relation: reports_to
+    object: E056
+  - kind: set_relation
+    subject: E022
+    relation: depends_on
+    object: E018
+  - kind: set_relation
+    subject: E043
+    relation: manages
+    object: E031
+  - kind: set_relation
+    subject: E040
+    relation: reports_to
+    object: E014
+  - kind: set_relation
+    subject: E049
+    relation: reports_to
+    object: E044
+  - kind: set_relation
+    subject: E055
+    relation: owns
+    object: E007
+  queries:
+  - query_id: q_8_0
+    subject: E006
+    object: E001
+    expected: manages
+    previous_relation: null
+  - query_id: q_8_1
+    subject: E014
+    object: E028
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_8_2
+    subject: E040
+    object: E014
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_8_3
+    subject: E022
+    object: E018
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_8_4
+    subject: E022
+    object: E011
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_8_5
+    subject: E049
+    object: E044
+    expected: reports_to
+    previous_relation: owns
+  - query_id: q_8_6
+    subject: E059
+    object: E040
+    expected: owns
+    previous_relation: null
+  - query_id: q_8_7
+    subject: E032
+    object: E039
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_8_8
+    subject: E043
+    object: E031
+    expected: manages
+    previous_relation: null
+  - query_id: q_8_9
+    subject: E016
+    object: E009
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_8_10
+    subject: E058
+    object: E056
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_8_11
+    subject: E043
+    object: E031
+    expected: manages
+    previous_relation: null
+  - query_id: q_8_12
+    subject: E022
+    object: E018
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_8_13
+    subject: E055
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_8_14
+    subject: E058
+    object: E056
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_8_15
+    subject: E002
+    object: E042
+    expected: owns
+    previous_relation: null
+  - query_id: q_8_16
+    subject: E052
+    object: E022
+    expected: manages
+    previous_relation: null
+  - query_id: q_8_17
+    subject: E055
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_8_18
+    subject: E055
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_8_19
+    subject: E017
+    object: E044
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 9
+  world_updates:
+  - kind: set_relation
+    subject: E051
+    relation: manages
+    object: E000
+  - kind: set_relation
+    subject: E038
+    relation: reports_to
+    object: E048
+  - kind: set_relation
+    subject: E033
+    relation: owns
+    object: E010
+  - kind: set_relation
+    subject: E053
+    relation: reports_to
+    object: E014
+  - kind: set_relation
+    subject: E053
+    relation: depends_on
+    object: E017
+  - kind: set_relation
+    subject: E025
+    relation: depends_on
+    object: E037
+  queries:
+  - query_id: q_9_0
+    subject: E030
+    object: E008
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_9_1
+    subject: E030
+    object: E040
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_9_2
+    subject: E032
+    object: E039
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_9_3
+    subject: E017
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_9_4
+    subject: E049
+    object: E041
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_9_5
+    subject: E053
+    object: E014
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_9_6
+    subject: E025
+    object: E037
+    expected: depends_on
+    previous_relation: manages
+  - query_id: q_9_7
+    subject: E028
+    object: E058
+    expected: manages
+    previous_relation: null
+  - query_id: q_9_8
+    subject: E011
+    object: E018
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_9_9
+    subject: E051
+    object: E000
+    expected: manages
+    previous_relation: null
+  - query_id: q_9_10
+    subject: E053
+    object: E017
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_9_11
+    subject: E033
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_9_12
+    subject: E038
+    object: E048
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_9_13
+    subject: E057
+    object: E035
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_9_14
+    subject: E038
+    object: E051
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_9_15
+    subject: E055
+    object: E004
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_9_16
+    subject: E012
+    object: E052
+    expected: manages
+    previous_relation: null
+  - query_id: q_9_17
+    subject: E014
+    object: E028
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_9_18
+    subject: E033
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_9_19
+    subject: E009
+    object: E039
+    expected: depends_on
+    previous_relation: null
+  corrections: []
+- step: 10
+  world_updates:
+  - kind: set_relation
+    subject: E025
+    relation: partners_with
+    object: E037
+  - kind: set_relation
+    subject: E045
+    relation: partners_with
+    object: E059
+  - kind: set_relation
+    subject: E057
+    relation: manages
+    object: E040
+  - kind: set_relation
+    subject: E000
+    relation: manages
+    object: E020
+  - kind: set_relation
+    subject: E058
+    relation: reports_to
+    object: E029
+  - kind: set_relation
+    subject: E000
+    relation: owns
+    object: E042
+  queries:
+  - query_id: q_10_0
+    subject: E058
+    object: E029
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_10_1
+    subject: E014
+    object: E039
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_10_2
+    subject: E051
+    object: E000
+    expected: manages
+    previous_relation: null
+  - query_id: q_10_3
+    subject: E058
+    object: E029
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_10_4
+    subject: E003
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_10_5
+    subject: E027
+    object: E003
+    expected: owns
+    previous_relation: null
+  - query_id: q_10_6
+    subject: E016
+    object: E009
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_10_7
+    subject: E058
+    object: E052
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_10_8
+    subject: E049
+    object: E031
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_10_9
+    subject: E059
+    object: E027
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_10_10
+    subject: E000
+    object: E042
+    expected: owns
+    previous_relation: null
+  - query_id: q_10_11
+    subject: E000
+    object: E020
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_10_12
+    subject: E057
+    object: E040
+    expected: manages
+    previous_relation: null
+  - query_id: q_10_13
+    subject: E055
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_10_14
+    subject: E025
+    object: E037
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_10_15
+    subject: E039
+    object: E054
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_10_16
+    subject: E023
+    object: E057
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_10_17
+    subject: E011
+    object: E046
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_10_18
+    subject: E057
+    object: E040
+    expected: manages
+    previous_relation: null
+  - query_id: q_10_19
+    subject: E005
+    object: E038
+    expected: owns
+    previous_relation: null
+  corrections: []
+- step: 11
+  world_updates:
+  - kind: set_relation
+    subject: E058
+    relation: owns
+    object: E041
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E005
+  - kind: set_relation
+    subject: E032
+    relation: manages
+    object: E017
+  - kind: set_relation
+    subject: E031
+    relation: manages
+    object: E054
+  - kind: set_relation
+    subject: E027
+    relation: owns
+    object: E021
+  - kind: set_relation
+    subject: E051
+    relation: manages
+    object: E058
+  queries:
+  - query_id: q_11_0
+    subject: E014
+    object: E021
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_11_1
+    subject: E058
+    object: E047
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_11_2
+    subject: E028
+    object: E005
+    expected: depends_on
+    previous_relation: owns
+  - query_id: q_11_3
+    subject: E028
+    object: E005
+    expected: depends_on
+    previous_relation: owns
+  - query_id: q_11_4
+    subject: E043
+    object: E037
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_11_5
+    subject: E012
+    object: E033
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_11_6
+    subject: E058
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_11_7
+    subject: E032
+    object: E017
+    expected: manages
+    previous_relation: null
+  - query_id: q_11_8
+    subject: E027
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_11_9
+    subject: E031
+    object: E054
+    expected: manages
+    previous_relation: null
+  - query_id: q_11_10
+    subject: E011
+    object: E046
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_11_11
+    subject: E051
+    object: E058
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_11_12
+    subject: E025
+    object: E009
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_11_13
+    subject: E028
+    object: E005
+    expected: depends_on
+    previous_relation: owns
+  - query_id: q_11_14
+    subject: E058
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_11_15
+    subject: E058
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_11_16
+    subject: E027
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_11_17
+    subject: E048
+    object: E057
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_11_18
+    subject: E005
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_11_19
+    subject: E051
+    object: E058
+    expected: manages
+    previous_relation: reports_to
+  corrections: []
+- step: 12
+  world_updates:
+  - kind: set_relation
+    subject: E012
+    relation: manages
+    object: E026
+  - kind: set_relation
+    subject: E025
+    relation: manages
+    object: E002
+  - kind: set_relation
+    subject: E053
+    relation: manages
+    object: E014
+  - kind: set_relation
+    subject: E053
+    relation: owns
+    object: E038
+  - kind: set_relation
+    subject: E038
+    relation: manages
+    object: E040
+  - kind: set_relation
+    subject: E013
+    relation: reports_to
+    object: E034
+  queries:
+  - query_id: q_12_0
+    subject: E012
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_1
+    subject: E053
+    object: E014
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_12_2
+    subject: E005
+    object: E021
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_3
+    subject: E033
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_12_4
+    subject: E014
+    object: E021
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_12_5
+    subject: E025
+    object: E009
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_12_6
+    subject: E013
+    object: E034
+    expected: reports_to
+    previous_relation: owns
+  - query_id: q_12_7
+    subject: E029
+    object: E024
+    expected: owns
+    previous_relation: null
+  - query_id: q_12_8
+    subject: E053
+    object: E014
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_12_9
+    subject: E038
+    object: E040
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_10
+    subject: E053
+    object: E038
+    expected: owns
+    previous_relation: null
+  - query_id: q_12_11
+    subject: E025
+    object: E035
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_12
+    subject: E056
+    object: E046
+    expected: owns
+    previous_relation: null
+  - query_id: q_12_13
+    subject: E025
+    object: E002
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_14
+    subject: E012
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_15
+    subject: E031
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_12_16
+    subject: E018
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_12_17
+    subject: E012
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_18
+    subject: E012
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_12_19
+    subject: E051
+    object: E058
+    expected: manages
+    previous_relation: reports_to
+  corrections: []
+- step: 13
+  world_updates:
+  - kind: set_relation
+    subject: E018
+    relation: depends_on
+    object: E014
+  - kind: set_relation
+    subject: E044
+    relation: owns
+    object: E058
+  - kind: set_relation
+    subject: E053
+    relation: reports_to
+    object: E044
+  - kind: set_relation
+    subject: E000
+    relation: partners_with
+    object: E014
+  - kind: set_relation
+    subject: E016
+    relation: owns
+    object: E006
+  - kind: set_relation
+    subject: E032
+    relation: reports_to
+    object: E007
+  queries:
+  - query_id: q_13_0
+    subject: E034
+    object: E046
+    expected: owns
+    previous_relation: null
+  - query_id: q_13_1
+    subject: E018
+    object: E014
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_13_2
+    subject: E000
+    object: E028
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_13_3
+    subject: E033
+    object: E000
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_13_4
+    subject: E016
+    object: E006
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_13_5
+    subject: E036
+    object: E001
+    expected: owns
+    previous_relation: null
+  - query_id: q_13_6
+    subject: E036
+    object: E001
+    expected: owns
+    previous_relation: null
+  - query_id: q_13_7
+    subject: E000
+    object: E014
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_13_8
+    subject: E016
+    object: E006
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_13_9
+    subject: E046
+    object: E008
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_13_10
+    subject: E044
+    object: E058
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_13_11
+    subject: E047
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_13_12
+    subject: E038
+    object: E048
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_13_13
+    subject: E023
+    object: E054
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_13_14
+    subject: E016
+    object: E006
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_13_15
+    subject: E018
+    object: E011
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_13_16
+    subject: E033
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_13_17
+    subject: E018
+    object: E014
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_13_18
+    subject: E018
+    object: E014
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_13_19
+    subject: E010
+    object: E022
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 14
+  world_updates:
+  - kind: set_relation
+    subject: E041
+    relation: manages
+    object: E036
+  - kind: set_relation
+    subject: E052
+    relation: depends_on
+    object: E021
+  - kind: set_relation
+    subject: E054
+    relation: reports_to
+    object: E052
+  - kind: set_relation
+    subject: E037
+    relation: partners_with
+    object: E036
+  - kind: set_relation
+    subject: E022
+    relation: reports_to
+    object: E011
+  - kind: set_relation
+    subject: E047
+    relation: owns
+    object: E006
+  queries:
+  - query_id: q_14_0
+    subject: E047
+    object: E006
+    expected: owns
+    previous_relation: null
+  - query_id: q_14_1
+    subject: E052
+    object: E021
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_14_2
+    subject: E047
+    object: E006
+    expected: owns
+    previous_relation: null
+  - query_id: q_14_3
+    subject: E005
+    object: E027
+    expected: owns
+    previous_relation: null
+  - query_id: q_14_4
+    subject: E004
+    object: E056
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_14_5
+    subject: E052
+    object: E021
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_14_6
+    subject: E000
+    object: E015
+    expected: manages
+    previous_relation: null
+  - query_id: q_14_7
+    subject: E020
+    object: E048
+    expected: manages
+    previous_relation: null
+  - query_id: q_14_8
+    subject: E009
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_14_9
+    subject: E052
+    object: E021
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_14_10
+    subject: E037
+    object: E036
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_14_11
+    subject: E047
+    object: E006
+    expected: owns
+    previous_relation: null
+  - query_id: q_14_12
+    subject: E003
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_14_13
+    subject: E058
+    object: E025
+    expected: owns
+    previous_relation: partners_with
+  - query_id: q_14_14
+    subject: E022
+    object: E011
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_14_15
+    subject: E037
+    object: E036
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_14_16
+    subject: E037
+    object: E036
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_14_17
+    subject: E059
+    object: E043
+    expected: owns
+    previous_relation: null
+  - query_id: q_14_18
+    subject: E047
+    object: E006
+    expected: owns
+    previous_relation: null
+  - query_id: q_14_19
+    subject: E031
+    object: E054
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 15
+  world_updates:
+  - kind: set_relation
+    subject: E041
+    relation: partners_with
+    object: E028
+  - kind: set_relation
+    subject: E050
+    relation: partners_with
+    object: E022
+  - kind: set_relation
+    subject: E036
+    relation: depends_on
+    object: E045
+  - kind: set_relation
+    subject: E037
+    relation: depends_on
+    object: E036
+  - kind: set_relation
+    subject: E028
+    relation: partners_with
+    object: E054
+  - kind: set_relation
+    subject: E025
+    relation: depends_on
+    object: E003
+  queries:
+  - query_id: q_15_0
+    subject: E025
+    object: E003
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_15_1
+    subject: E047
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_15_2
+    subject: E031
+    object: E016
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_15_3
+    subject: E041
+    object: E028
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_15_4
+    subject: E041
+    object: E028
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_15_5
+    subject: E028
+    object: E054
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_15_6
+    subject: E029
+    object: E033
+    expected: manages
+    previous_relation: null
+  - query_id: q_15_7
+    subject: E028
+    object: E054
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_15_8
+    subject: E036
+    object: E045
+    expected: depends_on
+    previous_relation: owns
+  - query_id: q_15_9
+    subject: E005
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_15_10
+    subject: E037
+    object: E036
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_15_11
+    subject: E025
+    object: E003
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_15_12
+    subject: E050
+    object: E022
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_15_13
+    subject: E049
+    object: E028
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_15_14
+    subject: E041
+    object: E028
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_15_15
+    subject: E037
+    object: E036
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_15_16
+    subject: E058
+    object: E038
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_15_17
+    subject: E028
+    object: E054
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_15_18
+    subject: E014
+    object: E049
+    expected: owns
+    previous_relation: null
+  - query_id: q_15_19
+    subject: E004
+    object: E030
+    expected: owns
+    previous_relation: null
+  corrections: []
+- step: 16
+  world_updates:
+  - kind: set_relation
+    subject: E041
+    relation: reports_to
+    object: E036
+  - kind: set_relation
+    subject: E056
+    relation: reports_to
+    object: E026
+  - kind: set_relation
+    subject: E017
+    relation: reports_to
+    object: E024
+  - kind: set_relation
+    subject: E007
+    relation: owns
+    object: E051
+  - kind: set_relation
+    subject: E043
+    relation: reports_to
+    object: E005
+  - kind: set_relation
+    subject: E042
+    relation: owns
+    object: E017
+  queries:
+  - query_id: q_16_0
+    subject: E044
+    object: E037
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_1
+    subject: E007
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_2
+    subject: E042
+    object: E017
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_3
+    subject: E025
+    object: E009
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_16_4
+    subject: E042
+    object: E017
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_5
+    subject: E043
+    object: E005
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_16_6
+    subject: E007
+    object: E043
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_16_7
+    subject: E050
+    object: E022
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_16_8
+    subject: E007
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_9
+    subject: E034
+    object: E029
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_16_10
+    subject: E055
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_16_11
+    subject: E046
+    object: E008
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_16_12
+    subject: E041
+    object: E036
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_16_13
+    subject: E005
+    object: E027
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_14
+    subject: E007
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_16_15
+    subject: E056
+    object: E044
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_16_16
+    subject: E056
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_16_17
+    subject: E041
+    object: E036
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_16_18
+    subject: E017
+    object: E024
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_16_19
+    subject: E041
+    object: E036
+    expected: reports_to
+    previous_relation: manages
+  corrections: []
+- step: 17
+  world_updates:
+  - kind: set_relation
+    subject: E031
+    relation: depends_on
+    object: E046
+  - kind: set_relation
+    subject: E056
+    relation: owns
+    object: E008
+  - kind: set_relation
+    subject: E052
+    relation: reports_to
+    object: E013
+  - kind: set_relation
+    subject: E037
+    relation: reports_to
+    object: E019
+  - kind: set_relation
+    subject: E054
+    relation: partners_with
+    object: E022
+  - kind: set_relation
+    subject: E011
+    relation: manages
+    object: E053
+  queries:
+  - query_id: q_17_0
+    subject: E054
+    object: E022
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_17_1
+    subject: E031
+    object: E046
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_17_2
+    subject: E005
+    object: E027
+    expected: owns
+    previous_relation: null
+  - query_id: q_17_3
+    subject: E058
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_17_4
+    subject: E011
+    object: E053
+    expected: manages
+    previous_relation: null
+  - query_id: q_17_5
+    subject: E052
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_17_6
+    subject: E031
+    object: E046
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_17_7
+    subject: E052
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_17_8
+    subject: E010
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_17_9
+    subject: E052
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_17_10
+    subject: E050
+    object: E015
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_17_11
+    subject: E054
+    object: E022
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_17_12
+    subject: E054
+    object: E022
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_17_13
+    subject: E013
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_17_14
+    subject: E031
+    object: E046
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_17_15
+    subject: E047
+    object: E026
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_17_16
+    subject: E034
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_17_17
+    subject: E043
+    object: E005
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_17_18
+    subject: E032
+    object: E011
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_17_19
+    subject: E011
+    object: E053
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 18
+  world_updates:
+  - kind: set_relation
+    subject: E014
+    relation: manages
+    object: E016
+  - kind: set_relation
+    subject: E052
+    relation: partners_with
+    object: E022
+  - kind: set_relation
+    subject: E001
+    relation: owns
+    object: E007
+  - kind: set_relation
+    subject: E011
+    relation: partners_with
+    object: E043
+  - kind: set_relation
+    subject: E005
+    relation: owns
+    object: E022
+  - kind: set_relation
+    subject: E045
+    relation: reports_to
+    object: E052
+  queries:
+  - query_id: q_18_0
+    subject: E011
+    object: E043
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_18_1
+    subject: E014
+    object: E016
+    expected: manages
+    previous_relation: null
+  - query_id: q_18_2
+    subject: E009
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_18_3
+    subject: E001
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_18_4
+    subject: E005
+    object: E022
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_18_5
+    subject: E000
+    object: E014
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_18_6
+    subject: E018
+    object: E002
+    expected: manages
+    previous_relation: null
+  - query_id: q_18_7
+    subject: E001
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_18_8
+    subject: E029
+    object: E042
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_18_9
+    subject: E014
+    object: E016
+    expected: manages
+    previous_relation: null
+  - query_id: q_18_10
+    subject: E014
+    object: E016
+    expected: manages
+    previous_relation: null
+  - query_id: q_18_11
+    subject: E058
+    object: E045
+    expected: owns
+    previous_relation: null
+  - query_id: q_18_12
+    subject: E052
+    object: E022
+    expected: partners_with
+    previous_relation: manages
+  - query_id: q_18_13
+    subject: E005
+    object: E022
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_18_14
+    subject: E028
+    object: E047
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_18_15
+    subject: E045
+    object: E052
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_18_16
+    subject: E052
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_18_17
+    subject: E001
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_18_18
+    subject: E028
+    object: E058
+    expected: manages
+    previous_relation: null
+  - query_id: q_18_19
+    subject: E008
+    object: E057
+    expected: owns
+    previous_relation: null
+  corrections: []
+- step: 19
+  world_updates:
+  - kind: set_relation
+    subject: E054
+    relation: partners_with
+    object: E024
+  - kind: set_relation
+    subject: E002
+    relation: partners_with
+    object: E017
+  - kind: set_relation
+    subject: E001
+    relation: owns
+    object: E048
+  - kind: set_relation
+    subject: E059
+    relation: manages
+    object: E008
+  - kind: set_relation
+    subject: E044
+    relation: partners_with
+    object: E000
+  - kind: set_relation
+    subject: E030
+    relation: owns
+    object: E031
+  queries:
+  - query_id: q_19_0
+    subject: E044
+    object: E000
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_19_1
+    subject: E015
+    object: E028
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_19_2
+    subject: E012
+    object: E009
+    expected: owns
+    previous_relation: null
+  - query_id: q_19_3
+    subject: E044
+    object: E000
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_19_4
+    subject: E014
+    object: E003
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_19_5
+    subject: E058
+    object: E052
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_19_6
+    subject: E025
+    object: E016
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_19_7
+    subject: E001
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_19_8
+    subject: E002
+    object: E017
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_19_9
+    subject: E044
+    object: E000
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_19_10
+    subject: E008
+    object: E030
+    expected: manages
+    previous_relation: null
+  - query_id: q_19_11
+    subject: E006
+    object: E009
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_19_12
+    subject: E041
+    object: E015
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_19_13
+    subject: E030
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_19_14
+    subject: E001
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_19_15
+    subject: E049
+    object: E041
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_19_16
+    subject: E018
+    object: E002
+    expected: manages
+    previous_relation: null
+  - query_id: q_19_17
+    subject: E030
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_19_18
+    subject: E001
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_19_19
+    subject: E012
+    object: E033
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 20
+  world_updates:
+  - kind: set_relation
+    subject: E028
+    relation: depends_on
+    object: E047
+  - kind: set_relation
+    subject: E051
+    relation: depends_on
+    object: E015
+  - kind: set_relation
+    subject: E047
+    relation: owns
+    object: E026
+  - kind: set_relation
+    subject: E026
+    relation: manages
+    object: E047
+  - kind: set_relation
+    subject: E030
+    relation: reports_to
+    object: E027
+  - kind: set_relation
+    subject: E043
+    relation: depends_on
+    object: E007
+  queries:
+  - query_id: q_20_0
+    subject: E047
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_20_1
+    subject: E043
+    object: E007
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_2
+    subject: E011
+    object: E046
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_3
+    subject: E051
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_4
+    subject: E047
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_20_5
+    subject: E030
+    object: E027
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_20_6
+    subject: E047
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_20_7
+    subject: E031
+    object: E039
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_20_8
+    subject: E037
+    object: E019
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_20_9
+    subject: E047
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_20_10
+    subject: E043
+    object: E007
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_11
+    subject: E051
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_12
+    subject: E026
+    object: E047
+    expected: manages
+    previous_relation: owns
+  - query_id: q_20_13
+    subject: E051
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_14
+    subject: E047
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_20_15
+    subject: E046
+    object: E008
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_20_16
+    subject: E026
+    object: E047
+    expected: manages
+    previous_relation: owns
+  - query_id: q_20_17
+    subject: E051
+    object: E000
+    expected: manages
+    previous_relation: null
+  - query_id: q_20_18
+    subject: E036
+    object: E059
+    expected: manages
+    previous_relation: null
+  - query_id: q_20_19
+    subject: E047
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  corrections: []
+- step: 21
+  world_updates:
+  - kind: set_relation
+    subject: E003
+    relation: reports_to
+    object: E037
+  - kind: set_relation
+    subject: E012
+    relation: reports_to
+    object: E033
+  - kind: set_relation
+    subject: E027
+    relation: owns
+    object: E032
+  - kind: set_relation
+    subject: E031
+    relation: reports_to
+    object: E046
+  - kind: set_relation
+    subject: E055
+    relation: depends_on
+    object: E041
+  - kind: set_relation
+    subject: E015
+    relation: manages
+    object: E039
+  queries:
+  - query_id: q_21_0
+    subject: E054
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_21_1
+    subject: E027
+    object: E032
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_21_2
+    subject: E037
+    object: E014
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_21_3
+    subject: E058
+    object: E052
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_21_4
+    subject: E027
+    object: E032
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_21_5
+    subject: E055
+    object: E041
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_21_6
+    subject: E015
+    object: E039
+    expected: manages
+    previous_relation: null
+  - query_id: q_21_7
+    subject: E031
+    object: E046
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_21_8
+    subject: E055
+    object: E041
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_21_9
+    subject: E012
+    object: E033
+    expected: reports_to
+    previous_relation: partners_with
+  - query_id: q_21_10
+    subject: E015
+    object: E039
+    expected: manages
+    previous_relation: null
+  - query_id: q_21_11
+    subject: E044
+    object: E032
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_21_12
+    subject: E003
+    object: E037
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_21_13
+    subject: E031
+    object: E046
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_21_14
+    subject: E031
+    object: E046
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_21_15
+    subject: E029
+    object: E032
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_21_16
+    subject: E031
+    object: E046
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_21_17
+    subject: E005
+    object: E014
+    expected: manages
+    previous_relation: null
+  - query_id: q_21_18
+    subject: E055
+    object: E041
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_21_19
+    subject: E037
+    object: E036
+    expected: depends_on
+    previous_relation: partners_with
+  corrections: []
+- step: 22
+  world_updates:
+  - kind: set_relation
+    subject: E019
+    relation: reports_to
+    object: E003
+  - kind: set_relation
+    subject: E032
+    relation: partners_with
+    object: E042
+  - kind: set_relation
+    subject: E010
+    relation: owns
+    object: E015
+  - kind: set_relation
+    subject: E053
+    relation: owns
+    object: E037
+  - kind: set_relation
+    subject: E049
+    relation: manages
+    object: E022
+  - kind: set_relation
+    subject: E005
+    relation: owns
+    object: E024
+  queries:
+  - query_id: q_22_0
+    subject: E003
+    object: E050
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_22_1
+    subject: E032
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_2
+    subject: E032
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_3
+    subject: E053
+    object: E037
+    expected: owns
+    previous_relation: null
+  - query_id: q_22_4
+    subject: E041
+    object: E058
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_5
+    subject: E032
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_6
+    subject: E049
+    object: E022
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_22_7
+    subject: E043
+    object: E037
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_22_8
+    subject: E052
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_22_9
+    subject: E032
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_10
+    subject: E001
+    object: E036
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_11
+    subject: E017
+    object: E044
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_22_12
+    subject: E051
+    object: E019
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_22_13
+    subject: E025
+    object: E002
+    expected: manages
+    previous_relation: null
+  - query_id: q_22_14
+    subject: E050
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_22_15
+    subject: E019
+    object: E003
+    expected: reports_to
+    previous_relation: owns
+  - query_id: q_22_16
+    subject: E005
+    object: E024
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_22_17
+    subject: E010
+    object: E015
+    expected: owns
+    previous_relation: null
+  - query_id: q_22_18
+    subject: E053
+    object: E037
+    expected: owns
+    previous_relation: null
+  - query_id: q_22_19
+    subject: E010
+    object: E015
+    expected: owns
+    previous_relation: null
+  corrections: []
+- step: 23
+  world_updates:
+  - kind: set_relation
+    subject: E041
+    relation: depends_on
+    object: E053
+  - kind: set_relation
+    subject: E000
+    relation: depends_on
+    object: E003
+  - kind: set_relation
+    subject: E058
+    relation: reports_to
+    object: E039
+  - kind: set_relation
+    subject: E003
+    relation: depends_on
+    object: E002
+  - kind: set_relation
+    subject: E008
+    relation: reports_to
+    object: E028
+  - kind: set_relation
+    subject: E034
+    relation: manages
+    object: E050
+  queries:
+  - query_id: q_23_0
+    subject: E010
+    object: E015
+    expected: owns
+    previous_relation: null
+  - query_id: q_23_1
+    subject: E018
+    object: E011
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_23_2
+    subject: E018
+    object: E007
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_23_3
+    subject: E003
+    object: E002
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_4
+    subject: E058
+    object: E039
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_23_5
+    subject: E041
+    object: E053
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_6
+    subject: E006
+    object: E001
+    expected: manages
+    previous_relation: null
+  - query_id: q_23_7
+    subject: E051
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_8
+    subject: E044
+    object: E014
+    expected: manages
+    previous_relation: null
+  - query_id: q_23_9
+    subject: E037
+    object: E014
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_23_10
+    subject: E058
+    object: E039
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_23_11
+    subject: E050
+    object: E015
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_23_12
+    subject: E041
+    object: E053
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_13
+    subject: E016
+    object: E029
+    expected: owns
+    previous_relation: null
+  - query_id: q_23_14
+    subject: E041
+    object: E053
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_15
+    subject: E025
+    object: E037
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_23_16
+    subject: E001
+    object: E020
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_17
+    subject: E000
+    object: E003
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_18
+    subject: E000
+    object: E003
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_23_19
+    subject: E041
+    object: E053
+    expected: depends_on
+    previous_relation: null
+  corrections: []
+- step: 24
+  world_updates:
+  - kind: set_relation
+    subject: E032
+    relation: partners_with
+    object: E049
+  - kind: set_relation
+    subject: E013
+    relation: owns
+    object: E044
+  - kind: set_relation
+    subject: E046
+    relation: owns
+    object: E023
+  - kind: set_relation
+    subject: E013
+    relation: owns
+    object: E034
+  - kind: set_relation
+    subject: E008
+    relation: owns
+    object: E045
+  - kind: set_relation
+    subject: E003
+    relation: owns
+    object: E021
+  queries:
+  - query_id: q_24_0
+    subject: E002
+    object: E042
+    expected: owns
+    previous_relation: null
+  - query_id: q_24_1
+    subject: E052
+    object: E021
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_24_2
+    subject: E020
+    object: E003
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_24_3
+    subject: E057
+    object: E044
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_24_4
+    subject: E006
+    object: E001
+    expected: manages
+    previous_relation: null
+  - query_id: q_24_5
+    subject: E013
+    object: E044
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_24_6
+    subject: E032
+    object: E049
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_24_7
+    subject: E054
+    object: E040
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_24_8
+    subject: E024
+    object: E026
+    expected: manages
+    previous_relation: null
+  - query_id: q_24_9
+    subject: E017
+    object: E044
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_24_10
+    subject: E013
+    object: E044
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_24_11
+    subject: E003
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_24_12
+    subject: E013
+    object: E044
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_24_13
+    subject: E013
+    object: E034
+    expected: owns
+    previous_relation: reports_to
+  - query_id: q_24_14
+    subject: E050
+    object: E015
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_24_15
+    subject: E029
+    object: E032
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_24_16
+    subject: E050
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_24_17
+    subject: E055
+    object: E041
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_24_18
+    subject: E002
+    object: E017
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_24_19
+    subject: E046
+    object: E023
+    expected: owns
+    previous_relation: depends_on
+  corrections: []
+- step: 25
+  world_updates:
+  - kind: set_relation
+    subject: E014
+    relation: reports_to
+    object: E010
+  - kind: set_relation
+    subject: E046
+    relation: manages
+    object: E008
+  - kind: set_relation
+    subject: E032
+    relation: owns
+    object: E000
+  - kind: set_relation
+    subject: E007
+    relation: partners_with
+    object: E046
+  - kind: set_relation
+    subject: E014
+    relation: depends_on
+    object: E019
+  - kind: set_relation
+    subject: E005
+    relation: partners_with
+    object: E006
+  queries:
+  - query_id: q_25_0
+    subject: E013
+    object: E044
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_25_1
+    subject: E007
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_2
+    subject: E053
+    object: E037
+    expected: owns
+    previous_relation: null
+  - query_id: q_25_3
+    subject: E007
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_4
+    subject: E007
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_5
+    subject: E007
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_6
+    subject: E032
+    object: E000
+    expected: owns
+    previous_relation: null
+  - query_id: q_25_7
+    subject: E007
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_8
+    subject: E046
+    object: E008
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_25_9
+    subject: E014
+    object: E028
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_10
+    subject: E046
+    object: E008
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_25_11
+    subject: E014
+    object: E010
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_25_12
+    subject: E033
+    object: E000
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_13
+    subject: E005
+    object: E022
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_25_14
+    subject: E014
+    object: E010
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_25_15
+    subject: E057
+    object: E040
+    expected: manages
+    previous_relation: null
+  - query_id: q_25_16
+    subject: E005
+    object: E006
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_17
+    subject: E015
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_25_18
+    subject: E057
+    object: E035
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_25_19
+    subject: E010
+    object: E048
+    expected: owns
+    previous_relation: null
+  corrections: []
+- step: 26
+  world_updates:
+  - kind: set_relation
+    subject: E018
+    relation: manages
+    object: E057
+  - kind: set_relation
+    subject: E021
+    relation: manages
+    object: E031
+  - kind: set_relation
+    subject: E014
+    relation: owns
+    object: E026
+  - kind: set_relation
+    subject: E029
+    relation: depends_on
+    object: E055
+  - kind: set_relation
+    subject: E008
+    relation: reports_to
+    object: E026
+  - kind: set_relation
+    subject: E037
+    relation: manages
+    object: E040
+  queries:
+  - query_id: q_26_0
+    subject: E018
+    object: E057
+    expected: manages
+    previous_relation: null
+  - query_id: q_26_1
+    subject: E008
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_26_2
+    subject: E014
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_26_3
+    subject: E029
+    object: E055
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_26_4
+    subject: E037
+    object: E040
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_26_5
+    subject: E023
+    object: E026
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_26_6
+    subject: E008
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_26_7
+    subject: E021
+    object: E031
+    expected: manages
+    previous_relation: null
+  - query_id: q_26_8
+    subject: E045
+    object: E044
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_26_9
+    subject: E047
+    object: E043
+    expected: manages
+    previous_relation: null
+  - query_id: q_26_10
+    subject: E019
+    object: E003
+    expected: reports_to
+    previous_relation: owns
+  - query_id: q_26_11
+    subject: E011
+    object: E017
+    expected: owns
+    previous_relation: null
+  - query_id: q_26_12
+    subject: E037
+    object: E040
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_26_13
+    subject: E014
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_26_14
+    subject: E014
+    object: E026
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_26_15
+    subject: E029
+    object: E055
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_26_16
+    subject: E022
+    object: E011
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_26_17
+    subject: E018
+    object: E057
+    expected: manages
+    previous_relation: null
+  - query_id: q_26_18
+    subject: E008
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_26_19
+    subject: E008
+    object: E023
+    expected: depends_on
+    previous_relation: null
+  corrections: []
+- step: 27
+  world_updates:
+  - kind: set_relation
+    subject: E016
+    relation: manages
+    object: E010
+  - kind: set_relation
+    subject: E018
+    relation: owns
+    object: E042
+  - kind: set_relation
+    subject: E037
+    relation: manages
+    object: E019
+  - kind: set_relation
+    subject: E021
+    relation: depends_on
+    object: E036
+  - kind: set_relation
+    subject: E010
+    relation: owns
+    object: E057
+  - kind: set_relation
+    subject: E046
+    relation: manages
+    object: E053
+  queries:
+  - query_id: q_27_0
+    subject: E046
+    object: E008
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_27_1
+    subject: E032
+    object: E022
+    expected: manages
+    previous_relation: null
+  - query_id: q_27_2
+    subject: E021
+    object: E036
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_27_3
+    subject: E037
+    object: E019
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_27_4
+    subject: E033
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_27_5
+    subject: E001
+    object: E003
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_27_6
+    subject: E052
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_27_7
+    subject: E058
+    object: E056
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_27_8
+    subject: E037
+    object: E019
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_27_9
+    subject: E021
+    object: E036
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_27_10
+    subject: E010
+    object: E057
+    expected: owns
+    previous_relation: null
+  - query_id: q_27_11
+    subject: E056
+    object: E046
+    expected: owns
+    previous_relation: null
+  - query_id: q_27_12
+    subject: E018
+    object: E042
+    expected: owns
+    previous_relation: null
+  - query_id: q_27_13
+    subject: E021
+    object: E036
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_27_14
+    subject: E036
+    object: E059
+    expected: manages
+    previous_relation: null
+  - query_id: q_27_15
+    subject: E010
+    object: E041
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_27_16
+    subject: E054
+    object: E040
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_27_17
+    subject: E010
+    object: E057
+    expected: owns
+    previous_relation: null
+  - query_id: q_27_18
+    subject: E037
+    object: E038
+    expected: owns
+    previous_relation: null
+  - query_id: q_27_19
+    subject: E046
+    object: E053
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 28
+  world_updates:
+  - kind: set_relation
+    subject: E031
+    relation: partners_with
+    object: E054
+  - kind: set_relation
+    subject: E049
+    relation: depends_on
+    object: E028
+  - kind: set_relation
+    subject: E001
+    relation: manages
+    object: E037
+  - kind: set_relation
+    subject: E059
+    relation: manages
+    object: E040
+  - kind: set_relation
+    subject: E000
+    relation: partners_with
+    object: E052
+  - kind: set_relation
+    subject: E044
+    relation: manages
+    object: E028
+  queries:
+  - query_id: q_28_0
+    subject: E001
+    object: E037
+    expected: manages
+    previous_relation: null
+  - query_id: q_28_1
+    subject: E056
+    object: E008
+    expected: owns
+    previous_relation: null
+  - query_id: q_28_2
+    subject: E004
+    object: E056
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_28_3
+    subject: E056
+    object: E008
+    expected: owns
+    previous_relation: null
+  - query_id: q_28_4
+    subject: E059
+    object: E040
+    expected: manages
+    previous_relation: owns
+  - query_id: q_28_5
+    subject: E053
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_28_6
+    subject: E000
+    object: E052
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_28_7
+    subject: E057
+    object: E006
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_28_8
+    subject: E046
+    object: E008
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_28_9
+    subject: E055
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_28_10
+    subject: E049
+    object: E028
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_28_11
+    subject: E049
+    object: E028
+    expected: depends_on
+    previous_relation: reports_to
+  - query_id: q_28_12
+    subject: E022
+    object: E002
+    expected: owns
+    previous_relation: null
+  - query_id: q_28_13
+    subject: E001
+    object: E037
+    expected: manages
+    previous_relation: null
+  - query_id: q_28_14
+    subject: E047
+    object: E023
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_28_15
+    subject: E013
+    object: E053
+    expected: owns
+    previous_relation: null
+  - query_id: q_28_16
+    subject: E033
+    object: E043
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_28_17
+    subject: E018
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_28_18
+    subject: E059
+    object: E040
+    expected: manages
+    previous_relation: owns
+  - query_id: q_28_19
+    subject: E037
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 29
+  world_updates:
+  - kind: set_relation
+    subject: E052
+    relation: partners_with
+    object: E004
+  - kind: set_relation
+    subject: E011
+    relation: reports_to
+    object: E018
+  - kind: set_relation
+    subject: E036
+    relation: partners_with
+    object: E039
+  - kind: set_relation
+    subject: E056
+    relation: depends_on
+    object: E014
+  - kind: set_relation
+    subject: E043
+    relation: partners_with
+    object: E059
+  - kind: set_relation
+    subject: E044
+    relation: reports_to
+    object: E058
+  queries:
+  - query_id: q_29_0
+    subject: E042
+    object: E025
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_29_1
+    subject: E044
+    object: E058
+    expected: reports_to
+    previous_relation: owns
+  - query_id: q_29_2
+    subject: E031
+    object: E048
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_29_3
+    subject: E044
+    object: E058
+    expected: reports_to
+    previous_relation: owns
+  - query_id: q_29_4
+    subject: E045
+    object: E044
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_29_5
+    subject: E036
+    object: E039
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_29_6
+    subject: E036
+    object: E039
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_29_7
+    subject: E018
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_29_8
+    subject: E011
+    object: E018
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_29_9
+    subject: E048
+    object: E057
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_29_10
+    subject: E052
+    object: E004
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_29_11
+    subject: E036
+    object: E039
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_29_12
+    subject: E040
+    object: E014
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_29_13
+    subject: E043
+    object: E059
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_29_14
+    subject: E052
+    object: E004
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_29_15
+    subject: E011
+    object: E018
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_29_16
+    subject: E025
+    object: E037
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_29_17
+    subject: E043
+    object: E059
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_29_18
+    subject: E036
+    object: E039
+    expected: partners_with
+    previous_relation: owns
+  - query_id: q_29_19
+    subject: E043
+    object: E059
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 30
+  world_updates:
+  - kind: set_relation
+    subject: E024
+    relation: reports_to
+    object: E054
+  - kind: set_relation
+    subject: E052
+    relation: owns
+    object: E024
+  - kind: set_relation
+    subject: E002
+    relation: partners_with
+    object: E047
+  - kind: set_relation
+    subject: E036
+    relation: depends_on
+    object: E001
+  - kind: set_relation
+    subject: E008
+    relation: owns
+    object: E031
+  - kind: set_relation
+    subject: E039
+    relation: partners_with
+    object: E055
+  queries:
+  - query_id: q_30_0
+    subject: E002
+    object: E047
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_30_1
+    subject: E002
+    object: E047
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_30_2
+    subject: E058
+    object: E016
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_30_3
+    subject: E011
+    object: E049
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_30_4
+    subject: E008
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_30_5
+    subject: E053
+    object: E017
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_30_6
+    subject: E052
+    object: E024
+    expected: owns
+    previous_relation: partners_with
+  - query_id: q_30_7
+    subject: E044
+    object: E023
+    expected: manages
+    previous_relation: null
+  - query_id: q_30_8
+    subject: E008
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_30_9
+    subject: E002
+    object: E047
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_30_10
+    subject: E044
+    object: E037
+    expected: owns
+    previous_relation: null
+  - query_id: q_30_11
+    subject: E043
+    object: E007
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_30_12
+    subject: E039
+    object: E055
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_30_13
+    subject: E052
+    object: E024
+    expected: owns
+    previous_relation: partners_with
+  - query_id: q_30_14
+    subject: E013
+    object: E044
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_30_15
+    subject: E055
+    object: E007
+    expected: owns
+    previous_relation: null
+  - query_id: q_30_16
+    subject: E002
+    object: E047
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_30_17
+    subject: E052
+    object: E024
+    expected: owns
+    previous_relation: partners_with
+  - query_id: q_30_18
+    subject: E028
+    object: E016
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_30_19
+    subject: E052
+    object: E024
+    expected: owns
+    previous_relation: partners_with
+  corrections: []
+- step: 31
+  world_updates:
+  - kind: set_relation
+    subject: E023
+    relation: depends_on
+    object: E017
+  - kind: set_relation
+    subject: E043
+    relation: owns
+    object: E054
+  - kind: set_relation
+    subject: E031
+    relation: owns
+    object: E043
+  - kind: set_relation
+    subject: E033
+    relation: depends_on
+    object: E007
+  - kind: set_relation
+    subject: E055
+    relation: depends_on
+    object: E042
+  - kind: set_relation
+    subject: E011
+    relation: partners_with
+    object: E007
+  queries:
+  - query_id: q_31_0
+    subject: E055
+    object: E042
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_31_1
+    subject: E058
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_31_2
+    subject: E043
+    object: E054
+    expected: owns
+    previous_relation: null
+  - query_id: q_31_3
+    subject: E058
+    object: E016
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_31_4
+    subject: E007
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_31_5
+    subject: E043
+    object: E054
+    expected: owns
+    previous_relation: null
+  - query_id: q_31_6
+    subject: E018
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_31_7
+    subject: E055
+    object: E042
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_31_8
+    subject: E056
+    object: E026
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_31_9
+    subject: E033
+    object: E007
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_31_10
+    subject: E033
+    object: E000
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_31_11
+    subject: E031
+    object: E043
+    expected: owns
+    previous_relation: manages
+  - query_id: q_31_12
+    subject: E026
+    object: E047
+    expected: manages
+    previous_relation: owns
+  - query_id: q_31_13
+    subject: E011
+    object: E007
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_31_14
+    subject: E033
+    object: E007
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_31_15
+    subject: E016
+    object: E027
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_31_16
+    subject: E053
+    object: E013
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_31_17
+    subject: E052
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_31_18
+    subject: E033
+    object: E007
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_31_19
+    subject: E005
+    object: E024
+    expected: owns
+    previous_relation: depends_on
+  corrections: []
+- step: 32
+  world_updates:
+  - kind: set_relation
+    subject: E031
+    relation: manages
+    object: E007
+  - kind: set_relation
+    subject: E019
+    relation: partners_with
+    object: E039
+  - kind: set_relation
+    subject: E023
+    relation: reports_to
+    object: E035
+  - kind: set_relation
+    subject: E005
+    relation: reports_to
+    object: E056
+  - kind: set_relation
+    subject: E012
+    relation: owns
+    object: E010
+  - kind: set_relation
+    subject: E052
+    relation: partners_with
+    object: E015
+  queries:
+  - query_id: q_32_0
+    subject: E031
+    object: E007
+    expected: manages
+    previous_relation: null
+  - query_id: q_32_1
+    subject: E023
+    object: E035
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_32_2
+    subject: E005
+    object: E056
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_32_3
+    subject: E019
+    object: E039
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_32_4
+    subject: E032
+    object: E000
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_5
+    subject: E012
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_6
+    subject: E010
+    object: E057
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_7
+    subject: E052
+    object: E015
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_32_8
+    subject: E011
+    object: E025
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_9
+    subject: E028
+    object: E054
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_32_10
+    subject: E008
+    object: E028
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_32_11
+    subject: E027
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_12
+    subject: E009
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_32_13
+    subject: E052
+    object: E015
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_32_14
+    subject: E031
+    object: E007
+    expected: manages
+    previous_relation: null
+  - query_id: q_32_15
+    subject: E013
+    object: E053
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_16
+    subject: E019
+    object: E039
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_32_17
+    subject: E007
+    object: E046
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_32_18
+    subject: E004
+    object: E030
+    expected: owns
+    previous_relation: null
+  - query_id: q_32_19
+    subject: E031
+    object: E007
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 33
+  world_updates:
+  - kind: set_relation
+    subject: E037
+    relation: reports_to
+    object: E025
+  - kind: set_relation
+    subject: E039
+    relation: manages
+    object: E032
+  - kind: set_relation
+    subject: E034
+    relation: reports_to
+    object: E016
+  - kind: set_relation
+    subject: E036
+    relation: manages
+    object: E045
+  - kind: set_relation
+    subject: E022
+    relation: partners_with
+    object: E051
+  - kind: set_relation
+    subject: E023
+    relation: manages
+    object: E050
+  queries:
+  - query_id: q_33_0
+    subject: E022
+    object: E051
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_33_1
+    subject: E007
+    object: E015
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_33_2
+    subject: E020
+    object: E000
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_33_3
+    subject: E040
+    object: E039
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_33_4
+    subject: E036
+    object: E045
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_33_5
+    subject: E022
+    object: E051
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_33_6
+    subject: E036
+    object: E045
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_33_7
+    subject: E017
+    object: E014
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_33_8
+    subject: E034
+    object: E016
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_33_9
+    subject: E007
+    object: E043
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_33_10
+    subject: E025
+    object: E016
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_33_11
+    subject: E051
+    object: E058
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_33_12
+    subject: E022
+    object: E051
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_33_13
+    subject: E022
+    object: E011
+    expected: reports_to
+    previous_relation: depends_on
+  - query_id: q_33_14
+    subject: E056
+    object: E008
+    expected: owns
+    previous_relation: null
+  - query_id: q_33_15
+    subject: E034
+    object: E016
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_33_16
+    subject: E008
+    object: E030
+    expected: manages
+    previous_relation: null
+  - query_id: q_33_17
+    subject: E057
+    object: E020
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_33_18
+    subject: E036
+    object: E045
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_33_19
+    subject: E034
+    object: E016
+    expected: reports_to
+    previous_relation: null
+  corrections: []
+- step: 34
+  world_updates:
+  - kind: set_relation
+    subject: E017
+    relation: reports_to
+    object: E044
+  - kind: set_relation
+    subject: E019
+    relation: owns
+    object: E036
+  - kind: set_relation
+    subject: E018
+    relation: owns
+    object: E031
+  - kind: set_relation
+    subject: E058
+    relation: owns
+    object: E015
+  - kind: set_relation
+    subject: E017
+    relation: partners_with
+    object: E012
+  - kind: set_relation
+    subject: E021
+    relation: reports_to
+    object: E010
+  queries:
+  - query_id: q_34_0
+    subject: E007
+    object: E051
+    expected: owns
+    previous_relation: null
+  - query_id: q_34_1
+    subject: E040
+    object: E016
+    expected: owns
+    previous_relation: manages
+  - query_id: q_34_2
+    subject: E017
+    object: E044
+    expected: reports_to
+    previous_relation: partners_with
+  - query_id: q_34_3
+    subject: E013
+    object: E044
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_34_4
+    subject: E011
+    object: E046
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_34_5
+    subject: E047
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_34_6
+    subject: E054
+    object: E024
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_34_7
+    subject: E004
+    object: E018
+    expected: manages
+    previous_relation: null
+  - query_id: q_34_8
+    subject: E018
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_34_9
+    subject: E018
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_34_10
+    subject: E017
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_34_11
+    subject: E017
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_34_12
+    subject: E042
+    object: E019
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_34_13
+    subject: E016
+    object: E046
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_34_14
+    subject: E041
+    object: E028
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_34_15
+    subject: E018
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_34_16
+    subject: E018
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_34_17
+    subject: E059
+    object: E008
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_34_18
+    subject: E028
+    object: E029
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_34_19
+    subject: E054
+    object: E018
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 35
+  world_updates:
+  - kind: set_relation
+    subject: E014
+    relation: partners_with
+    object: E010
+  - kind: set_relation
+    subject: E052
+    relation: manages
+    object: E015
+  - kind: set_relation
+    subject: E015
+    relation: owns
+    object: E039
+  - kind: set_relation
+    subject: E024
+    relation: manages
+    object: E050
+  - kind: set_relation
+    subject: E046
+    relation: partners_with
+    object: E012
+  - kind: set_relation
+    subject: E058
+    relation: manages
+    object: E052
+  queries:
+  - query_id: q_35_0
+    subject: E024
+    object: E050
+    expected: manages
+    previous_relation: null
+  - query_id: q_35_1
+    subject: E002
+    object: E038
+    expected: manages
+    previous_relation: null
+  - query_id: q_35_2
+    subject: E052
+    object: E015
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_35_3
+    subject: E058
+    object: E052
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_35_4
+    subject: E052
+    object: E015
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_35_5
+    subject: E058
+    object: E052
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_35_6
+    subject: E027
+    object: E003
+    expected: owns
+    previous_relation: null
+  - query_id: q_35_7
+    subject: E030
+    object: E027
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_35_8
+    subject: E058
+    object: E052
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_35_9
+    subject: E052
+    object: E015
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_35_10
+    subject: E056
+    object: E049
+    expected: owns
+    previous_relation: null
+  - query_id: q_35_11
+    subject: E017
+    object: E010
+    expected: owns
+    previous_relation: null
+  - query_id: q_35_12
+    subject: E014
+    object: E010
+    expected: partners_with
+    previous_relation: reports_to
+  - query_id: q_35_13
+    subject: E000
+    object: E013
+    expected: manages
+    previous_relation: null
+  - query_id: q_35_14
+    subject: E024
+    object: E050
+    expected: manages
+    previous_relation: null
+  - query_id: q_35_15
+    subject: E032
+    object: E007
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_35_16
+    subject: E028
+    object: E049
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_35_17
+    subject: E037
+    object: E040
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_35_18
+    subject: E058
+    object: E052
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_35_19
+    subject: E015
+    object: E039
+    expected: owns
+    previous_relation: manages
+  corrections: []
+- step: 36
+  world_updates:
+  - kind: set_relation
+    subject: E012
+    relation: manages
+    object: E017
+  - kind: set_relation
+    subject: E047
+    relation: manages
+    object: E010
+  - kind: set_relation
+    subject: E007
+    relation: partners_with
+    object: E025
+  - kind: set_relation
+    subject: E011
+    relation: reports_to
+    object: E058
+  - kind: set_relation
+    subject: E017
+    relation: depends_on
+    object: E058
+  - kind: set_relation
+    subject: E020
+    relation: reports_to
+    object: E048
+  queries:
+  - query_id: q_36_0
+    subject: E007
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_36_1
+    subject: E012
+    object: E017
+    expected: manages
+    previous_relation: null
+  - query_id: q_36_2
+    subject: E017
+    object: E058
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_36_3
+    subject: E026
+    object: E047
+    expected: manages
+    previous_relation: owns
+  - query_id: q_36_4
+    subject: E004
+    object: E056
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_36_5
+    subject: E011
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_36_6
+    subject: E011
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_36_7
+    subject: E020
+    object: E048
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_36_8
+    subject: E005
+    object: E035
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_36_9
+    subject: E020
+    object: E048
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_36_10
+    subject: E011
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_36_11
+    subject: E012
+    object: E017
+    expected: manages
+    previous_relation: null
+  - query_id: q_36_12
+    subject: E017
+    object: E058
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_36_13
+    subject: E007
+    object: E025
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_36_14
+    subject: E017
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_36_15
+    subject: E046
+    object: E008
+    expected: manages
+    previous_relation: depends_on
+  - query_id: q_36_16
+    subject: E056
+    object: E008
+    expected: owns
+    previous_relation: null
+  - query_id: q_36_17
+    subject: E025
+    object: E003
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_36_18
+    subject: E020
+    object: E048
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_36_19
+    subject: E009
+    object: E020
+    expected: depends_on
+    previous_relation: null
+  corrections: []
+- step: 37
+  world_updates:
+  - kind: set_relation
+    subject: E037
+    relation: manages
+    object: E039
+  - kind: set_relation
+    subject: E010
+    relation: manages
+    object: E018
+  - kind: set_relation
+    subject: E010
+    relation: partners_with
+    object: E042
+  - kind: set_relation
+    subject: E022
+    relation: manages
+    object: E059
+  - kind: set_relation
+    subject: E007
+    relation: owns
+    object: E015
+  - kind: set_relation
+    subject: E005
+    relation: owns
+    object: E041
+  queries:
+  - query_id: q_37_0
+    subject: E035
+    object: E020
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_37_1
+    subject: E010
+    object: E018
+    expected: manages
+    previous_relation: null
+  - query_id: q_37_2
+    subject: E022
+    object: E059
+    expected: manages
+    previous_relation: null
+  - query_id: q_37_3
+    subject: E011
+    object: E043
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_37_4
+    subject: E037
+    object: E039
+    expected: manages
+    previous_relation: null
+  - query_id: q_37_5
+    subject: E007
+    object: E015
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_37_6
+    subject: E007
+    object: E015
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_37_7
+    subject: E007
+    object: E015
+    expected: owns
+    previous_relation: depends_on
+  - query_id: q_37_8
+    subject: E004
+    object: E030
+    expected: owns
+    previous_relation: null
+  - query_id: q_37_9
+    subject: E010
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_37_10
+    subject: E010
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_37_11
+    subject: E005
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_37_12
+    subject: E040
+    object: E009
+    expected: manages
+    previous_relation: null
+  - query_id: q_37_13
+    subject: E057
+    object: E040
+    expected: manages
+    previous_relation: null
+  - query_id: q_37_14
+    subject: E010
+    object: E042
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_37_15
+    subject: E037
+    object: E039
+    expected: manages
+    previous_relation: null
+  - query_id: q_37_16
+    subject: E005
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_37_17
+    subject: E032
+    object: E016
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_37_18
+    subject: E005
+    object: E041
+    expected: owns
+    previous_relation: null
+  - query_id: q_37_19
+    subject: E010
+    object: E018
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 38
+  world_updates:
+  - kind: set_relation
+    subject: E030
+    relation: partners_with
+    object: E052
+  - kind: set_relation
+    subject: E037
+    relation: manages
+    object: E016
+  - kind: set_relation
+    subject: E053
+    relation: partners_with
+    object: E039
+  - kind: set_relation
+    subject: E019
+    relation: partners_with
+    object: E034
+  - kind: set_relation
+    subject: E059
+    relation: owns
+    object: E030
+  - kind: set_relation
+    subject: E017
+    relation: manages
+    object: E029
+  queries:
+  - query_id: q_38_0
+    subject: E037
+    object: E014
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_1
+    subject: E053
+    object: E039
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_2
+    subject: E015
+    object: E049
+    expected: owns
+    previous_relation: null
+  - query_id: q_38_3
+    subject: E019
+    object: E034
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_4
+    subject: E037
+    object: E016
+    expected: manages
+    previous_relation: null
+  - query_id: q_38_5
+    subject: E037
+    object: E016
+    expected: manages
+    previous_relation: null
+  - query_id: q_38_6
+    subject: E037
+    object: E016
+    expected: manages
+    previous_relation: null
+  - query_id: q_38_7
+    subject: E037
+    object: E036
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_38_8
+    subject: E019
+    object: E034
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_9
+    subject: E031
+    object: E045
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_10
+    subject: E024
+    object: E043
+    expected: manages
+    previous_relation: null
+  - query_id: q_38_11
+    subject: E053
+    object: E039
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_12
+    subject: E028
+    object: E047
+    expected: depends_on
+    previous_relation: partners_with
+  - query_id: q_38_13
+    subject: E019
+    object: E034
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_14
+    subject: E059
+    object: E030
+    expected: owns
+    previous_relation: null
+  - query_id: q_38_15
+    subject: E025
+    object: E037
+    expected: partners_with
+    previous_relation: depends_on
+  - query_id: q_38_16
+    subject: E017
+    object: E029
+    expected: manages
+    previous_relation: null
+  - query_id: q_38_17
+    subject: E040
+    object: E016
+    expected: owns
+    previous_relation: manages
+  - query_id: q_38_18
+    subject: E001
+    object: E036
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_38_19
+    subject: E030
+    object: E052
+    expected: partners_with
+    previous_relation: null
+  corrections: []
+- step: 39
+  world_updates:
+  - kind: set_relation
+    subject: E024
+    relation: reports_to
+    object: E058
+  - kind: set_relation
+    subject: E028
+    relation: partners_with
+    object: E012
+  - kind: set_relation
+    subject: E005
+    relation: owns
+    object: E021
+  - kind: set_relation
+    subject: E039
+    relation: owns
+    object: E055
+  - kind: set_relation
+    subject: E009
+    relation: reports_to
+    object: E024
+  - kind: set_relation
+    subject: E028
+    relation: manages
+    object: E023
+  queries:
+  - query_id: q_39_0
+    subject: E043
+    object: E034
+    expected: manages
+    previous_relation: null
+  - query_id: q_39_1
+    subject: E051
+    object: E000
+    expected: manages
+    previous_relation: null
+  - query_id: q_39_2
+    subject: E029
+    object: E024
+    expected: owns
+    previous_relation: null
+  - query_id: q_39_3
+    subject: E028
+    object: E023
+    expected: manages
+    previous_relation: null
+  - query_id: q_39_4
+    subject: E018
+    object: E021
+    expected: owns
+    previous_relation: null
+  - query_id: q_39_5
+    subject: E008
+    object: E045
+    expected: owns
+    previous_relation: manages
+  - query_id: q_39_6
+    subject: E009
+    object: E024
+    expected: reports_to
+    previous_relation: partners_with
+  - query_id: q_39_7
+    subject: E044
+    object: E028
+    expected: manages
+    previous_relation: partners_with
+  - query_id: q_39_8
+    subject: E009
+    object: E024
+    expected: reports_to
+    previous_relation: partners_with
+  - query_id: q_39_9
+    subject: E019
+    object: E034
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_39_10
+    subject: E032
+    object: E039
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_39_11
+    subject: E028
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_39_12
+    subject: E022
+    object: E002
+    expected: owns
+    previous_relation: null
+  - query_id: q_39_13
+    subject: E028
+    object: E023
+    expected: manages
+    previous_relation: null
+  - query_id: q_39_14
+    subject: E009
+    object: E024
+    expected: reports_to
+    previous_relation: partners_with
+  - query_id: q_39_15
+    subject: E024
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_39_16
+    subject: E028
+    object: E012
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_39_17
+    subject: E047
+    object: E048
+    expected: owns
+    previous_relation: null
+  - query_id: q_39_18
+    subject: E024
+    object: E058
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_39_19
+    subject: E040
+    object: E026
+    expected: manages
+    previous_relation: null
+  corrections: []
+- step: 40
+  world_updates:
+  - kind: set_relation
+    subject: E005
+    relation: manages
+    object: E028
+  - kind: set_relation
+    subject: E043
+    relation: owns
+    object: E059
+  - kind: set_relation
+    subject: E043
+    relation: owns
+    object: E003
+  - kind: set_relation
+    subject: E005
+    relation: depends_on
+    object: E037
+  - kind: set_relation
+    subject: E014
+    relation: reports_to
+    object: E034
+  - kind: set_relation
+    subject: E023
+    relation: partners_with
+    object: E028
+  queries:
+  - query_id: q_40_0
+    subject: E026
+    object: E003
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_40_1
+    subject: E047
+    object: E010
+    expected: manages
+    previous_relation: null
+  - query_id: q_40_2
+    subject: E014
+    object: E034
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_40_3
+    subject: E018
+    object: E042
+    expected: owns
+    previous_relation: null
+  - query_id: q_40_4
+    subject: E018
+    object: E031
+    expected: owns
+    previous_relation: null
+  - query_id: q_40_5
+    subject: E002
+    object: E023
+    expected: owns
+    previous_relation: null
+  - query_id: q_40_6
+    subject: E041
+    object: E036
+    expected: reports_to
+    previous_relation: manages
+  - query_id: q_40_7
+    subject: E043
+    object: E003
+    expected: owns
+    previous_relation: null
+  - query_id: q_40_8
+    subject: E014
+    object: E034
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_40_9
+    subject: E005
+    object: E028
+    expected: manages
+    previous_relation: null
+  - query_id: q_40_10
+    subject: E032
+    object: E007
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_40_11
+    subject: E014
+    object: E034
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_40_12
+    subject: E014
+    object: E034
+    expected: reports_to
+    previous_relation: null
+  - query_id: q_40_13
+    subject: E022
+    object: E059
+    expected: manages
+    previous_relation: null
+  - query_id: q_40_14
+    subject: E031
+    object: E048
+    expected: partners_with
+    previous_relation: null
+  - query_id: q_40_15
+    subject: E037
+    object: E019
+    expected: manages
+    previous_relation: reports_to
+  - query_id: q_40_16
+    subject: E042
+    object: E017
+    expected: owns
+    previous_relation: null
+  - query_id: q_40_17
+    subject: E005
+    object: E037
+    expected: depends_on
+    previous_relation: null
+  - query_id: q_40_18
+    subject: E043
+    object: E059
+    expected: owns
+    previous_relation: partners_with
+  - query_id: q_40_19
+    subject: E005
+    object: E028
+    expected: manages
+    previous_relation: null
+  corrections: []

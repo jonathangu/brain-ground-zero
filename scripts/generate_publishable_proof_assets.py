@@ -14,10 +14,10 @@ import yaml
 
 FOCUS_BUNDLES = (
     {
-        "bundle_id": "recorded_h2h_relational_drift_001",
+        "bundle_id": "recorded_h2h_relational_drift_10seed",
         "family": "relational_drift",
         "label": "Recorded H2H",
-        "kind": "recorded",
+        "kind": "multiseed",
     },
     {
         "bundle_id": "sparse_feedback_10seed",
@@ -490,7 +490,7 @@ def _write_publishable_bundle_files(bundles: Sequence[BundleMetrics], output_dir
         f.write("## Charts\n\n")
         f.write("- [focus_margin_context.png](charts/focus_margin_context.png)\n")
         f.write("- [focus_ablation_ladder.png](charts/focus_ablation_ladder.png)\n")
-        f.write("- [recorded_h2h_accuracy_context_tradeoff.png](../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)\n")
+        f.write("- [recorded_h2h_seed_h2h.png](../recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)\n")
         f.write("- [sparse_feedback_seed_h2h.png](../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)\n")
         f.write("- [recurring_workflows_seed_h2h.png](../recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)\n")
 

@@ -1,0 +1,146 @@
+{
+  "baselines": {
+    "baselines": [
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": false
+        },
+        "kind": "oracle",
+        "name": "oracle",
+        "params": {}
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "vector_rag",
+        "name": "vector_rag",
+        "params": {
+          "dim": 256,
+          "top_k": 1
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "vector_rag_rerank",
+        "name": "vector_rag_rerank",
+        "params": {
+          "dim": 256,
+          "rerank_k": 3,
+          "top_k": 5
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "heuristic_stateful",
+        "name": "heuristic_stateful",
+        "params": {
+          "update_threshold": 2
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "static_graph",
+        "name": "static_graph",
+        "params": {
+          "max_hops": 2
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "route_fn_only",
+        "name": "route_fn_only",
+        "params": {
+          "epsilon": 0.05,
+          "lr": 0.15
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": false,
+          "teacher": true
+        },
+        "kind": "graph_route_pg",
+        "name": "graph_route_pg",
+        "params": {
+          "epsilon": 0.05,
+          "lr": 0.12,
+          "max_hops": 2
+        }
+      },
+      {
+        "capabilities": {
+          "background_labels": true,
+          "teacher": true
+        },
+        "kind": "full_brain",
+        "name": "full_brain",
+        "params": {
+          "cofire_boost": 0.2,
+          "decay_rate": 0.02,
+          "epsilon": 0.05,
+          "lr": 0.12,
+          "max_hops": 2,
+          "merge_threshold": 0.85,
+          "prune_threshold": 0.15,
+          "split_threshold": 0.3
+        }
+      }
+    ]
+  },
+  "family": {
+    "budgets": {
+      "context_budget": 12,
+      "teacher_budget": 80,
+      "teacher_delay": 2
+    },
+    "name": "relational_drift",
+    "params": {
+      "contradiction_rate": 0.15,
+      "drift_rate": 0.35,
+      "initial_density": 0.08,
+      "num_entities": 60,
+      "queries_per_step": 20,
+      "relation_types": [
+        "manages",
+        "reports_to",
+        "owns",
+        "partners_with",
+        "depends_on"
+      ],
+      "steps": 40,
+      "updates_per_step": 6
+    },
+    "seed": 1337
+  },
+  "system": {
+    "mode": "recorded_h2h_multiseed",
+    "seeds": [
+      11,
+      22,
+      33,
+      44,
+      55,
+      66,
+      77,
+      88,
+      99,
+      111
+    ],
+    "status": "publishable"
+  }
+}

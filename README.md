@@ -51,12 +51,12 @@ For immediate site/blog/paper usage, start with:
 - [`proof-results/publishable/tables/focus_evidence_table.md`](proof-results/publishable/tables/focus_evidence_table.md)
 - [`proof-results/publishable/charts/focus_margin_context.png`](proof-results/publishable/charts/focus_margin_context.png)
 - [`proof-results/publishable/charts/focus_ablation_ladder.png`](proof-results/publishable/charts/focus_ablation_ladder.png)
-- [`proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`](proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)
+- [`proof-results/recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [`proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [`proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 
 Per-focus, one-row publication tables are also tracked in:
-- `proof-results/recorded_h2h_relational_drift_001/publishable_key_results.{md,csv}`
+- `proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results.{md,csv}`
 - `proof-results/sparse_feedback_10seed/publishable_key_results.{md,csv}`
 - `proof-results/recurring_workflows_10seed/publishable_key_results.{md,csv}`
 
@@ -68,14 +68,17 @@ python3 scripts/generate_publishable_proof_assets.py
 
 ## What this proves (and what it doesn't)
 
-This benchmark now includes three proof-scale families:
+This benchmark now includes three proof-scale simulation families:
 - `relational_drift` (10 seeds)
 - `recurring_workflows` (10 seeds)
 - `sparse_feedback` (10 seeds)
 
+And one proof-scale recorded replay lane:
+- `recorded_h2h_relational_drift_10seed` (10 deterministic fixtures, per-seed traces + verification)
+
 Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift, repeated workflow tasks, and sparse teacher-assisted learning.
 
-**Recorded head-to-head (first artifact shipped):** The first scored recorded-h2h bundle replays a deterministic fixture (800 queries, seed 42) against all 8 baselines with full JSONL traces and verification hashes. full_brain achieves 97.5% vs best RAG 89.6% (+7.9 pp). See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/). The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
+**Recorded head-to-head (proof-scale multi-seed shipped):** The recorded-h2h lane now includes a proof-scale 10-seed bundle (`recorded_h2h_relational_drift_10seed`) with deterministic fixtures, per-seed JSONL traces, and verification hashes. Headline: full_brain 99.15% +/- 0.27% vs best RAG 89.44% +/- 1.68% (+9.71 pp), 10-0-0 head-to-head. See [`proof-results/recorded_h2h_relational_drift_10seed/`](proof-results/recorded_h2h_relational_drift_10seed/). The first artifact (`recorded_h2h_relational_drift_001`: full_brain 97.5% vs vector_rag_rerank 89.6%, +7.9 pp) is preserved for provenance. The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
 
 It does **not** yet prove the thesis across all designed families; `memory_compaction` is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
@@ -120,6 +123,9 @@ python -m brain_ground_zero.cli multiseed \
 # Sparse-feedback proof sweep + publish to proof-results/
 ./scripts/run_sparse_feedback_proof.sh
 
+# Recorded-H2H proof sweep + publish to proof-results/
+./scripts/run_recorded_h2h_proof.sh
+
 # Refresh cross-bundle publishable chart/table pack
 python3 scripts/generate_publishable_proof_assets.py
 
@@ -135,24 +141,12 @@ python -m brain_ground_zero.cli recorded_h2h \
 
 python scripts/validate_recorded_h2h.py /tmp/h2h_output/
 
-# Real-session pipeline: validate trace -> convert fixture -> scaffold bundle
-python3 scripts/validate_openclaw_trace.py \
-  recorded_sessions/traces/redacted_sample_trace.json
-
-python3 scripts/convert_openclaw_trace_to_fixture.py \
-  --trace recorded_sessions/traces/redacted_sample_trace.json \
-  --output recorded_sessions/fixtures/redacted-sample-trace-001.json \
-  --fixture-id redacted-sample-trace-001
-
-python3 scripts/validate_fixture.py \
-  recorded_sessions/fixtures/redacted-sample-trace-001.json \
-  --check-trace-hash
-
-python3 scripts/init_recorded_session_bundle.py \
-  --fixture recorded_sessions/fixtures/redacted-sample-trace-001.json
-
-python3 scripts/validate_recorded_session_bundle.py \
-  proof-results/recorded_sessions/redacted-sample-trace-001
+# Recorded head-to-head multi-seed aggregate run
+python -m brain_ground_zero.cli recorded_h2h_multiseed \
+  --family configs/families/relational_drift.yaml \
+  --baselines configs/baselines/all.yaml \
+  --seeds 11,22,33,44,55,66,77,88,99,111 \
+  --run-id recorded_h2h_relational_drift_10seed
 ```
 
 ## Smoke checks
@@ -167,17 +161,14 @@ PYTHONPATH=src python3 -m brain_ground_zero.cli smoke \
 
 PYTHONPATH=src python3 scripts/validate_configs.py
 
-# Validate trace exports used for fixture conversion
-python3 scripts/validate_openclaw_trace.py --all
-
 # Validate recorded-session fixtures
 python3 scripts/validate_fixture.py --all
 
-# Validate recorded-session scaffold/scored bundles
-python3 scripts/validate_recorded_session_bundle.py
-
 # Validate recorded h2h bundles
 python3 scripts/validate_recorded_h2h.py
+
+# Validate recorded h2h multi-seed aggregate bundles
+python3 scripts/validate_recorded_h2h_multiseed.py
 ```
 
 ## Repository layout
@@ -190,17 +181,14 @@ proof-results/                  <- tracked proof artifacts
   sparse_feedback_10seed/       <- 10-seed proof sweep (sparse feedback)
   recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
   sparse_feedback_3seed/        <- 3-seed spot-check (superseded by 10-seed)
+  recorded_h2h_relational_drift_10seed/ <- proof-scale recorded head-to-head bundle
   recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle
-  recorded_sessions/            <- real-session proof bundles (scaffold + scored)
+  recorded_sessions/            <- (placeholder) real-session head-to-head results
 
 recorded_session_spec.md        <- spec for recorded-session head-to-head evaluation
-recorded_sessions/              <- trace/fixture schemas, examples, conversion inputs
-  README.md
-  schema/openclaw_session_trace.schema.json
+recorded_sessions/              <- fixture schema, example fixtures, validation
   schema/session_fixture.schema.json
-  traces/redacted_sample_trace.json
   fixtures/example_minimal.json
-  fixtures/redacted-sample-trace-001.json
 
 CLAIMS.md               <- what is proven and what is not
 IMPLEMENTATION_STRATEGY.md <- bridge to the production architecture
@@ -216,11 +204,9 @@ execution_plan.md       <- reproducible run protocol
 src/brain_ground_zero/  <- harness implementation
 configs/                <- family and baseline configs
 scripts/                <- validation and smoke scripts
-  convert_openclaw_trace_to_fixture.py <- convert normalized OpenClaw trace -> fixture
-  init_recorded_session_bundle.py <- scaffold proof-results/recorded_sessions/<fixture_id>/
-  validate_openclaw_trace.py <- validate normalized trace exports
-  validate_recorded_session_bundle.py <- validate scaffold/scored recorded-session bundles
   generate_publishable_proof_assets.py <- rebuilds publishable chart/table pack from tracked proof bundles
+  run_recorded_h2h_proof.sh           <- one-command recorded-h2h multi-seed proof sweep + packaging
+  validate_recorded_h2h_multiseed.py  <- aggregate validator for recorded-h2h multi-seed bundles
 runs/                   <- local run outputs (gitignored)
 ```
 

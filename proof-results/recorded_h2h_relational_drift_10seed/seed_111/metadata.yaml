@@ -1,0 +1,97 @@
+format_version: '1'
+status: publishable
+bundle_id: seed_111
+run_date: 2026-03-07T08:15:13-0800
+git_sha: cabdf553e760fb38195efa6f8bf164866a60f148
+harness_version: 0.1.0
+family: relational_drift
+fixture_file: fixture.yaml
+fixture_sha256: 67ae468ff5cf9308f3fd7ac3b264b781a72ab723b5b9f9fba77004c5b3323391
+generator_seed: 111
+generator_params:
+  num_entities: 60
+  relation_types:
+  - manages
+  - reports_to
+  - owns
+  - partners_with
+  - depends_on
+  initial_density: 0.08
+  steps: 40
+  updates_per_step: 6
+  queries_per_step: 20
+  drift_rate: 0.35
+  contradiction_rate: 0.15
+budgets:
+  context_budget: 12
+  teacher_budget: 80
+  teacher_delay: 2
+baselines_run:
+- name: oracle
+  kind: oracle
+  capabilities:
+    teacher: false
+    background_labels: false
+  params: {}
+- name: vector_rag
+  kind: vector_rag
+  capabilities:
+    teacher: true
+    background_labels: false
+  params:
+    dim: 256
+    top_k: 1
+- name: vector_rag_rerank
+  kind: vector_rag_rerank
+  capabilities:
+    teacher: true
+    background_labels: false
+  params:
+    dim: 256
+    top_k: 5
+    rerank_k: 3
+- name: heuristic_stateful
+  kind: heuristic_stateful
+  capabilities:
+    teacher: true
+    background_labels: false
+  params:
+    update_threshold: 2
+- name: static_graph
+  kind: static_graph
+  capabilities:
+    teacher: true
+    background_labels: false
+  params:
+    max_hops: 2
+- name: route_fn_only
+  kind: route_fn_only
+  capabilities:
+    teacher: true
+    background_labels: false
+  params:
+    lr: 0.15
+    epsilon: 0.05
+- name: graph_route_pg
+  kind: graph_route_pg
+  capabilities:
+    teacher: true
+    background_labels: false
+  params:
+    lr: 0.12
+    epsilon: 0.05
+    max_hops: 2
+- name: full_brain
+  kind: full_brain
+  capabilities:
+    teacher: true
+    background_labels: true
+  params:
+    lr: 0.12
+    epsilon: 0.05
+    max_hops: 2
+    decay_rate: 0.02
+    prune_threshold: 0.15
+    cofire_boost: 0.2
+    merge_threshold: 0.85
+    split_threshold: 0.3

@@ -1,0 +1,1802 @@
+{
+  "full_brain": {
+    "accuracy": 0.9915,
+    "accuracy_std": 0.002727,
+    "context_used": 800.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 6.0,
+    "corrections_delivered_std": 1.897367,
+    "false_rate": 0.728874,
+    "false_rate_std": 0.17965,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.985,
+        "accuracy_std": 0.022913,
+        "step": 1
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 2
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.03,
+        "step": 3
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 4
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 5
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 6
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 7
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 8
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 9
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 10
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 11
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 12
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 13
+      },
+      {
+        "accuracy": 0.98,
+        "accuracy_std": 0.024495,
+        "step": 14
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 15
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 16
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 17
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 18
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 19
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 20
+      },
+      {
+        "accuracy": 0.985,
+        "accuracy_std": 0.022913,
+        "step": 21
+      },
+      {
+        "accuracy": 0.985,
+        "accuracy_std": 0.022913,
+        "step": 22
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 23
+      },
+      {
+        "accuracy": 0.985,
+        "accuracy_std": 0.022913,
+        "step": 24
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 25
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 26
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 27
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 28
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 29
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 30
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 31
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 32
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 33
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 34
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.03,
+        "step": 35
+      },
+      {
+        "accuracy": 0.995,
+        "accuracy_std": 0.015,
+        "step": 36
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 37
+      },
+      {
+        "accuracy": 0.99,
+        "accuracy_std": 0.02,
+        "step": 38
+      },
+      {
+        "accuracy": 0.98,
+        "accuracy_std": 0.024495,
+        "step": 39
+      },
+      {
+        "accuracy": 0.98,
+        "accuracy_std": 0.024495,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.271126,
+    "stale_rate_std": 0.17965,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 800.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 0.0,
+    "unknown_rate_std": 0.0
+  },
+  "graph_route_pg": {
+    "accuracy": 0.758625,
+    "accuracy_std": 0.038338,
+    "context_used": 731.0,
+    "context_used_std": 31.524594,
+    "corrections_delivered": 80.0,
+    "corrections_delivered_std": 0.0,
+    "false_rate": 0.311736,
+    "false_rate_std": 0.097074,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.05,
+        "accuracy_std": 0.15,
+        "step": 1
+      },
+      {
+        "accuracy": 0.34,
+        "accuracy_std": 0.42,
+        "step": 2
+      },
+      {
+        "accuracy": 0.355,
+        "accuracy_std": 0.405863,
+        "step": 3
+      },
+      {
+        "accuracy": 0.67,
+        "accuracy_std": 0.352278,
+        "step": 4
+      },
+      {
+        "accuracy": 0.72,
+        "accuracy_std": 0.300998,
+        "step": 5
+      },
+      {
+        "accuracy": 0.835,
+        "accuracy_std": 0.162865,
+        "step": 6
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.068007,
+        "step": 7
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.151987,
+        "step": 8
+      },
+      {
+        "accuracy": 0.78,
+        "accuracy_std": 0.128841,
+        "step": 9
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.09798,
+        "step": 10
+      },
+      {
+        "accuracy": 0.875,
+        "accuracy_std": 0.098107,
+        "step": 11
+      },
+      {
+        "accuracy": 0.78,
+        "accuracy_std": 0.114455,
+        "step": 12
+      },
+      {
+        "accuracy": 0.78,
+        "accuracy_std": 0.116619,
+        "step": 13
+      },
+      {
+        "accuracy": 0.785,
+        "accuracy_std": 0.136107,
+        "step": 14
+      },
+      {
+        "accuracy": 0.84,
+        "accuracy_std": 0.096954,
+        "step": 15
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.114127,
+        "step": 16
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.113578,
+        "step": 17
+      },
+      {
+        "accuracy": 0.79,
+        "accuracy_std": 0.13,
+        "step": 18
+      },
+      {
+        "accuracy": 0.8,
+        "accuracy_std": 0.092195,
+        "step": 19
+      },
+      {
+        "accuracy": 0.79,
+        "accuracy_std": 0.17,
+        "step": 20
+      },
+      {
+        "accuracy": 0.8,
+        "accuracy_std": 0.132288,
+        "step": 21
+      },
+      {
+        "accuracy": 0.725,
+        "accuracy_std": 0.130863,
+        "step": 22
+      },
+      {
+        "accuracy": 0.865,
+        "accuracy_std": 0.067268,
+        "step": 23
+      },
+      {
+        "accuracy": 0.835,
+        "accuracy_std": 0.109659,
+        "step": 24
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.12855,
+        "step": 25
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.118743,
+        "step": 26
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.110114,
+        "step": 27
+      },
+      {
+        "accuracy": 0.805,
+        "accuracy_std": 0.098615,
+        "step": 28
+      },
+      {
+        "accuracy": 0.74,
+        "accuracy_std": 0.146287,
+        "step": 29
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.09798,
+        "step": 30
+      },
+      {
+        "accuracy": 0.775,
+        "accuracy_std": 0.090139,
+        "step": 31
+      },
+      {
+        "accuracy": 0.78,
+        "accuracy_std": 0.118743,
+        "step": 32
+      },
+      {
+        "accuracy": 0.79,
+        "accuracy_std": 0.151327,
+        "step": 33
+      },
+      {
+        "accuracy": 0.79,
+        "accuracy_std": 0.12,
+        "step": 34
+      },
+      {
+        "accuracy": 0.81,
+        "accuracy_std": 0.109087,
+        "step": 35
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.077621,
+        "step": 36
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.105475,
+        "step": 37
+      },
+      {
+        "accuracy": 0.77,
+        "accuracy_std": 0.114455,
+        "step": 38
+      },
+      {
+        "accuracy": 0.795,
+        "accuracy_std": 0.119269,
+        "step": 39
+      },
+      {
+        "accuracy": 0.795,
+        "accuracy_std": 0.125399,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.343054,
+    "stale_rate_std": 0.049199,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 869.0,
+    "traversal_cost_std": 31.524594,
+    "unknown_rate": 0.34521,
+    "unknown_rate_std": 0.123797
+  },
+  "heuristic_stateful": {
+    "accuracy": 0.808625,
+    "accuracy_std": 0.015191,
+    "context_used": 800.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 80.0,
+    "corrections_delivered_std": 0.0,
+    "false_rate": 0.02355,
+    "false_rate_std": 0.024213,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.805,
+        "accuracy_std": 0.131244,
+        "step": 1
+      },
+      {
+        "accuracy": 0.875,
+        "accuracy_std": 0.103078,
+        "step": 2
+      },
+      {
+        "accuracy": 0.935,
+        "accuracy_std": 0.067268,
+        "step": 3
+      },
+      {
+        "accuracy": 0.84,
+        "accuracy_std": 0.146287,
+        "step": 4
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.092871,
+        "step": 5
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.135647,
+        "step": 6
+      },
+      {
+        "accuracy": 0.845,
+        "accuracy_std": 0.085,
+        "step": 7
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.137931,
+        "step": 8
+      },
+      {
+        "accuracy": 0.84,
+        "accuracy_std": 0.07,
+        "step": 9
+      },
+      {
+        "accuracy": 0.865,
+        "accuracy_std": 0.097596,
+        "step": 10
+      },
+      {
+        "accuracy": 0.875,
+        "accuracy_std": 0.105475,
+        "step": 11
+      },
+      {
+        "accuracy": 0.8,
+        "accuracy_std": 0.111803,
+        "step": 12
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.130767,
+        "step": 13
+      },
+      {
+        "accuracy": 0.74,
+        "accuracy_std": 0.122066,
+        "step": 14
+      },
+      {
+        "accuracy": 0.75,
+        "accuracy_std": 0.136015,
+        "step": 15
+      },
+      {
+        "accuracy": 0.81,
+        "accuracy_std": 0.096954,
+        "step": 16
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.150416,
+        "step": 17
+      },
+      {
+        "accuracy": 0.63,
+        "accuracy_std": 0.14,
+        "step": 18
+      },
+      {
+        "accuracy": 0.78,
+        "accuracy_std": 0.078102,
+        "step": 19
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.156605,
+        "step": 20
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.078102,
+        "step": 21
+      },
+      {
+        "accuracy": 0.775,
+        "accuracy_std": 0.163172,
+        "step": 22
+      },
+      {
+        "accuracy": 0.865,
+        "accuracy_std": 0.134257,
+        "step": 23
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.11,
+        "step": 24
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.155242,
+        "step": 25
+      },
+      {
+        "accuracy": 0.785,
+        "accuracy_std": 0.137931,
+        "step": 26
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.097596,
+        "step": 27
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.080777,
+        "step": 28
+      },
+      {
+        "accuracy": 0.79,
+        "accuracy_std": 0.175784,
+        "step": 29
+      },
+      {
+        "accuracy": 0.77,
+        "accuracy_std": 0.16,
+        "step": 30
+      },
+      {
+        "accuracy": 0.775,
+        "accuracy_std": 0.116726,
+        "step": 31
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.095394,
+        "step": 32
+      },
+      {
+        "accuracy": 0.78,
+        "accuracy_std": 0.12083,
+        "step": 33
+      },
+      {
+        "accuracy": 0.81,
+        "accuracy_std": 0.088882,
+        "step": 34
+      },
+      {
+        "accuracy": 0.72,
+        "accuracy_std": 0.136382,
+        "step": 35
+      },
+      {
+        "accuracy": 0.81,
+        "accuracy_std": 0.111355,
+        "step": 36
+      },
+      {
+        "accuracy": 0.785,
+        "accuracy_std": 0.089582,
+        "step": 37
+      },
+      {
+        "accuracy": 0.805,
+        "accuracy_std": 0.090692,
+        "step": 38
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.064031,
+        "step": 39
+      },
+      {
+        "accuracy": 0.755,
+        "accuracy_std": 0.142215,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.97645,
+    "stale_rate_std": 0.024213,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 800.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 0.0,
+    "unknown_rate_std": 0.0
+  },
+  "oracle": {
+    "accuracy": 1.0,
+    "accuracy_std": 0.0,
+    "context_used": 800.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 0.0,
+    "corrections_delivered_std": 0.0,
+    "false_rate": 0.0,
+    "false_rate_std": 0.0,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 1
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 2
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 3
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 4
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 5
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 6
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 7
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 8
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 9
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 10
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 11
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 12
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 13
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 14
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 15
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 16
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 17
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 18
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 19
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 20
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 21
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 22
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 23
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 24
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 25
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 26
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 27
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 28
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 29
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 30
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 31
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 32
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 33
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 34
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 35
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 36
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 37
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 38
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 39
+      },
+      {
+        "accuracy": 1.0,
+        "accuracy_std": 0.0,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.0,
+    "stale_rate_std": 0.0,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 800.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 0.0,
+    "unknown_rate_std": 0.0
+  },
+  "route_fn_only": {
+    "accuracy": 0.638375,
+    "accuracy_std": 0.021745,
+    "context_used": 800.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 80.0,
+    "corrections_delivered_std": 0.0,
+    "false_rate": 0.950577,
+    "false_rate_std": 0.016771,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.67,
+        "accuracy_std": 0.09,
+        "step": 1
+      },
+      {
+        "accuracy": 0.655,
+        "accuracy_std": 0.121347,
+        "step": 2
+      },
+      {
+        "accuracy": 0.635,
+        "accuracy_std": 0.111915,
+        "step": 3
+      },
+      {
+        "accuracy": 0.665,
+        "accuracy_std": 0.080777,
+        "step": 4
+      },
+      {
+        "accuracy": 0.67,
+        "accuracy_std": 0.14,
+        "step": 5
+      },
+      {
+        "accuracy": 0.59,
+        "accuracy_std": 0.122066,
+        "step": 6
+      },
+      {
+        "accuracy": 0.63,
+        "accuracy_std": 0.064031,
+        "step": 7
+      },
+      {
+        "accuracy": 0.67,
+        "accuracy_std": 0.107703,
+        "step": 8
+      },
+      {
+        "accuracy": 0.575,
+        "accuracy_std": 0.116726,
+        "step": 9
+      },
+      {
+        "accuracy": 0.565,
+        "accuracy_std": 0.089582,
+        "step": 10
+      },
+      {
+        "accuracy": 0.605,
+        "accuracy_std": 0.096047,
+        "step": 11
+      },
+      {
+        "accuracy": 0.64,
+        "accuracy_std": 0.096954,
+        "step": 12
+      },
+      {
+        "accuracy": 0.645,
+        "accuracy_std": 0.087892,
+        "step": 13
+      },
+      {
+        "accuracy": 0.68,
+        "accuracy_std": 0.100499,
+        "step": 14
+      },
+      {
+        "accuracy": 0.635,
+        "accuracy_std": 0.097596,
+        "step": 15
+      },
+      {
+        "accuracy": 0.64,
+        "accuracy_std": 0.122066,
+        "step": 16
+      },
+      {
+        "accuracy": 0.64,
+        "accuracy_std": 0.109087,
+        "step": 17
+      },
+      {
+        "accuracy": 0.695,
+        "accuracy_std": 0.12339,
+        "step": 18
+      },
+      {
+        "accuracy": 0.595,
+        "accuracy_std": 0.119269,
+        "step": 19
+      },
+      {
+        "accuracy": 0.63,
+        "accuracy_std": 0.14,
+        "step": 20
+      },
+      {
+        "accuracy": 0.7,
+        "accuracy_std": 0.107238,
+        "step": 21
+      },
+      {
+        "accuracy": 0.655,
+        "accuracy_std": 0.140446,
+        "step": 22
+      },
+      {
+        "accuracy": 0.63,
+        "accuracy_std": 0.11,
+        "step": 23
+      },
+      {
+        "accuracy": 0.6,
+        "accuracy_std": 0.1,
+        "step": 24
+      },
+      {
+        "accuracy": 0.615,
+        "accuracy_std": 0.145,
+        "step": 25
+      },
+      {
+        "accuracy": 0.625,
+        "accuracy_std": 0.090139,
+        "step": 26
+      },
+      {
+        "accuracy": 0.61,
+        "accuracy_std": 0.157797,
+        "step": 27
+      },
+      {
+        "accuracy": 0.66,
+        "accuracy_std": 0.053852,
+        "step": 28
+      },
+      {
+        "accuracy": 0.615,
+        "accuracy_std": 0.107355,
+        "step": 29
+      },
+      {
+        "accuracy": 0.615,
+        "accuracy_std": 0.12659,
+        "step": 30
+      },
+      {
+        "accuracy": 0.635,
+        "accuracy_std": 0.102591,
+        "step": 31
+      },
+      {
+        "accuracy": 0.64,
+        "accuracy_std": 0.117898,
+        "step": 32
+      },
+      {
+        "accuracy": 0.66,
+        "accuracy_std": 0.109087,
+        "step": 33
+      },
+      {
+        "accuracy": 0.58,
+        "accuracy_std": 0.146969,
+        "step": 34
+      },
+      {
+        "accuracy": 0.68,
+        "accuracy_std": 0.092736,
+        "step": 35
+      },
+      {
+        "accuracy": 0.655,
+        "accuracy_std": 0.072284,
+        "step": 36
+      },
+      {
+        "accuracy": 0.67,
+        "accuracy_std": 0.092736,
+        "step": 37
+      },
+      {
+        "accuracy": 0.655,
+        "accuracy_std": 0.078899,
+        "step": 38
+      },
+      {
+        "accuracy": 0.665,
+        "accuracy_std": 0.089582,
+        "step": 39
+      },
+      {
+        "accuracy": 0.64,
+        "accuracy_std": 0.126095,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.049423,
+    "stale_rate_std": 0.016771,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 800.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 0.0,
+    "unknown_rate_std": 0.0
+  },
+  "static_graph": {
+    "accuracy": 0.0,
+    "accuracy_std": 0.0,
+    "context_used": 0.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 80.0,
+    "corrections_delivered_std": 0.0,
+    "false_rate": 0.0,
+    "false_rate_std": 0.0,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 1
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 2
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 3
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 4
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 5
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 6
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 7
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 8
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 9
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 10
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 11
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 12
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 13
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 14
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 15
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 16
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 17
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 18
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 19
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 20
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 21
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 22
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 23
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 24
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 25
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 26
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 27
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 28
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 29
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 30
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 31
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 32
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 33
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 34
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 35
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 36
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 37
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 38
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 39
+      },
+      {
+        "accuracy": 0.0,
+        "accuracy_std": 0.0,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.0,
+    "stale_rate_std": 0.0,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 1600.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 1.0,
+    "unknown_rate_std": 0.0
+  },
+  "vector_rag": {
+    "accuracy": 0.8205,
+    "accuracy_std": 0.023387,
+    "context_used": 800.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 80.0,
+    "corrections_delivered_std": 0.0,
+    "false_rate": 0.462607,
+    "false_rate_std": 0.063054,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.091652,
+        "step": 1
+      },
+      {
+        "accuracy": 0.85,
+        "accuracy_std": 0.139642,
+        "step": 2
+      },
+      {
+        "accuracy": 0.895,
+        "accuracy_std": 0.075664,
+        "step": 3
+      },
+      {
+        "accuracy": 0.845,
+        "accuracy_std": 0.140446,
+        "step": 4
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.122066,
+        "step": 5
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.172047,
+        "step": 6
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.091652,
+        "step": 7
+      },
+      {
+        "accuracy": 0.795,
+        "accuracy_std": 0.152398,
+        "step": 8
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.083815,
+        "step": 9
+      },
+      {
+        "accuracy": 0.845,
+        "accuracy_std": 0.110567,
+        "step": 10
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.153623,
+        "step": 11
+      },
+      {
+        "accuracy": 0.85,
+        "accuracy_std": 0.111803,
+        "step": 12
+      },
+      {
+        "accuracy": 0.855,
+        "accuracy_std": 0.096047,
+        "step": 13
+      },
+      {
+        "accuracy": 0.765,
+        "accuracy_std": 0.161323,
+        "step": 14
+      },
+      {
+        "accuracy": 0.805,
+        "accuracy_std": 0.087892,
+        "step": 15
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.112361,
+        "step": 16
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.116619,
+        "step": 17
+      },
+      {
+        "accuracy": 0.785,
+        "accuracy_std": 0.116297,
+        "step": 18
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.11225,
+        "step": 19
+      },
+      {
+        "accuracy": 0.775,
+        "accuracy_std": 0.173566,
+        "step": 20
+      },
+      {
+        "accuracy": 0.775,
+        "accuracy_std": 0.140089,
+        "step": 21
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.130767,
+        "step": 22
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.114564,
+        "step": 23
+      },
+      {
+        "accuracy": 0.79,
+        "accuracy_std": 0.09434,
+        "step": 24
+      },
+      {
+        "accuracy": 0.725,
+        "accuracy_std": 0.186078,
+        "step": 25
+      },
+      {
+        "accuracy": 0.835,
+        "accuracy_std": 0.12659,
+        "step": 26
+      },
+      {
+        "accuracy": 0.815,
+        "accuracy_std": 0.122577,
+        "step": 27
+      },
+      {
+        "accuracy": 0.81,
+        "accuracy_std": 0.073485,
+        "step": 28
+      },
+      {
+        "accuracy": 0.8,
+        "accuracy_std": 0.122474,
+        "step": 29
+      },
+      {
+        "accuracy": 0.84,
+        "accuracy_std": 0.122066,
+        "step": 30
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.102956,
+        "step": 31
+      },
+      {
+        "accuracy": 0.845,
+        "accuracy_std": 0.098615,
+        "step": 32
+      },
+      {
+        "accuracy": 0.785,
+        "accuracy_std": 0.118427,
+        "step": 33
+      },
+      {
+        "accuracy": 0.84,
+        "accuracy_std": 0.088882,
+        "step": 34
+      },
+      {
+        "accuracy": 0.84,
+        "accuracy_std": 0.115758,
+        "step": 35
+      },
+      {
+        "accuracy": 0.81,
+        "accuracy_std": 0.088882,
+        "step": 36
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.043589,
+        "step": 37
+      },
+      {
+        "accuracy": 0.77,
+        "accuracy_std": 0.074833,
+        "step": 38
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.143614,
+        "step": 39
+      },
+      {
+        "accuracy": 0.785,
+        "accuracy_std": 0.095,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.537393,
+    "stale_rate_std": 0.063054,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 800.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 0.0,
+    "unknown_rate_std": 0.0
+  },
+  "vector_rag_rerank": {
+    "accuracy": 0.894375,
+    "accuracy_std": 0.016829,
+    "context_used": 4000.0,
+    "context_used_std": 0.0,
+    "corrections_delivered": 73.9,
+    "corrections_delivered_std": 8.005623,
+    "false_rate": 0.090489,
+    "false_rate_std": 0.066274,
+    "feedback_events": 800.0,
+    "feedback_events_std": 0.0,
+    "feedback_rate": 1.0,
+    "feedback_rate_std": 0.0,
+    "learning_curve": [
+      {
+        "accuracy": 0.91,
+        "accuracy_std": 0.08,
+        "step": 1
+      },
+      {
+        "accuracy": 0.955,
+        "accuracy_std": 0.052202,
+        "step": 2
+      },
+      {
+        "accuracy": 0.985,
+        "accuracy_std": 0.032016,
+        "step": 3
+      },
+      {
+        "accuracy": 0.905,
+        "accuracy_std": 0.090692,
+        "step": 4
+      },
+      {
+        "accuracy": 0.96,
+        "accuracy_std": 0.053852,
+        "step": 5
+      },
+      {
+        "accuracy": 0.925,
+        "accuracy_std": 0.090139,
+        "step": 6
+      },
+      {
+        "accuracy": 0.95,
+        "accuracy_std": 0.07746,
+        "step": 7
+      },
+      {
+        "accuracy": 0.92,
+        "accuracy_std": 0.08124,
+        "step": 8
+      },
+      {
+        "accuracy": 0.9,
+        "accuracy_std": 0.070711,
+        "step": 9
+      },
+      {
+        "accuracy": 0.915,
+        "accuracy_std": 0.111915,
+        "step": 10
+      },
+      {
+        "accuracy": 0.935,
+        "accuracy_std": 0.067268,
+        "step": 11
+      },
+      {
+        "accuracy": 0.95,
+        "accuracy_std": 0.063246,
+        "step": 12
+      },
+      {
+        "accuracy": 0.935,
+        "accuracy_std": 0.059372,
+        "step": 13
+      },
+      {
+        "accuracy": 0.855,
+        "accuracy_std": 0.108282,
+        "step": 14
+      },
+      {
+        "accuracy": 0.895,
+        "accuracy_std": 0.136839,
+        "step": 15
+      },
+      {
+        "accuracy": 0.9,
+        "accuracy_std": 0.070711,
+        "step": 16
+      },
+      {
+        "accuracy": 0.925,
+        "accuracy_std": 0.090139,
+        "step": 17
+      },
+      {
+        "accuracy": 0.795,
+        "accuracy_std": 0.198053,
+        "step": 18
+      },
+      {
+        "accuracy": 0.95,
+        "accuracy_std": 0.03873,
+        "step": 19
+      },
+      {
+        "accuracy": 0.895,
+        "accuracy_std": 0.101119,
+        "step": 20
+      },
+      {
+        "accuracy": 0.89,
+        "accuracy_std": 0.099499,
+        "step": 21
+      },
+      {
+        "accuracy": 0.875,
+        "accuracy_std": 0.126984,
+        "step": 22
+      },
+      {
+        "accuracy": 0.925,
+        "accuracy_std": 0.095525,
+        "step": 23
+      },
+      {
+        "accuracy": 0.865,
+        "accuracy_std": 0.086747,
+        "step": 24
+      },
+      {
+        "accuracy": 0.89,
+        "accuracy_std": 0.091652,
+        "step": 25
+      },
+      {
+        "accuracy": 0.935,
+        "accuracy_std": 0.083815,
+        "step": 26
+      },
+      {
+        "accuracy": 0.865,
+        "accuracy_std": 0.105,
+        "step": 27
+      },
+      {
+        "accuracy": 0.88,
+        "accuracy_std": 0.09,
+        "step": 28
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.115758,
+        "step": 29
+      },
+      {
+        "accuracy": 0.87,
+        "accuracy_std": 0.122882,
+        "step": 30
+      },
+      {
+        "accuracy": 0.825,
+        "accuracy_std": 0.112361,
+        "step": 31
+      },
+      {
+        "accuracy": 0.87,
+        "accuracy_std": 0.100499,
+        "step": 32
+      },
+      {
+        "accuracy": 0.85,
+        "accuracy_std": 0.092195,
+        "step": 33
+      },
+      {
+        "accuracy": 0.855,
+        "accuracy_std": 0.140446,
+        "step": 34
+      },
+      {
+        "accuracy": 0.83,
+        "accuracy_std": 0.087178,
+        "step": 35
+      },
+      {
+        "accuracy": 0.86,
+        "accuracy_std": 0.142829,
+        "step": 36
+      },
+      {
+        "accuracy": 0.895,
+        "accuracy_std": 0.078899,
+        "step": 37
+      },
+      {
+        "accuracy": 0.855,
+        "accuracy_std": 0.103562,
+        "step": 38
+      },
+      {
+        "accuracy": 0.9,
+        "accuracy_std": 0.067082,
+        "step": 39
+      },
+      {
+        "accuracy": 0.82,
+        "accuracy_std": 0.11225,
+        "step": 40
+      }
+    ],
+    "num_seeds": 10,
+    "stale_rate": 0.909511,
+    "stale_rate_std": 0.066274,
+    "total_queries": 800.0,
+    "total_queries_std": 0.0,
+    "traversal_cost": 6400.0,
+    "traversal_cost_std": 0.0,
+    "unknown_rate": 0.0,
+    "unknown_rate_std": 0.0
+  }
+}

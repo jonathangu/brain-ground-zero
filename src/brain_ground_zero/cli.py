@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import time
 from pathlib import Path
 
 from brain_ground_zero import recorded_h2h, reporting, runner
@@ -36,6 +37,18 @@ def _parse_args() -> argparse.Namespace:
     rh_p.add_argument("--fixture", required=True, help="Path to fixture YAML")
     rh_p.add_argument("--baselines", required=True, help="Path to baseline set YAML")
     rh_p.add_argument("--output", required=True, help="Output bundle directory")
+    rh_p.add_argument("--status", default="draft", help="Bundle status metadata value (default: draft)")
+
+    rhm_p = sub.add_parser(
+        "recorded_h2h_multiseed",
+        help="Run recorded head-to-head across multiple seeds and aggregate proof artifacts",
+    )
+    rhm_p.add_argument("--family", required=True, help="Path to family config YAML")
+    rhm_p.add_argument("--baselines", required=True, help="Path to baseline set YAML")
+    rhm_p.add_argument("--seeds", required=True, help="Comma-separated seed list, e.g. 11,22,33")
+    rhm_p.add_argument("--run-id", default=None, help="Optional run id (directory under runs/)")
+    rhm_p.add_argument("--output-dir", default="runs", help="Output root directory (default: runs)")
+    rhm_p.add_argument("--status", default="draft", help="Per-seed bundle status metadata value")
 
     smoke_p = sub.add_parser("smoke", help="Run a small smoke test")
     smoke_p.add_argument(
@@ -66,7 +79,21 @@ def main() -> None:
     elif args.command == "generate_fixture":
         recorded_h2h.generate_fixture(args.family, args.seed, args.output)
     elif args.command == "recorded_h2h":
-        recorded_h2h.run_recorded_h2h(args.fixture, args.baselines, args.output)
+        recorded_h2h.run_recorded_h2h(args.fixture, args.baselines, args.output, status=args.status)
+    elif args.command == "recorded_h2h_multiseed":
+        seeds = [int(s.strip()) for s in args.seeds.split(",") if s.strip()]
+        if args.run_id:
+            run_dir = Path(args.output_dir) / args.run_id
+        else:
+            stamp = time.strftime("%Y%m%d_%H%M%S")
+            run_dir = Path(args.output_dir) / f"recorded_h2h_multiseed_{Path(args.family).stem}_{stamp}"
+        recorded_h2h.run_recorded_h2h_multiseed(
+            family_path=args.family,
+            baselines_path=args.baselines,
+            seeds=seeds,
+            run_dir=run_dir,
+            status=args.status,
+        )
     elif args.command == "smoke":
         if args.family:
             family_paths = [args.family]

@@ -7,18 +7,19 @@ import hashlib
 import json
 import subprocess
 import time
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import yaml
 
+from brain_ground_zero import reporting
 from brain_ground_zero.baselines import create_baseline
 from brain_ground_zero.baselines.base import BaselineSpec, BudgetSpec
+from brain_ground_zero.config import RunConfig, write_config_snapshot
 from brain_ground_zero.families import create_family
 from brain_ground_zero.families.base import FamilySpec, Step
-from brain_ground_zero.models import Answer, Correction, Fact, Query
-from brain_ground_zero.runner import MetricsTracker
+from brain_ground_zero.models import Correction, Fact, Query
+from brain_ground_zero.runner import MetricsTracker, _aggregate_summaries
 
 
 # ---------------------------------------------------------------------------
@@ -121,6 +122,7 @@ def run_recorded_h2h(
     fixture_path: str | Path,
     baselines_path: str | Path,
     output_dir: str | Path,
+    status: str = "draft",
 ) -> Path:
     """Run all baselines against a fixed fixture, producing traces and scoring."""
     fixture_path = Path(fixture_path)
@@ -170,6 +172,7 @@ def run_recorded_h2h(
 
     # Per-query verdicts collector
     all_verdicts: List[Dict[str, Any]] = []
+    metrics_file = (output_dir / "metrics.jsonl").open("w", encoding="utf-8")
 
     try:
         for step in steps:
@@ -205,8 +208,17 @@ def run_recorded_h2h(
 
                     verdict = "correct" if correct else ("stale" if stale else ("unknown" if unknown else "incorrect"))
 
-                    tracker.record(name, step.step, correct, stale, false_ans, unknown,
-                                   answer.context_used, answer.traversal_cost)
+                    tracker.record(
+                        name,
+                        step.step,
+                        correct,
+                        stale,
+                        false_ans,
+                        unknown,
+                        answer.context_used,
+                        answer.traversal_cost,
+                        True,
+                    )
                     baseline.on_feedback(step.step, query, correct, truth, answer)
 
                     # Teacher correction
@@ -241,9 +253,31 @@ def run_recorded_h2h(
                         "expected": truth,
                         "verdict": verdict,
                     })
+                    metrics_file.write(
+                        json.dumps(
+                            {
+                                "baseline": name,
+                                "step": step.step,
+                                "subject": query.subject,
+                                "object": query.object,
+                                "truth": truth,
+                                "answer": answer.relation,
+                                "correct": correct,
+                                "stale": stale,
+                                "false": false_ans,
+                                "unknown": unknown,
+                                "context_used": answer.context_used,
+                                "traversal_cost": answer.traversal_cost,
+                                "route_source": answer.source,
+                                "feedback_available": True,
+                            }
+                        )
+                        + "\n"
+                    )
     finally:
         for f in trace_files.values():
             f.close()
+        metrics_file.close()
 
     # -- Scoring outputs --
     summary = tracker.summary()
@@ -253,7 +287,10 @@ def run_recorded_h2h(
     _write_verification(fixture_path, traces_dir, verification_dir, scoring_dir, all_verdicts, fixture)
 
     # -- Metadata --
-    _write_metadata(output_dir, fixture_path, fixture, baselines_cfg, baseline_specs)
+    _write_metadata(output_dir, fixture_path, fixture, baseline_specs, status)
+
+    # -- Bundle README --
+    _write_bundle_readme(output_dir, fixture, summary, status)
 
     # -- Summary JSON (for compatibility) --
     (output_dir / "summary.json").write_text(
@@ -268,6 +305,67 @@ def run_recorded_h2h(
         print(f"  {name}: accuracy={metrics['accuracy']:.4f}")
 
     return output_dir
+
+
+def run_recorded_h2h_multiseed(
+    family_path: str | Path,
+    baselines_path: str | Path,
+    seeds: List[int],
+    run_dir: str | Path,
+    status: str = "draft",
+) -> Path:
+    """Run recorded head-to-head across multiple seeds and aggregate report artifacts."""
+    if not seeds:
+        raise ValueError("At least one seed is required")
+
+    family_path = Path(family_path)
+    baselines_path = Path(baselines_path)
+    run_dir = Path(run_dir)
+    run_dir.mkdir(parents=True, exist_ok=True)
+    (run_dir / "artifacts").mkdir(exist_ok=True)
+
+    run_config = RunConfig(
+        family=_load_yaml(family_path),
+        baselines=_load_yaml(baselines_path),
+        system={
+            "mode": "recorded_h2h_multiseed",
+            "status": status,
+            "seeds": seeds,
+        },
+    )
+    write_config_snapshot(run_dir, run_config)
+
+    per_seed_summaries: List[Dict[str, Dict[str, float]]] = []
+    for seed in seeds:
+        seed_dir = run_dir / f"seed_{seed}"
+        fixture_path = seed_dir / "fixture.yaml"
+        print(f"[seed {seed}] generate fixture")
+        generate_fixture(family_path, seed, fixture_path)
+        print(f"[seed {seed}] replay baselines")
+        run_recorded_h2h(
+            fixture_path=fixture_path,
+            baselines_path=baselines_path,
+            output_dir=seed_dir,
+            status=status,
+        )
+        summary = json.loads((seed_dir / "summary.json").read_text(encoding="utf-8"))
+        per_seed_summaries.append(summary)
+
+    aggregated = _aggregate_summaries(per_seed_summaries)
+    (run_dir / "summary.json").write_text(
+        json.dumps(aggregated, indent=2, sort_keys=True), encoding="utf-8"
+    )
+    (run_dir / "per_seed_summaries.json").write_text(
+        json.dumps(per_seed_summaries, indent=2, sort_keys=True), encoding="utf-8"
+    )
+    (run_dir / "seeds.json").write_text(json.dumps(seeds), encoding="utf-8")
+
+    _write_seed_bundle_index(run_dir, seeds, per_seed_summaries)
+    reporting.generate_report(run_dir)
+
+    print(f"Recorded multi-seed head-to-head complete: {run_dir}")
+    print(f"  Seeds: {len(seeds)} ({', '.join(str(seed) for seed in seeds)})")
+    return run_dir
 
 
 # ---------------------------------------------------------------------------
@@ -340,6 +438,95 @@ def _parse_baseline_specs(baselines_cfg: Dict) -> List[BaselineSpec]:
             params=entry.get("params", {}),
         ))
     return specs
+
+
+def _best_rag_name(summary: Dict[str, Dict[str, float]]) -> str:
+    rag_names = [name for name in summary if name.startswith("vector_rag")]
+    if not rag_names:
+        raise ValueError("No vector_rag baseline found in summary")
+    return max(rag_names, key=lambda name: float(summary[name].get("accuracy", 0.0)))
+
+
+def _write_seed_bundle_index(
+    run_dir: Path,
+    seeds: List[int],
+    per_seed_summaries: List[Dict[str, Dict[str, float]]],
+) -> None:
+    rows: List[Dict[str, Any]] = []
+    for seed, summary in zip(seeds, per_seed_summaries):
+        best_rag = _best_rag_name(summary)
+        full_acc = float(summary.get("full_brain", {}).get("accuracy", 0.0))
+        rag_acc = float(summary.get(best_rag, {}).get("accuracy", 0.0))
+        rows.append(
+            {
+                "seed": seed,
+                "bundle_dir": f"seed_{seed}",
+                "full_brain_accuracy_pct": round(full_acc * 100.0, 4),
+                "best_rag": best_rag,
+                "best_rag_accuracy_pct": round(rag_acc * 100.0, 4),
+                "margin_vs_best_rag_pp": round((full_acc - rag_acc) * 100.0, 4),
+                "full_brain_h2h_vs_best_rag": "1-0-0" if full_acc > rag_acc else ("0-1-0" if full_acc < rag_acc else "0-0-1"),
+            }
+        )
+
+    fieldnames = list(rows[0].keys()) if rows else []
+    if not fieldnames:
+        return
+
+    with (run_dir / "seed_bundle_index.csv").open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    with (run_dir / "seed_bundle_index.md").open("w", encoding="utf-8") as f:
+        f.write("# Seed Bundle Index\n\n")
+        f.write("| " + " | ".join(fieldnames) + " |\n")
+        f.write("|" + "|".join(["---"] * len(fieldnames)) + "|\n")
+        for row in rows:
+            f.write("| " + " | ".join(str(row.get(name, "")) for name in fieldnames) + " |\n")
+
+
+def _write_bundle_readme(
+    output_dir: Path,
+    fixture: Dict[str, Any],
+    summary: Dict[str, Dict[str, float]],
+    status: str,
+) -> None:
+    best_rag = _best_rag_name(summary)
+    full = summary.get("full_brain", {})
+    rag = summary.get(best_rag, {})
+    steps = len(fixture.get("steps", []))
+    queries = _count_queries(fixture)
+
+    def pct(value: float) -> str:
+        return f"{value * 100.0:.2f}%"
+
+    lines = [
+        f"# Recorded Head-to-Head Bundle: {output_dir.name}",
+        "",
+        f"Status: {status}",
+        f"Family: {fixture.get('family', 'unknown')}",
+        f"Generator seed: {fixture.get('generator_seed', 'n/a')}",
+        f"Queries: {queries}",
+        f"Steps: {steps}",
+        "",
+        "## Headline",
+        "",
+        f"- full_brain: {pct(float(full.get('accuracy', 0.0)))}",
+        f"- best RAG ({best_rag}): {pct(float(rag.get('accuracy', 0.0)))}",
+        f"- margin vs best RAG: {(float(full.get('accuracy', 0.0)) - float(rag.get('accuracy', 0.0))) * 100:+.2f} pp",
+        "",
+        "## Files",
+        "",
+        "- `fixture.yaml` -- deterministic replay fixture",
+        "- `metadata.yaml` -- run metadata and baseline configuration snapshot",
+        "- `metrics.jsonl` -- normalized per-query event stream for reporting",
+        "- `traces/` -- raw per-baseline JSONL traces",
+        "- `scoring/` -- summary/pairwise/per-query scoring tables",
+        "- `verification/` -- fixture/trace hashes and reproducibility check",
+    ]
+
+    (output_dir / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _sha256(path: Path) -> str:
@@ -514,8 +701,8 @@ def _write_metadata(
     output_dir: Path,
     fixture_path: Path,
     fixture: Dict,
-    baselines_cfg: Dict,
     baseline_specs: List[BaselineSpec],
+    status: str,
 ) -> None:
     """Write metadata.yaml with run details."""
     git_sha = _get_git_sha()
@@ -523,7 +710,7 @@ def _write_metadata(
 
     meta = {
         "format_version": "1",
-        "status": "draft",
+        "status": status,
         "bundle_id": output_dir.name,
         "run_date": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "git_sha": git_sha,

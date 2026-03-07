@@ -1,4 +1,4 @@
 bundle,family,seeds,queries_per_seed,steps,baselines,full_brain_accuracy_pct,full_brain_accuracy_std_pct,best_rag,best_rag_accuracy_pct,best_rag_accuracy_std_pct,margin_vs_best_rag_pp,full_brain_h2h_vs_best_rag,full_brain_context_per_query,best_rag_context_per_query,context_ratio_best_rag_over_full_brain,route_fn_only_accuracy_pct,graph_route_pg_accuracy_pct,graph_minus_route_fn_pp,full_minus_graph_pp
-recorded_h2h_relational_drift_001,relational_drift,1,800,41,8,97.5,n/a,vector_rag_rerank,89.625,n/a,7.875,n/a (single seed),1.0,5.0,5.0,64.375,78.5,14.125,19.0
+recorded_h2h_relational_drift_10seed,relational_drift,10,800,40,8,99.15,0.2727,vector_rag_rerank,89.4375,1.6829,9.7125,10-0-0,1.0,5.0,5.0,63.8375,75.8625,12.025,23.2875
 sparse_feedback_10seed,sparse_feedback,10,1800,45,8,91.9556,18.3024,vector_rag_rerank,67.05,1.3652,24.9056,9-1-0,1.0,5.0,5.0,37.0333,49.3944,12.3611,42.5612
 recurring_workflows_10seed,recurring_workflows,10,3522,60,8,97.5667,0.3724,vector_rag_rerank,70.6448,1.1835,26.9219,10-0-0,1.0,5.0,5.0,34.0999,60.3948,26.2949,37.1719

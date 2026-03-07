@@ -46,6 +46,12 @@ def validate_bundle(bundle_dir: Path) -> list[str]:
     if not readme.exists():
         errors.append("Missing README.md")
     if not metadata_path.exists():
+        if (bundle_dir / "per_seed_summaries.json").exists():
+            print(
+                f"SKIP  {bundle_dir.name} "
+                "(multi-seed aggregate bundle; validate with validate_recorded_h2h_multiseed.py)"
+            )
+            return []
         errors.append("Missing metadata.yaml")
         return errors  # can't continue without metadata
 
