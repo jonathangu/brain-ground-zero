@@ -14,8 +14,8 @@
 | route_fn_only | 64.7% +/- 1.6 | -- | |
 | oracle (ceiling) | 100% | -- | |
 
-Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/relational_drift_10seed/).
-A small 3-seed recurring_workflows spot-check is tracked in `proof-results/recurring_workflows_3seed/`.
+Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/) (start with [`relational_drift_10seed/`](proof-results/relational_drift_10seed/)).
+A small 3-seed recurring_workflows spot-check is tracked in [`proof-results/recurring_workflows_3seed/`](proof-results/recurring_workflows_3seed/).
 
 ## What this proves (and what it doesn't)
 

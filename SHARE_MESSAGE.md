@@ -6,7 +6,7 @@ Copy/paste the version that fits:
 
 ## Short version
 
-I built a benchmark proving the OpenClawBrain memory architecture beats RAG. Full-brain method hits 97.2% accuracy on relational drift (entity facts that change over time), vs 89% for the best RAG baseline -- and uses 5x less context. Wins 10/10 seeds against every baseline except one (9/10). The full results, harness code, and reproduction instructions are all in the repo:
+I built a benchmark that serves as a mechanism proof for the OpenClawBrain memory architecture vs RAG. Full-brain method hits 97.2% accuracy on relational drift (entity facts that change over time), vs 89% for the best RAG baseline -- and uses 5x less context. Wins 10/10 seeds against every baseline except one (9/10). The full results, harness code, and reproduction instructions are all in the repo:
 
 https://github.com/jonathangu/brain-ground-zero
 
@@ -26,11 +26,10 @@ Results:
 
 The ablation tells a clean story: each layer adds value, and structural plasticity is the single biggest contributor (+20.8 pp). Win-rate matrix shows the full brain wins 9/10 or 10/10 seeds against every non-oracle baseline.
 
-This is the first benchmark family (mechanism proof on drift). More families are designed (recurring workflows, sparse feedback, memory compaction). Repo has the full harness, configs, reproduction commands, and tracked proof artifacts:
+This is the first benchmark family (mechanism proof on drift, not production proof). A recurring_workflows spot-check is directionally consistent; sparse feedback and memory compaction are designed but not yet implemented. Repo has the full harness, configs, reproduction commands, and tracked proof artifacts:
 
 https://github.com/jonathangu/brain-ground-zero
 
-<<<<<<< HEAD
 Architecture proposal for the production system: https://github.com/jonathangu/openclawbrain/blob/main/docs/openclawbrain-openclaw-rearchitecture-plan.md
 
 Full proof artifacts and technical paper: https://openclawbrain.ai/proof/

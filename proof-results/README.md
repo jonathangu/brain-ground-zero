@@ -1,0 +1,25 @@
+# Proof Artifacts
+
+Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
+
+## Families
+
+| Family | Seeds | Status | Key result |
+|---|---|---|---|
+| [relational_drift_10seed](relational_drift_10seed/) | 10 | **Full proof run** | full_brain 97.2% vs best RAG 89.0% (+8.2 pp) |
+| [recurring_workflows_3seed](recurring_workflows_3seed/) | 3 | Spot-check | Directionally consistent; not yet proven at scale |
+
+**Start here:** `relational_drift_10seed/` is the strongest artifact -- 10 seeds, 8 baselines, full ablation story.
+
+## Scope
+
+These results prove the full-brain **mechanism** (graph memory + learned routing + policy-gradient updates + structural plasticity) dominates RAG and partial-brain ablations on long-lived memory with entity-relation drift. This is a mechanism proof, not a production proof. See [CLAIMS.md](../CLAIMS.md) for precise scope.
+
+## Each family directory contains
+
+- `summary_table.md` / `.csv` -- per-baseline accuracy with mean +/- std
+- `pairwise_accuracy_delta.md` / `.csv` -- accuracy deltas between all pairs
+- `win_rate_matrix.md` / `.csv` -- per-seed win counts
+- `worked_example_trace.md` -- single query traced across all baselines
+- `learning_curve.png` -- accuracy over steps with std-deviation bands
+- `seeds.json` -- seed list used
