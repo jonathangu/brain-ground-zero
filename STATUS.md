@@ -1,5 +1,15 @@
 # Status
 
+## 2026-03-07 09:18 PST
+- What changed: final frontier-polish pass after merges so status/docs resolve to proof-scale recorded H2H immediately.
+  - Docs now foreground `recorded_h2h_relational_drift_10seed` (99.15% +/- 0.27 vs best RAG 89.44% +/- 1.68, head-to-head 10-0-0) across `README.md`, `CLAIMS.md`, and `proof-results/README.md`.
+  - Removed stale single-seed wording from current-frontier sections while retaining `recorded_h2h_relational_drift_001` as legacy first artifact context.
+  - Fixed `scripts/generate_publishable_proof_assets.py` hardcoded `_001` references in starter-pack copy; regenerated publishable assets and compact scorecards from the 10-seed recorded bundle.
+- Validation checks:
+  - `python3 scripts/generate_publishable_proof_assets.py` (ok)
+- Current milestone: M13 - Recorded H2H proof-scale multi-seed bundle (docs/proof nav synced)
+- Next step: publish first scored `proof-results/recorded_sessions/` bundle from real product traces while keeping recorded_h2h multi-seed as the deterministic anchor.
+
 ## 2026-03-07 08:32 PST
 - What changed: packaged the next proof rung for direct site/blog/paper lift and tightened top-family scripts/docs.
   - Publishable pack upgrade:

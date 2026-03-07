@@ -9,9 +9,9 @@
   - [`proof-results/publishable/charts/focus_margin_context.png`](proof-results/publishable/charts/focus_margin_context.png)
   - [`proof-results/publishable/charts/focus_ablation_ladder.png`](proof-results/publishable/charts/focus_ablation_ladder.png)
 - Recorded H2H chart + scorecard:
-  - [`proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`](proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)
-  - [`proof-results/recorded_h2h_relational_drift_001/publishable_key_results_compact.md`](proof-results/recorded_h2h_relational_drift_001/publishable_key_results_compact.md)
-  - [`proof-results/recorded_h2h_relational_drift_001/publishable_key_results.md`](proof-results/recorded_h2h_relational_drift_001/publishable_key_results.md)
+  - [`proof-results/recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+  - [`proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results_compact.md`](proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results_compact.md)
+  - [`proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results.md`](proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results.md)
 - Sparse-feedback chart + scorecard:
   - [`proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
   - [`proof-results/sparse_feedback_10seed/publishable_key_results_compact.md`](proof-results/sparse_feedback_10seed/publishable_key_results_compact.md)
@@ -21,11 +21,11 @@
   - [`proof-results/recurring_workflows_10seed/publishable_key_results_compact.md`](proof-results/recurring_workflows_10seed/publishable_key_results_compact.md)
   - [`proof-results/recurring_workflows_10seed/publishable_key_results.md`](proof-results/recurring_workflows_10seed/publishable_key_results.md)
 
-## Next proof rung (publish-first bundle)
+## Current proof frontier (publish-first bundle)
 
+- **Recorded H2H (10-seed):** full_brain 99.15% +/- 0.27% vs best RAG 89.44% +/- 1.68% (+9.71 pp), head-to-head 10-0-0, 5.0x lower context/query.
 - **Recurring workflows (10-seed):** full_brain 97.6% +/- 0.4% vs best RAG 70.6% +/- 1.2% (+26.9 pp), head-to-head 10-0-0, 5.0x lower context/query.
 - **Sparse feedback (10-seed):** full_brain 92.0% +/- 18.3% vs best RAG 67.0% +/- 1.4% (+24.9 pp), head-to-head 9-1-0, explicit feedback coverage ~19%.
-- **Recorded H2H (first artifact):** full_brain 97.5% vs best RAG 89.6% (+7.9 pp), 5.0x lower context/query, deterministic fixture + trace/hash verification.
 
 ## What is proven
 
@@ -68,14 +68,14 @@
 
 5. **full_brain uses 5x less context than vector_rag_rerank** (1.0 vs 5.0 context/query) while achieving much higher accuracy.
 
-## First recorded head-to-head artifact (next proof rung)
+## Recorded head-to-head proof run (published)
 
-**Recorded head-to-head: relational_drift_001** | **1 seed (42)** | **800 queries** | **8 baselines**
+**Recorded head-to-head: relational_drift_10seed** | **10 seeds** | **800 queries per seed** | **8 baselines**
 
-- First scored recorded-h2h bundle with deterministic fixture, full JSONL traces, and SHA-256 verification.
-- full_brain 97.5% vs best RAG (vector_rag_rerank) 89.6% (+7.9 pp). Directionally consistent with the 10-seed simulation proof.
-- See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/).
-- **Not yet proof-scale** (single seed). Multi-seed recorded h2h is the next rung.
+- Proof-scale deterministic replay bundle with per-seed fixtures, full JSONL traces, and SHA-256 verification.
+- full_brain 99.15% +/- 0.27% vs best RAG (vector_rag_rerank) 89.44% +/- 1.68% (+9.71 pp), head-to-head 10-0-0.
+- See [`proof-results/recorded_h2h_relational_drift_10seed/`](proof-results/recorded_h2h_relational_drift_10seed/).
+- The first seed-42 artifact is retained as legacy evidence at [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/).
 
 ---
 
@@ -100,7 +100,6 @@
 
 ## What is not yet proven
 
-- **Recorded head-to-head at proof scale.** The first single-seed bundle is shipped, but multi-seed recorded h2h is needed for a full proof claim.
 - **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results from real sessions exist yet.
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current proof scales are modest: relational uses 50 entities/5 relation types; recurring uses 80 workflows/11 slots)
@@ -133,9 +132,10 @@ python -m brain_ground_zero.cli multiseed \
 
 ./scripts/run_recurring_workflows_proof.sh
 ./scripts/run_sparse_feedback_proof.sh
-./scripts/run_recorded_h2h_relational_drift_proof.sh
+./scripts/run_recorded_h2h_proof.sh
 ```
 
 The verified proof artifacts are tracked in [`proof-results/relational_drift_10seed/`](proof-results/relational_drift_10seed/).
 Recurring-workflow proof artifacts are tracked in [`proof-results/recurring_workflows_10seed/`](proof-results/recurring_workflows_10seed/).
 Sparse-feedback proof artifacts are tracked in [`proof-results/sparse_feedback_10seed/`](proof-results/sparse_feedback_10seed/).
+Recorded-h2h proof artifacts are tracked in [`proof-results/recorded_h2h_relational_drift_10seed/`](proof-results/recorded_h2h_relational_drift_10seed/).

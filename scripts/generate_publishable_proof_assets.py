@@ -187,8 +187,10 @@ def _bundle_row(bundle: BundleMetrics) -> Dict[str, object]:
 
 
 def _proof_rung(bundle: BundleMetrics) -> str:
-    if bundle.kind == "recorded":
-        return "Recorded H2H (first artifact, single fixture)"
+    if bundle.bundle_id.startswith("recorded_h2h_"):
+        if bundle.seeds == 1:
+            return "Recorded H2H (first artifact, single fixture)"
+        return f"Recorded H2H proof ({bundle.seeds}-seed)"
     return f"Simulation proof ({bundle.seeds}-seed)"
 
 
@@ -225,7 +227,7 @@ def _bundle_claim_line(bundle: BundleMetrics) -> str:
         f"vs {bundle.best_rag} {_format_pct_with_std(bundle.best_rag_accuracy, bundle.best_rag_accuracy_std)} "
         f"({bundle.margin_vs_best_rag_pp:+.1f} pp), context {bundle.context_ratio_best_rag_over_full_brain:.1f}x lower for full_brain"
     )
-    if bundle.kind == "recorded":
+    if bundle.bundle_id.startswith("recorded_h2h_") and bundle.seeds == 1:
         return f"- {base}. First scored fixed-session artifact (single seeded fixture; not yet proof-scale)."
     return f"- {base}, head-to-head {bundle.h2h_record_vs_best_rag}."
 
@@ -535,7 +537,7 @@ def _write_publishable_bundle_files(bundles: Sequence[BundleMetrics], output_dir
     bundle_map = {bundle.bundle_id: bundle for bundle in bundles}
     recurring = bundle_map.get("recurring_workflows_10seed")
     sparse = bundle_map.get("sparse_feedback_10seed")
-    recorded = bundle_map.get("recorded_h2h_relational_drift_001")
+    recorded = bundle_map.get("recorded_h2h_relational_drift_10seed")
 
     with (output_dir / "site_blog_paper_starter.md").open("w", encoding="utf-8") as f:
         f.write("# Site/Blog/Paper Starter Pack\n\n")
@@ -546,7 +548,7 @@ def _write_publishable_bundle_files(bundles: Sequence[BundleMetrics], output_dir
         f.write("3. `charts/focus_ablation_ladder.png`\n")
         f.write("4. `../recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
         f.write("5. `../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
-        f.write("6. `../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`\n\n")
+        f.write("6. `../recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n\n")
         f.write("## Canonical topline claims\n\n")
         for bundle in bundles:
             f.write(_bundle_claim_line(bundle) + "\n")
@@ -564,7 +566,7 @@ def _write_publishable_bundle_files(bundles: Sequence[BundleMetrics], output_dir
         if sparse is not None:
             f.write("- sparse_feedback seed head-to-head chart: `../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
         if recorded is not None:
-            f.write("- recorded_h2h tradeoff chart: `../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`\n")
+            f.write("- recorded_h2h seed head-to-head chart: `../recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
         f.write("- ablation support chart: `charts/focus_ablation_ladder.png`\n\n")
         f.write("### Paper\n\n")
         f.write("- compact numeric table: `tables/focus_evidence_table_compact.csv`\n")

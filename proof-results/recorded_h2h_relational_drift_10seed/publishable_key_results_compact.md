@@ -1,7 +1,5 @@
-# Focus Evidence Table (Compact)
+# Publishable Key Results (Compact): recorded_h2h_relational_drift_10seed
 
 | focus | bundle | proof_rung | seeds | queries_per_seed | full_brain_accuracy | best_rag | best_rag_accuracy | margin_vs_best_rag_pp | h2h_vs_best_rag | context_ratio_best_rag_over_full_brain | ablation_full_minus_graph_pp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Recorded H2H | recorded_h2h_relational_drift_10seed | Recorded H2H proof (10-seed) | 10 | 800 | 99.2% +/- 0.3% | vector_rag_rerank | 89.4% +/- 1.7% | +9.7 | 10-0-0 | 5.0x | +23.3 |
-| Sparse Feedback | sparse_feedback_10seed | Simulation proof (10-seed) | 10 | 1800 | 92.0% +/- 18.3% | vector_rag_rerank | 67.0% +/- 1.4% | +24.9 | 9-1-0 | 5.0x | +42.6 |
-| Recurring Workflows | recurring_workflows_10seed | Simulation proof (10-seed) | 10 | 3522 | 97.6% +/- 0.4% | vector_rag_rerank | 70.6% +/- 1.2% | +26.9 | 10-0-0 | 5.0x | +37.2 |

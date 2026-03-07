@@ -1,14 +1,14 @@
 # Brain-vs-RAG Ground-Zero Benchmark
 
-**The full OpenClawBrain (OCB) method beats every RAG and stateful-memory baseline on both relational drift and recurring workflows -- by clear margins across 10 seeds.**
+**The full OpenClawBrain (OCB) method leads across the strongest tracked bundles: relational_drift, recurring_workflows, sparse_feedback, and recorded head-to-head (all at 10-seed scale).**
 
-## Next proof rung (publish-first)
+## Current proof frontier (publish-first)
 
 | Artifact | full_brain | Best RAG | Margin | Head-to-head | Context/query |
 |---|---|---|---|---|---|
+| recorded_h2h_relational_drift_10seed | 99.15% +/- 0.27 | 89.44% +/- 1.68 | +9.71 pp | 10-0-0 | 1.0 vs 5.0 |
 | recurring_workflows_10seed | 97.6% +/- 0.4 | 70.6% +/- 1.2 | +26.9 pp | 10-0-0 | 1.0 vs 5.0 |
 | sparse_feedback_10seed | 92.0% +/- 18.3 | 67.0% +/- 1.4 | +24.9 pp | 9-1-0 | 1.0 vs 5.0 |
-| recorded_h2h_relational_drift_001 (first artifact) | 97.5% | 89.6% | +7.9 pp | n/a (single seed) | 1.0 vs 5.0 |
 
 Use this lift order for site/blog/paper: [`proof-results/publishable/site_blog_paper_starter.md`](proof-results/publishable/site_blog_paper_starter.md).
 
@@ -24,7 +24,7 @@ Use this lift order for site/blog/paper: [`proof-results/publishable/site_blog_p
 | route_fn_only | 64.7% +/- 1.6 | -- | |
 | oracle (ceiling) | 100% | -- | |
 
-Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/) (start with [`relational_drift_10seed/`](proof-results/relational_drift_10seed/)).
+Full results, pairwise deltas, win-rate matrix, and worked examples are in [`proof-results/`](proof-results/) (start with [`recorded_h2h_relational_drift_10seed/`](proof-results/recorded_h2h_relational_drift_10seed/) and [`relational_drift_10seed/`](proof-results/relational_drift_10seed/)).
 
 ## Headline numbers (recurring_workflows, 10-seed mean)
 
@@ -62,13 +62,13 @@ For immediate site/blog/paper usage, start with:
 - [`proof-results/publishable/tables/focus_evidence_table_compact.md`](proof-results/publishable/tables/focus_evidence_table_compact.md)
 - [`proof-results/publishable/charts/focus_margin_context.png`](proof-results/publishable/charts/focus_margin_context.png)
 - [`proof-results/publishable/charts/focus_ablation_ladder.png`](proof-results/publishable/charts/focus_ablation_ladder.png)
-- [`proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`](proof-results/recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png)
+- [`proof-results/recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [`proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [`proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`](proof-results/recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 
 Per-focus, one-row publication tables are also tracked in:
-- `proof-results/recorded_h2h_relational_drift_001/publishable_key_results.{md,csv}`
-- `proof-results/recorded_h2h_relational_drift_001/publishable_key_results_compact.{md,csv}`
+- `proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results.{md,csv}`
+- `proof-results/recorded_h2h_relational_drift_10seed/publishable_key_results_compact.{md,csv}`
 - `proof-results/sparse_feedback_10seed/publishable_key_results.{md,csv}`
 - `proof-results/sparse_feedback_10seed/publishable_key_results_compact.{md,csv}`
 - `proof-results/recurring_workflows_10seed/publishable_key_results.{md,csv}`
@@ -89,7 +89,7 @@ This benchmark now includes three proof-scale families:
 
 Together they show that the full-brain mechanism -- graph memory + learned route_fn + policy-gradient updates + structural plasticity (Hebbian co-firing, decay, connect/split/merge/prune) -- dominates RAG and partial-brain ablations on long-lived memory with drift, repeated workflow tasks, and sparse teacher-assisted learning.
 
-**Recorded head-to-head (first artifact shipped):** The first scored recorded-h2h bundle replays a deterministic fixture (800 queries, seed 42) against all 8 baselines with full JSONL traces and verification hashes. full_brain achieves 97.5% vs best RAG 89.6% (+7.9 pp). See [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/). The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
+**Recorded head-to-head (proof-scale multi-seed shipped):** The recorded-h2h proof bundle replays deterministic fixtures across 10 seeds (800 queries/seed) against all 8 baselines with full trace + hash verification. full_brain achieves 99.15% +/- 0.27% vs best RAG 89.44% +/- 1.68% (+9.71 pp), head-to-head 10-0-0. See [`proof-results/recorded_h2h_relational_drift_10seed/`](proof-results/recorded_h2h_relational_drift_10seed/). The first seed-42 artifact remains archived at [`proof-results/recorded_h2h_relational_drift_001/`](proof-results/recorded_h2h_relational_drift_001/). The full evaluation spec is in [`recorded_session_spec.md`](recorded_session_spec.md).
 
 It does **not** yet prove the thesis across all designed families; `memory_compaction` is designed but not yet implemented. See [CLAIMS.md](CLAIMS.md) for precise scope.
 
@@ -134,8 +134,8 @@ python -m brain_ground_zero.cli multiseed \
 # Sparse-feedback proof sweep + publish to proof-results/
 ./scripts/run_sparse_feedback_proof.sh
 
-# Recorded head-to-head proof bundle + validation + publishable refresh
-./scripts/run_recorded_h2h_relational_drift_proof.sh
+# Recorded head-to-head multi-seed proof bundle + validation + publishable refresh
+./scripts/run_recorded_h2h_proof.sh
 
 # Refresh cross-bundle publishable chart/table pack
 python3 scripts/generate_publishable_proof_assets.py
@@ -183,7 +183,8 @@ proof-results/                  <- tracked proof artifacts
   sparse_feedback_10seed/       <- 10-seed proof sweep (sparse feedback)
   recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
   sparse_feedback_3seed/        <- 3-seed spot-check (superseded by 10-seed)
-  recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle
+  recorded_h2h_relational_drift_10seed/ <- proof-scale recorded head-to-head bundle
+  recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle (legacy)
   recorded_sessions/            <- (placeholder) real-session head-to-head results
 
 recorded_session_spec.md        <- spec for recorded-session head-to-head evaluation
@@ -206,7 +207,7 @@ src/brain_ground_zero/  <- harness implementation
 configs/                <- family and baseline configs
 scripts/                <- validation and smoke scripts
   generate_publishable_proof_assets.py <- rebuilds publishable chart/table pack from tracked proof bundles
-  run_recorded_h2h_relational_drift_proof.sh <- one-command recorded-h2h bundle build + validation
+  run_recorded_h2h_proof.sh <- one-command recorded-h2h multi-seed bundle build + validation
 runs/                   <- local run outputs (gitignored)
 ```
 

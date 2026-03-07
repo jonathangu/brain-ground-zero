@@ -9,11 +9,11 @@ Generated from tracked proof bundles.
 3. `charts/focus_ablation_ladder.png`
 4. `../recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
 5. `../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
-6. `../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`
+6. `../recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
 
 ## Canonical topline claims
 
-- Recorded H2H: full_brain 97.5% vs vector_rag_rerank 89.6% (+7.9 pp), context 5.0x lower for full_brain. First scored fixed-session artifact (single seeded fixture; not yet proof-scale).
+- Recorded H2H: full_brain 99.2% +/- 0.3% vs vector_rag_rerank 89.4% +/- 1.7% (+9.7 pp), context 5.0x lower for full_brain, head-to-head 10-0-0.
 - Sparse Feedback: full_brain 92.0% +/- 18.3% vs vector_rag_rerank 67.0% +/- 1.4% (+24.9 pp), context 5.0x lower for full_brain, head-to-head 9-1-0.
 - Recurring Workflows: full_brain 97.6% +/- 0.4% vs vector_rag_rerank 70.6% +/- 1.2% (+26.9 pp), context 5.0x lower for full_brain, head-to-head 10-0-0.
 
@@ -30,7 +30,7 @@ Generated from tracked proof bundles.
 
 - recurring_workflows seed head-to-head chart: `../recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
 - sparse_feedback seed head-to-head chart: `../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
-- recorded_h2h tradeoff chart: `../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`
+- recorded_h2h seed head-to-head chart: `../recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`
 - ablation support chart: `charts/focus_ablation_ladder.png`
 
 ### Paper

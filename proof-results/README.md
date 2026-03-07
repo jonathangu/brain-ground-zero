@@ -13,13 +13,13 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 - [sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 
-## Next proof rung (publish-first trio)
+## Current proof frontier (publish-first trio)
 
 | Bundle | Key result |
 |---|---|
+| [recorded_h2h_relational_drift_10seed](recorded_h2h_relational_drift_10seed/) | full_brain 99.15% +/- 0.27 vs best RAG 89.44% +/- 1.68 (+9.71 pp), head-to-head 10-0-0 |
 | [recurring_workflows_10seed](recurring_workflows_10seed/) | full_brain 97.6% +/- 0.4 vs best RAG 70.6% (+26.9 pp), head-to-head 10-0-0 |
 | [sparse_feedback_10seed](sparse_feedback_10seed/) | full_brain 92.0% +/- 18.3 vs best RAG 67.0% (+24.9 pp), head-to-head 9-1-0 |
-| [recorded_h2h_relational_drift_001](recorded_h2h_relational_drift_001/) | first scored deterministic recorded-h2h bundle: full_brain 97.5% vs best RAG 89.6% (+7.9 pp) |
 
 Use [`publishable/site_blog_paper_starter.md`](publishable/site_blog_paper_starter.md) for the exact site/blog/paper asset order.
 
