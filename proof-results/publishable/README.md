@@ -2,8 +2,17 @@
 
 High-signal assets for site/blog/paper use, generated from tracked proof bundles.
 
+## Start Here
+
+- [site_blog_paper_starter.md](site_blog_paper_starter.md)
+- [focus_evidence_table_compact.md](tables/focus_evidence_table_compact.md)
+- [focus_margin_context.png](charts/focus_margin_context.png)
+- [focus_ablation_ladder.png](charts/focus_ablation_ladder.png)
+
 ## Tables
 
+- [focus_evidence_table_compact.md](tables/focus_evidence_table_compact.md)
+- [focus_evidence_table_compact.csv](tables/focus_evidence_table_compact.csv)
 - [focus_evidence_table.md](tables/focus_evidence_table.md)
 - [focus_evidence_table.csv](tables/focus_evidence_table.csv)
 

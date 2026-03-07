@@ -22,6 +22,7 @@ Sparse feedback simulates a teacher-assisted learning scenario where the system 
 ## Publishable assets
 
 - `chart_seed_h2h_full_brain_vs_best_rag.png` -- seed-by-seed dumbbell chart (full_brain vs vector_rag_rerank), showing the 9-1 head-to-head split directly
+- `publishable_key_results_compact.md` / `.csv` -- one-row compact scorecard for site/blog/paper
 - `publishable_key_results.md` / `.csv` -- one-row publication scorecard for this bundle
 
 ## Files

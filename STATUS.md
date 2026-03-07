@@ -1,5 +1,26 @@
 # Status
 
+## 2026-03-07 08:32 PST
+- What changed: packaged the next proof rung for direct site/blog/paper lift and tightened top-family scripts/docs.
+  - Publishable pack upgrade:
+    - Added generated starter guide: `proof-results/publishable/site_blog_paper_starter.md` (asset priority + topline claims)
+    - Added compact cross-bundle table: `proof-results/publishable/tables/focus_evidence_table_compact.{md,csv}`
+    - Added compact per-bundle scorecards for focus bundles: `proof-results/*/publishable_key_results_compact.{md,csv}`
+    - `scripts/generate_publishable_proof_assets.py` now emits both machine/full and compact publication tables.
+  - Script hardening around top proof families:
+    - Added `scripts/run_recorded_h2h_relational_drift_proof.sh` (one-command fixture + replay + validate + publishable refresh).
+    - Updated `scripts/run_recurring_workflows_proof.sh` and `scripts/run_sparse_feedback_proof.sh` to generate richer READMEs (context/query, head-to-head, publishable assets) and fixed step counters.
+  - Docs/nav cleanup:
+    - Updated `README.md`, `CLAIMS.md`, `proof-results/README.md`, and top-bundle READMEs to point at the new compact/starter artifacts and recorded-h2h script.
+- Validation checks:
+  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+  - `python3 scripts/validate_fixture.py --all` (ok)
+  - `python3 scripts/validate_recorded_h2h.py` (ok)
+  - `python3 scripts/generate_publishable_proof_assets.py` (ok)
+  - `bash -n scripts/run_recurring_workflows_proof.sh scripts/run_sparse_feedback_proof.sh scripts/run_recorded_h2h_relational_drift_proof.sh` (ok)
+- Current milestone: M12 - Publishable proof bundle packaging (next rung tightened)
+- Next step: scale recorded h2h beyond single-seed and publish the next recorded bundle.
+
 ## 2026-03-06 08:55 PST
 - What changed: drafted benchmark contract docs (spec, schemas, scoring, baselines, execution plan, milestones) and README.
 - Current milestone: M1 — Benchmark contract

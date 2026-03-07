@@ -186,6 +186,50 @@ def _bundle_row(bundle: BundleMetrics) -> Dict[str, object]:
     }
 
 
+def _proof_rung(bundle: BundleMetrics) -> str:
+    if bundle.kind == "recorded":
+        return "Recorded H2H (first artifact, single fixture)"
+    return f"Simulation proof ({bundle.seeds}-seed)"
+
+
+def _format_pct(value: float, digits: int = 1) -> str:
+    return f"{value * 100.0:.{digits}f}%"
+
+
+def _format_pct_with_std(value: float, std: Optional[float]) -> str:
+    if std is None:
+        return _format_pct(value)
+    return f"{_format_pct(value)} +/- {_format_pct(std)}"
+
+
+def _bundle_compact_row(bundle: BundleMetrics) -> Dict[str, object]:
+    return {
+        "focus": bundle.label,
+        "bundle": bundle.bundle_id,
+        "proof_rung": _proof_rung(bundle),
+        "seeds": bundle.seeds,
+        "queries_per_seed": bundle.queries_per_seed,
+        "full_brain_accuracy": _format_pct_with_std(bundle.full_brain_accuracy, bundle.full_brain_accuracy_std),
+        "best_rag": bundle.best_rag,
+        "best_rag_accuracy": _format_pct_with_std(bundle.best_rag_accuracy, bundle.best_rag_accuracy_std),
+        "margin_vs_best_rag_pp": f"{bundle.margin_vs_best_rag_pp:+.1f}",
+        "h2h_vs_best_rag": bundle.h2h_record_vs_best_rag,
+        "context_ratio_best_rag_over_full_brain": f"{bundle.context_ratio_best_rag_over_full_brain:.1f}x",
+        "ablation_full_minus_graph_pp": f"{bundle.full_minus_graph_pp:+.1f}",
+    }
+
+
+def _bundle_claim_line(bundle: BundleMetrics) -> str:
+    base = (
+        f"{bundle.label}: full_brain {_format_pct_with_std(bundle.full_brain_accuracy, bundle.full_brain_accuracy_std)} "
+        f"vs {bundle.best_rag} {_format_pct_with_std(bundle.best_rag_accuracy, bundle.best_rag_accuracy_std)} "
+        f"({bundle.margin_vs_best_rag_pp:+.1f} pp), context {bundle.context_ratio_best_rag_over_full_brain:.1f}x lower for full_brain"
+    )
+    if bundle.kind == "recorded":
+        return f"- {base}. First scored fixed-session artifact (single seeded fixture; not yet proof-scale)."
+    return f"- {base}, head-to-head {bundle.h2h_record_vs_best_rag}."
+
+
 def _load_multiseed_bundle(bundle_dir: Path, descriptor: Dict[str, str]) -> BundleMetrics:
     summary_rows = _read_csv_rows(bundle_dir / "summary_table.csv")
     summary_by_baseline = _row_lookup(summary_rows)
@@ -471,20 +515,74 @@ def _write_publishable_bundle_files(bundles: Sequence[BundleMetrics], output_dir
     charts_dir.mkdir(parents=True, exist_ok=True)
 
     focus_rows = [_bundle_row(bundle) for bundle in bundles]
+    compact_focus_rows = [_bundle_compact_row(bundle) for bundle in bundles]
     _write_table(
         tables_dir / "focus_evidence_table.csv",
         tables_dir / "focus_evidence_table.md",
         focus_rows,
         "Focus Evidence Table",
     )
+    _write_table(
+        tables_dir / "focus_evidence_table_compact.csv",
+        tables_dir / "focus_evidence_table_compact.md",
+        compact_focus_rows,
+        "Focus Evidence Table (Compact)",
+    )
 
     _plot_cross_margin_context(bundles, charts_dir / "focus_margin_context.png")
     _plot_ablation_ladder(bundles, charts_dir / "focus_ablation_ladder.png")
 
+    bundle_map = {bundle.bundle_id: bundle for bundle in bundles}
+    recurring = bundle_map.get("recurring_workflows_10seed")
+    sparse = bundle_map.get("sparse_feedback_10seed")
+    recorded = bundle_map.get("recorded_h2h_relational_drift_001")
+
+    with (output_dir / "site_blog_paper_starter.md").open("w", encoding="utf-8") as f:
+        f.write("# Site/Blog/Paper Starter Pack\n\n")
+        f.write("Generated from tracked proof bundles.\n\n")
+        f.write("## Use this first\n\n")
+        f.write("1. `tables/focus_evidence_table_compact.md`\n")
+        f.write("2. `charts/focus_margin_context.png`\n")
+        f.write("3. `charts/focus_ablation_ladder.png`\n")
+        f.write("4. `../recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
+        f.write("5. `../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
+        f.write("6. `../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`\n\n")
+        f.write("## Canonical topline claims\n\n")
+        for bundle in bundles:
+            f.write(_bundle_claim_line(bundle) + "\n")
+        f.write("\n## Recommended asset order\n\n")
+        f.write("### Site\n\n")
+        if recurring is not None:
+            f.write("- recurring_workflows scorecard: `../recurring_workflows_10seed/publishable_key_results_compact.md`\n")
+        if sparse is not None:
+            f.write("- sparse_feedback scorecard: `../sparse_feedback_10seed/publishable_key_results_compact.md`\n")
+        f.write("- cross-bundle quick table: `tables/focus_evidence_table_compact.md`\n")
+        f.write("- cross-bundle chart: `charts/focus_margin_context.png`\n\n")
+        f.write("### Blog\n\n")
+        if recurring is not None:
+            f.write("- recurring_workflows seed head-to-head chart: `../recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
+        if sparse is not None:
+            f.write("- sparse_feedback seed head-to-head chart: `../sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png`\n")
+        if recorded is not None:
+            f.write("- recorded_h2h tradeoff chart: `../recorded_h2h_relational_drift_001/chart_accuracy_context_tradeoff.png`\n")
+        f.write("- ablation support chart: `charts/focus_ablation_ladder.png`\n\n")
+        f.write("### Paper\n\n")
+        f.write("- compact numeric table: `tables/focus_evidence_table_compact.csv`\n")
+        f.write("- full numeric table: `tables/focus_evidence_table.csv`\n")
+        f.write("- ablation figure: `charts/focus_ablation_ladder.png`\n")
+        f.write("- margin/context figure: `charts/focus_margin_context.png`\n")
+
     with (output_dir / "README.md").open("w", encoding="utf-8") as f:
         f.write("# Publishable Proof Pack\n\n")
         f.write("High-signal assets for site/blog/paper use, generated from tracked proof bundles.\n\n")
+        f.write("## Start Here\n\n")
+        f.write("- [site_blog_paper_starter.md](site_blog_paper_starter.md)\n")
+        f.write("- [focus_evidence_table_compact.md](tables/focus_evidence_table_compact.md)\n")
+        f.write("- [focus_margin_context.png](charts/focus_margin_context.png)\n")
+        f.write("- [focus_ablation_ladder.png](charts/focus_ablation_ladder.png)\n\n")
         f.write("## Tables\n\n")
+        f.write("- [focus_evidence_table_compact.md](tables/focus_evidence_table_compact.md)\n")
+        f.write("- [focus_evidence_table_compact.csv](tables/focus_evidence_table_compact.csv)\n")
         f.write("- [focus_evidence_table.md](tables/focus_evidence_table.md)\n")
         f.write("- [focus_evidence_table.csv](tables/focus_evidence_table.csv)\n\n")
         f.write("## Charts\n\n")
@@ -498,11 +596,18 @@ def _write_publishable_bundle_files(bundles: Sequence[BundleMetrics], output_dir
 def _write_per_bundle_scorecards(bundles: Sequence[BundleMetrics]) -> None:
     for bundle in bundles:
         row = _bundle_row(bundle)
+        compact_row = _bundle_compact_row(bundle)
         _write_table(
             bundle.bundle_dir / "publishable_key_results.csv",
             bundle.bundle_dir / "publishable_key_results.md",
             [row],
             f"Publishable Key Results: {bundle.bundle_id}",
+        )
+        _write_table(
+            bundle.bundle_dir / "publishable_key_results_compact.csv",
+            bundle.bundle_dir / "publishable_key_results_compact.md",
+            [compact_row],
+            f"Publishable Key Results (Compact): {bundle.bundle_id}",
         )
 
 

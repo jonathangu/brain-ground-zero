@@ -23,6 +23,7 @@ run against the `relational_drift` family with seed 42.
 ## Publishable assets
 
 - `chart_accuracy_context_tradeoff.png` -- one-figure accuracy vs context/query comparison across all 8 baselines
+- `publishable_key_results_compact.md` / `.csv` -- one-row compact scorecard for site/blog/paper
 - `publishable_key_results.md` / `.csv` -- one-row publication scorecard for this bundle
 
 ## Bundle contents
@@ -48,6 +49,9 @@ verification/
 ## Reproduction
 
 ```bash
+# one-command bundle build + validation + publishable refresh
+./scripts/run_recorded_h2h_relational_drift_proof.sh
+
 # 1. Generate the fixture (deterministic from seed)
 python -m brain_ground_zero.cli generate_fixture \
   --family configs/families/relational_drift.yaml \

@@ -5,12 +5,23 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 ## Start here (publishable assets)
 
 - [publishable/README.md](publishable/README.md) -- index for site/blog/paper-ready artifacts
-- [publishable/tables/focus_evidence_table.md](publishable/tables/focus_evidence_table.md) -- compact cross-bundle evidence table
+- [publishable/site_blog_paper_starter.md](publishable/site_blog_paper_starter.md) -- prioritized lift order + topline copy
+- [publishable/tables/focus_evidence_table_compact.md](publishable/tables/focus_evidence_table_compact.md) -- compact cross-bundle evidence table
 - [publishable/charts/focus_margin_context.png](publishable/charts/focus_margin_context.png) -- margins + context efficiency in one figure
 - [publishable/charts/focus_ablation_ladder.png](publishable/charts/focus_ablation_ladder.png) -- ablation ladder across all focus bundles
 - [recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](recorded_h2h_relational_drift_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](sparse_feedback_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
 - [recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png](recurring_workflows_10seed/chart_seed_h2h_full_brain_vs_best_rag.png)
+
+## Next proof rung (publish-first trio)
+
+| Bundle | Key result |
+|---|---|
+| [recurring_workflows_10seed](recurring_workflows_10seed/) | full_brain 97.6% +/- 0.4 vs best RAG 70.6% (+26.9 pp), head-to-head 10-0-0 |
+| [sparse_feedback_10seed](sparse_feedback_10seed/) | full_brain 92.0% +/- 18.3 vs best RAG 67.0% (+24.9 pp), head-to-head 9-1-0 |
+| [recorded_h2h_relational_drift_001](recorded_h2h_relational_drift_001/) | first scored deterministic recorded-h2h bundle: full_brain 97.5% vs best RAG 89.6% (+7.9 pp) |
+
+Use [`publishable/site_blog_paper_starter.md`](publishable/site_blog_paper_starter.md) for the exact site/blog/paper asset order.
 
 ## Families
 
@@ -47,6 +58,7 @@ These results prove the full-brain **mechanism** (graph memory + learned routing
 - `learning_curve.png` -- accuracy over steps with std-deviation bands
 - `seeds.json` -- seed list used
 - `publishable_key_results.md` / `.csv` -- one-row publication table for fast copy into site/blog/paper
+- `publishable_key_results_compact.md` / `.csv` -- compact one-row publication table for fast copy into site/blog/paper
 
 Generate/refresh the publishable pack with:
 

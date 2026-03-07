@@ -16,6 +16,7 @@ Updates: 5 workflows/step, 2 step updates + 1 preference updates
 ## Publishable assets
 
 - `chart_seed_h2h_full_brain_vs_best_rag.png` -- seed-by-seed dumbbell chart (full_brain vs vector_rag_rerank), showing the 10-0 head-to-head sweep directly
+- `publishable_key_results_compact.md` / `.csv` -- one-row compact scorecard for site/blog/paper
 - `publishable_key_results.md` / `.csv` -- one-row publication scorecard for this bundle
 
 ## Files

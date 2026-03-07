@@ -1,0 +1,2 @@
+focus,bundle,proof_rung,seeds,queries_per_seed,full_brain_accuracy,best_rag,best_rag_accuracy,margin_vs_best_rag_pp,h2h_vs_best_rag,context_ratio_best_rag_over_full_brain,ablation_full_minus_graph_pp
+Recorded H2H,recorded_h2h_relational_drift_001,"Recorded H2H (first artifact, single fixture)",1,800,97.5%,vector_rag_rerank,89.6%,+7.9,n/a (single seed),5.0x,+19.0
