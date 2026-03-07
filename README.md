@@ -134,6 +134,25 @@ python -m brain_ground_zero.cli recorded_h2h \
   --output /tmp/h2h_output/
 
 python scripts/validate_recorded_h2h.py /tmp/h2h_output/
+
+# Real-session pipeline: validate trace -> convert fixture -> scaffold bundle
+python3 scripts/validate_openclaw_trace.py \
+  recorded_sessions/traces/redacted_sample_trace.json
+
+python3 scripts/convert_openclaw_trace_to_fixture.py \
+  --trace recorded_sessions/traces/redacted_sample_trace.json \
+  --output recorded_sessions/fixtures/redacted-sample-trace-001.json \
+  --fixture-id redacted-sample-trace-001
+
+python3 scripts/validate_fixture.py \
+  recorded_sessions/fixtures/redacted-sample-trace-001.json \
+  --check-trace-hash
+
+python3 scripts/init_recorded_session_bundle.py \
+  --fixture recorded_sessions/fixtures/redacted-sample-trace-001.json
+
+python3 scripts/validate_recorded_session_bundle.py \
+  proof-results/recorded_sessions/redacted-sample-trace-001
 ```
 
 ## Smoke checks
@@ -148,8 +167,14 @@ PYTHONPATH=src python3 -m brain_ground_zero.cli smoke \
 
 PYTHONPATH=src python3 scripts/validate_configs.py
 
+# Validate trace exports used for fixture conversion
+python3 scripts/validate_openclaw_trace.py --all
+
 # Validate recorded-session fixtures
 python3 scripts/validate_fixture.py --all
+
+# Validate recorded-session scaffold/scored bundles
+python3 scripts/validate_recorded_session_bundle.py
 
 # Validate recorded h2h bundles
 python3 scripts/validate_recorded_h2h.py
@@ -166,12 +191,16 @@ proof-results/                  <- tracked proof artifacts
   recurring_workflows_3seed/    <- 3-seed spot-check (superseded by 10-seed)
   sparse_feedback_3seed/        <- 3-seed spot-check (superseded by 10-seed)
   recorded_h2h_relational_drift_001/ <- first scored recorded head-to-head bundle
-  recorded_sessions/            <- (placeholder) real-session head-to-head results
+  recorded_sessions/            <- real-session proof bundles (scaffold + scored)
 
 recorded_session_spec.md        <- spec for recorded-session head-to-head evaluation
-recorded_sessions/              <- fixture schema, example fixtures, validation
+recorded_sessions/              <- trace/fixture schemas, examples, conversion inputs
+  README.md
+  schema/openclaw_session_trace.schema.json
   schema/session_fixture.schema.json
+  traces/redacted_sample_trace.json
   fixtures/example_minimal.json
+  fixtures/redacted-sample-trace-001.json
 
 CLAIMS.md               <- what is proven and what is not
 IMPLEMENTATION_STRATEGY.md <- bridge to the production architecture
@@ -187,6 +216,10 @@ execution_plan.md       <- reproducible run protocol
 src/brain_ground_zero/  <- harness implementation
 configs/                <- family and baseline configs
 scripts/                <- validation and smoke scripts
+  convert_openclaw_trace_to_fixture.py <- convert normalized OpenClaw trace -> fixture
+  init_recorded_session_bundle.py <- scaffold proof-results/recorded_sessions/<fixture_id>/
+  validate_openclaw_trace.py <- validate normalized trace exports
+  validate_recorded_session_bundle.py <- validate scaffold/scored recorded-session bundles
   generate_publishable_proof_assets.py <- rebuilds publishable chart/table pack from tracked proof bundles
 runs/                   <- local run outputs (gitignored)
 ```

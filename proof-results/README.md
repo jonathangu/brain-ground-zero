@@ -29,9 +29,10 @@ Tracked, reproducible benchmark results for OpenClawBrain vs RAG baselines.
 | Directory | Status | Description |
 |---|---|---|
 | [recorded_h2h_relational_drift_001](recorded_h2h_relational_drift_001/) | **Draft (first bundle)** | 8 baselines, 800 queries, seed 42 -- full_brain 97.5% vs best RAG 89.6% (+7.9 pp) |
-| [recorded_sessions/](recorded_sessions/) | **Placeholder** | Real product session head-to-head results (none yet) |
+| [recorded_sessions/](recorded_sessions/) | **Scaffold lane active** | Real-session bundle contract + one redacted scaffold (`redacted-sample-trace-001`) |
 
 The recorded-h2h lane replays a deterministic fixture against all baselines with full JSONL trace logging and verification hashes. See [`recorded_session_spec.md`](../recorded_session_spec.md) for the evaluation protocol.
+Use `python3 scripts/validate_recorded_session_bundle.py` to validate real-session scaffold/scored bundle layout.
 
 ## Scope
 

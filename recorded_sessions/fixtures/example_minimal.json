@@ -1,9 +1,16 @@
 {
+  "schema_version": "recorded_session_fixture.v2",
   "fixture_id": "example-minimal-001",
   "source": {
     "product_version": "12.2.6",
     "tenant_anon_id": "anon-tenant-abc",
+    "session_anon_id": "anon-session-001",
     "capture_date": "2026-03-01",
+    "capture_timezone": "America/Los_Angeles",
+    "trace_id": "manual-example-trace-001",
+    "trace_export_format": "manual_fixture_authoring.v1",
+    "trace_sha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "trace_turn_count": 2,
     "notes": "Minimal example fixture for schema validation. Not a real session."
   },
   "session_context": {
@@ -12,7 +19,8 @@
       "jurisdiction": "US-CA",
       "language": "en"
     },
-    "user_role": "associate"
+    "user_role": "associate",
+    "region": "us-west"
   },
   "turns": [
     {
@@ -22,12 +30,14 @@
         {
           "doc_id": "doc-001",
           "content": "Section 8.1 Termination. Either party may terminate this Agreement upon 30 days written notice. In the event of material breach, the non-breaching party may terminate immediately upon written notice.",
-          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 12 }
+          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 12 },
+          "redacted": false
         },
         {
           "doc_id": "doc-002",
           "content": "Section 5.2 Payment Terms. Payment is due within 45 days of invoice date.",
-          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 7 }
+          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 7 },
+          "redacted": false
         }
       ],
       "graph_snapshot": {
@@ -43,7 +53,13 @@
       "rubric": {
         "accept_criteria": "Must mention 30-day notice and immediate termination for material breach.",
         "key_entities": ["Section 8.1", "30 days", "material breach"],
-        "partial_credit": true
+        "partial_credit": true,
+        "ground_truth_source": "human_label"
+      },
+      "trace_ref": {
+        "turn_ref": 0,
+        "user_event_id": "manual-user-0",
+        "assistant_event_id": "manual-assistant-0"
       }
     },
     {
@@ -53,12 +69,14 @@
         {
           "doc_id": "doc-001",
           "content": "Section 8.1 Termination. Either party may terminate this Agreement upon 30 days written notice. In the event of material breach, the non-breaching party may terminate immediately upon written notice.",
-          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 12 }
+          "metadata": { "source": "acme-vendor-agreement-v3.pdf", "page": 12 },
+          "redacted": false
         },
         {
           "doc_id": "doc-003",
           "content": "Section 7.1 Termination. This Agreement may be terminated by either party upon 60 days written notice.",
-          "metadata": { "source": "acme-vendor-agreement-v2.pdf", "page": 10 }
+          "metadata": { "source": "acme-vendor-agreement-v2.pdf", "page": 10 },
+          "redacted": false
         }
       ],
       "graph_snapshot": {
@@ -78,19 +96,42 @@
       "rubric": {
         "accept_criteria": "Must identify the notice period change (60 -> 30 days) and the new material breach clause.",
         "key_entities": ["60 days", "30 days", "material breach", "v2"],
-        "partial_credit": true
+        "partial_credit": true,
+        "ground_truth_source": "human_label"
+      },
+      "trace_ref": {
+        "turn_ref": 1,
+        "user_event_id": "manual-user-1",
+        "assistant_event_id": "manual-assistant-1"
       }
     }
   ],
   "ground_truth": {
     "total_turns": 2,
     "complexity_tier": "simple",
+    "labeling_method": "human_labeled",
+    "requires_human_review": false,
     "notes": "Two-turn contract review session comparing agreement versions."
   },
   "held_fixed": {
-    "prompt_template_hash": "sha256:placeholder-not-a-real-hash",
+    "prompt_template_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "prompt_template_id": "manual-example-template-v1",
     "context_budget_tokens": 4096,
     "correction_budget": 2,
-    "random_seed": 42
+    "random_seed": 42,
+    "model_family": "openclaw-runtime"
+  },
+  "redaction": {
+    "redacted": false,
+    "strategy": "none",
+    "pii_classes_removed": [],
+    "notes": "Synthetic example fixture."
+  },
+  "conversion": {
+    "converter": "manual",
+    "converter_version": "1",
+    "converted_at": "2026-03-01T12:00:00Z",
+    "input_trace": "n/a",
+    "command": "manual"
   }
 }

@@ -124,3 +124,27 @@
   - `python3 scripts/validate_fixture.py --all` (ok)
 - Current milestone: M12 — Publishable proof bundle packaging
 - Next step: expand recorded h2h beyond single-seed fixture into proof-scale multi-seed and real-session bundles.
+
+## 2026-03-07 08:21 PST
+- What changed: moved recorded-session lane from schema-only scaffold to implementation-ready trace ingestion and artifact scaffolding.
+  - Added normalized trace contract: `recorded_sessions/schema/openclaw_session_trace.schema.json`.
+  - Upgraded fixture contract to `recorded_session_fixture.v2` with provenance, trace hashing, redaction, conversion metadata, and stricter per-turn references.
+  - Added conversion pipeline:
+    - `scripts/validate_openclaw_trace.py`
+    - `scripts/convert_openclaw_trace_to_fixture.py`
+    - `scripts/init_recorded_session_bundle.py`
+    - `scripts/validate_recorded_session_bundle.py`
+  - Added safe examples:
+    - `recorded_sessions/traces/redacted_sample_trace.json`
+    - `recorded_sessions/fixtures/redacted-sample-trace-001.json`
+    - `proof-results/recorded_sessions/redacted-sample-trace-001/` (scaffold status; no scored claims)
+  - Updated docs/specs: `recorded_session_spec.md`, `recorded_sessions/README.md`, `proof-results/recorded_sessions/README.md`, `README.md`, `benchmark_spec.md`, `proof-results/README.md`, `CLAIMS.md`.
+- Validation checks:
+  - `python3 scripts/validate_openclaw_trace.py --all` (ok)
+  - `python3 scripts/validate_fixture.py --all` (ok)
+  - `python3 scripts/validate_fixture.py recorded_sessions/fixtures/redacted-sample-trace-001.json --check-trace-hash` (ok)
+  - `python3 scripts/validate_recorded_session_bundle.py` (ok)
+  - `python3 scripts/validate_recorded_h2h.py` (ok)
+  - `PYTHONPATH=src python3 scripts/validate_configs.py` (ok)
+- Current milestone: M13 — Real-session trace ingestion + scaffold bundle lane
+- Next step: wire replay/scoring into recorded-session bundle population for required modes and publish first scored real-session bundle.

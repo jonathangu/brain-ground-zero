@@ -1,0 +1,152 @@
+{
+  "schema_version": "recorded_session_fixture.v2",
+  "fixture_id": "redacted-sample-trace-001",
+  "source": {
+    "product_version": "12.2.6",
+    "tenant_anon_id": "tenant-anon-001",
+    "session_anon_id": "session-anon-001",
+    "capture_date": "2026-03-03",
+    "capture_timezone": "America/Los_Angeles",
+    "trace_id": "redacted_sample_trace_001",
+    "trace_export_format": "openclaw_session_trace.v1",
+    "trace_sha256": "sha256:a9625f9e5ec7224d37be13865bb20e33e048cee55b51681f4d8cb7dc8aa3091d",
+    "trace_turn_count": 2,
+    "notes": "Redacted sample trace for fixture conversion workflow validation."
+  },
+  "session_context": {
+    "matter_type": "contract_review",
+    "workspace_config": {
+      "jurisdiction": "US-CA",
+      "language": "en"
+    },
+    "user_role": "associate",
+    "region": "us-west"
+  },
+  "turns": [
+    {
+      "turn_id": 0,
+      "user_input": "What changed in the termination section between v2 and v3?",
+      "available_documents": [
+        {
+          "doc_id": "doc-v3-term",
+          "metadata": {
+            "source": "agreement-v3-redacted.pdf",
+            "page": 12
+          },
+          "redacted": true,
+          "content": "Section 8.1 (v3): Either party may terminate with 30 days written notice. Immediate termination is allowed for material breach."
+        },
+        {
+          "doc_id": "doc-v2-term",
+          "metadata": {
+            "source": "agreement-v2-redacted.pdf",
+            "page": 10
+          },
+          "redacted": true,
+          "content": "Section 7.1 (v2): Either party may terminate with 60 days written notice."
+        }
+      ],
+      "graph_snapshot": {
+        "nodes": [
+          {
+            "id": "agreement-v3",
+            "type": "contract"
+          },
+          {
+            "id": "agreement-v2",
+            "type": "contract"
+          }
+        ],
+        "edges": [
+          {
+            "source": "agreement-v3",
+            "target": "agreement-v2",
+            "relation": "supersedes"
+          }
+        ]
+      },
+      "expected_output": "The notice period changed from 60 days (v2) to 30 days (v3), and v3 adds immediate termination for material breach.",
+      "rubric": {
+        "accept_criteria": "Must mention 60 to 30 day change and the new material breach right.",
+        "key_entities": [
+          "60 days",
+          "30 days",
+          "material breach"
+        ],
+        "partial_credit": true,
+        "ground_truth_source": "human_label",
+        "notes": "Human rubric from reviewer pass 1"
+      },
+      "trace_ref": {
+        "turn_ref": 0,
+        "user_event_id": "evt-user-0001",
+        "assistant_event_id": "evt-assistant-0001",
+        "document_event_id": "evt-docs-0001"
+      },
+      "annotations": {}
+    },
+    {
+      "turn_id": 1,
+      "user_input": "Summarize the risk in one sentence for partner review.",
+      "available_documents": [
+        {
+          "doc_id": "doc-risk-note",
+          "metadata": {
+            "source": "risk-memo-redacted.md",
+            "line": 8
+          },
+          "redacted": true,
+          "excerpt": "Immediate termination right can increase termination exposure during disputes."
+        }
+      ],
+      "graph_snapshot": null,
+      "expected_output": "Risk increased because immediate termination for material breach now exists and the cure window is shorter.",
+      "rubric": {
+        "accept_criteria": "Response should match expected_output while preserving key factual details.",
+        "key_entities": [],
+        "partial_credit": true,
+        "ground_truth_source": "assistant_output_proxy",
+        "notes": "Auto-generated rubric placeholder; replace with human rubric before publishing."
+      },
+      "trace_ref": {
+        "turn_ref": 1,
+        "user_event_id": "evt-user-0002",
+        "assistant_event_id": "evt-assistant-0002",
+        "document_event_id": "evt-docs-0002"
+      },
+      "annotations": {}
+    }
+  ],
+  "ground_truth": {
+    "total_turns": 2,
+    "complexity_tier": "simple",
+    "labeling_method": "mixed",
+    "requires_human_review": true,
+    "notes": "Converted from OpenClaw trace. Turn-level expected_output and rubrics should be human-reviewed before publish."
+  },
+  "held_fixed": {
+    "prompt_template_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "prompt_template_id": "openclaw-default-legal-v3",
+    "context_budget_tokens": 4096,
+    "correction_budget": 2,
+    "random_seed": 42,
+    "model_family": "openclaw-runtime"
+  },
+  "redaction": {
+    "redacted": true,
+    "strategy": "named-entity replacement + identifier tokenization",
+    "pii_classes_removed": [
+      "person_name",
+      "email",
+      "organization_name"
+    ],
+    "notes": "Sample created from synthetic redacted text; no live customer data included."
+  },
+  "conversion": {
+    "converter": "scripts/convert_openclaw_trace_to_fixture.py",
+    "converter_version": "0.2.0",
+    "converted_at": "2026-03-07T08:18:01-08:00",
+    "input_trace": "recorded_sessions/traces/redacted_sample_trace.json",
+    "command": "scripts/convert_openclaw_trace_to_fixture.py --trace recorded_sessions/traces/redacted_sample_trace.json --output recorded_sessions/fixtures/redacted-sample-trace-001.json --fixture-id redacted-sample-trace-001 --complexity-tier simple"
+  }
+}

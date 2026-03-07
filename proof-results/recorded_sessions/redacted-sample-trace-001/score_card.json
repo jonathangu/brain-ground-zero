@@ -1,0 +1,90 @@
+{
+  "format_version": "recorded_session_score_card.v1",
+  "status": "scaffold",
+  "bundle_id": "redacted-sample-trace-001",
+  "fixture_id": "redacted-sample-trace-001",
+  "required_modes": [
+    "no_brain",
+    "vector_only",
+    "graph_prior_only",
+    "learned_route"
+  ],
+  "optional_modes": [
+    "full_brain",
+    "online"
+  ],
+  "scores": {
+    "no_brain": {
+      "turns": [],
+      "aggregates": {
+        "success_rate": null,
+        "mean_rubric_score": null,
+        "total_corrections": null,
+        "mean_prompt_context_size": null,
+        "mean_latency_proxy": null,
+        "total_cost_proxy": null
+      },
+      "notes": "pending"
+    },
+    "vector_only": {
+      "turns": [],
+      "aggregates": {
+        "success_rate": null,
+        "mean_rubric_score": null,
+        "total_corrections": null,
+        "mean_prompt_context_size": null,
+        "mean_latency_proxy": null,
+        "total_cost_proxy": null
+      },
+      "notes": "pending"
+    },
+    "graph_prior_only": {
+      "turns": [],
+      "aggregates": {
+        "success_rate": null,
+        "mean_rubric_score": null,
+        "total_corrections": null,
+        "mean_prompt_context_size": null,
+        "mean_latency_proxy": null,
+        "total_cost_proxy": null
+      },
+      "notes": "pending"
+    },
+    "learned_route": {
+      "turns": [],
+      "aggregates": {
+        "success_rate": null,
+        "mean_rubric_score": null,
+        "total_corrections": null,
+        "mean_prompt_context_size": null,
+        "mean_latency_proxy": null,
+        "total_cost_proxy": null
+      },
+      "notes": "pending"
+    },
+    "full_brain": {
+      "turns": [],
+      "aggregates": {
+        "success_rate": null,
+        "mean_rubric_score": null,
+        "total_corrections": null,
+        "mean_prompt_context_size": null,
+        "mean_latency_proxy": null,
+        "total_cost_proxy": null
+      },
+      "notes": "pending"
+    },
+    "online": {
+      "turns": [],
+      "aggregates": {
+        "success_rate": null,
+        "mean_rubric_score": null,
+        "total_corrections": null,
+        "mean_prompt_context_size": null,
+        "mean_latency_proxy": null,
+        "total_cost_proxy": null
+      },
+      "notes": "pending"
+    }
+  }
+}

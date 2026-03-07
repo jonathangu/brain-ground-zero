@@ -84,10 +84,15 @@ session traces against ablated baselines to prove the mechanism transfers
 to real product data.
 
 - **Spec:** [`recorded_session_spec.md`](recorded_session_spec.md)
+- **Trace schema:** [`recorded_sessions/schema/openclaw_session_trace.schema.json`](recorded_sessions/schema/openclaw_session_trace.schema.json)
 - **Fixture schema:** [`recorded_sessions/schema/session_fixture.schema.json`](recorded_sessions/schema/session_fixture.schema.json)
 - **Example fixture:** [`recorded_sessions/fixtures/example_minimal.json`](recorded_sessions/fixtures/example_minimal.json)
-- **Validation:** `python scripts/validate_fixture.py --all`
-- **Results (placeholder):** [`proof-results/recorded_sessions/`](proof-results/recorded_sessions/)
+- **Trace validation:** `python scripts/validate_openclaw_trace.py --all`
+- **Fixture conversion:** `python scripts/convert_openclaw_trace_to_fixture.py --trace <trace.json> --output <fixture.json>`
+- **Fixture validation:** `python scripts/validate_fixture.py --all`
+- **Bundle scaffolding:** `python scripts/init_recorded_session_bundle.py --fixture <fixture.json>`
+- **Bundle validation:** `python scripts/validate_recorded_session_bundle.py`
+- **Results lane:** [`proof-results/recorded_sessions/`](proof-results/recorded_sessions/)
 
 Required evaluation modes: `no_brain`, `vector_only`, `graph_prior_only`, `learned_route`.
 Optional: `full_brain`, `online`. See the spec for full details.

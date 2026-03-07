@@ -2,25 +2,143 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "session_fixture.schema.json",
   "title": "Recorded-Session Fixture",
-  "description": "A self-contained fixture for replaying one OpenClaw session against multiple evaluation modes.",
+  "description": "A reproducible fixture for replaying one OpenClaw session across evaluation modes.",
   "type": "object",
-  "required": ["fixture_id", "source", "session_context", "turns", "ground_truth", "held_fixed"],
+  "required": [
+    "schema_version",
+    "fixture_id",
+    "source",
+    "session_context",
+    "turns",
+    "ground_truth",
+    "held_fixed",
+    "redaction",
+    "conversion"
+  ],
   "additionalProperties": false,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "available_document": {
+      "type": "object",
+      "required": ["doc_id"],
+      "properties": {
+        "doc_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9._:-]+$"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "excerpt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "redacted": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["content"] },
+        { "required": ["content_sha256"] },
+        { "required": ["excerpt"] }
+      ]
+    },
+    "trace_ref": {
+      "type": "object",
+      "required": ["turn_ref"],
+      "properties": {
+        "turn_ref": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "user_event_id": {
+          "type": "string"
+        },
+        "assistant_event_id": {
+          "type": "string"
+        },
+        "document_event_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "recorded_session_fixture.v2"
+    },
     "fixture_id": {
       "type": "string",
-      "description": "Unique identifier for this fixture.",
-      "minLength": 1
+      "description": "Stable fixture identifier used for artifact naming.",
+      "minLength": 3,
+      "maxLength": 128,
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
     },
     "source": {
       "type": "object",
-      "description": "Provenance metadata for the captured session.",
-      "required": ["product_version", "capture_date"],
+      "description": "Trace provenance for reproducibility.",
+      "required": [
+        "product_version",
+        "capture_date",
+        "trace_id",
+        "trace_export_format",
+        "trace_sha256",
+        "trace_turn_count"
+      ],
       "properties": {
-        "product_version": { "type": "string" },
-        "tenant_anon_id": { "type": "string" },
-        "capture_date": { "type": "string", "format": "date" },
-        "notes": { "type": "string" }
+        "product_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tenant_anon_id": {
+          "type": "string"
+        },
+        "session_anon_id": {
+          "type": "string"
+        },
+        "capture_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "capture_timezone": {
+          "type": "string"
+        },
+        "trace_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trace_export_format": {
+          "type": "string",
+          "enum": [
+            "openclaw_session_trace.v1",
+            "openclaw_event_log.v1",
+            "manual_fixture_authoring.v1"
+          ]
+        },
+        "trace_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "trace_turn_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "notes": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
@@ -29,19 +147,39 @@
       "description": "Initial session state shared across all evaluation modes.",
       "required": ["matter_type"],
       "properties": {
-        "matter_type": { "type": "string" },
-        "workspace_config": { "type": "object" },
-        "user_role": { "type": "string" }
+        "matter_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workspace_config": {
+          "type": "object"
+        },
+        "user_role": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
       },
       "additionalProperties": true
     },
     "turns": {
       "type": "array",
-      "description": "Ordered session turns.",
+      "description": "Ordered turn-by-turn replay payload.",
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["turn_id", "user_input", "available_documents", "expected_output", "rubric"],
+        "required": [
+          "turn_id",
+          "user_input",
+          "available_documents",
+          "expected_output",
+          "rubric",
+          "trace_ref"
+        ],
         "additionalProperties": false,
         "properties": {
           "turn_id": {
@@ -55,14 +193,7 @@
           "available_documents": {
             "type": "array",
             "items": {
-              "type": "object",
-              "required": ["doc_id", "content"],
-              "properties": {
-                "doc_id": { "type": "string" },
-                "content": { "type": "string" },
-                "metadata": { "type": "object" }
-              },
-              "additionalProperties": false
+              "$ref": "#/$defs/available_document"
             }
           },
           "graph_snapshot": {
@@ -70,79 +201,171 @@
               { "type": "null" },
               {
                 "type": "object",
-                "description": "Graph state at turn start. Structure is implementation-defined.",
                 "properties": {
                   "nodes": { "type": "array" },
                   "edges": { "type": "array" }
-                }
+                },
+                "additionalProperties": true
               }
             ]
           },
           "expected_output": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "rubric": {
             "type": "object",
-            "description": "Per-turn rubric for scoring.",
-            "required": ["accept_criteria"],
+            "required": ["accept_criteria", "ground_truth_source"],
             "properties": {
               "accept_criteria": {
                 "type": "string",
-                "description": "Human-readable description of what counts as success."
+                "minLength": 1
               },
               "key_entities": {
                 "type": "array",
                 "items": { "type": "string" },
-                "description": "Entities that must appear in a correct response."
+                "uniqueItems": true
               },
               "partial_credit": {
-                "type": "boolean",
-                "description": "Whether partial credit is allowed for this turn."
+                "type": "boolean"
+              },
+              "ground_truth_source": {
+                "type": "string",
+                "enum": [
+                  "human_label",
+                  "assistant_output_proxy",
+                  "mixed",
+                  "external_judge"
+                ]
+              },
+              "notes": {
+                "type": "string"
               }
             },
-            "additionalProperties": true
+            "additionalProperties": false
+          },
+          "trace_ref": {
+            "$ref": "#/$defs/trace_ref"
+          },
+          "annotations": {
+            "type": "object"
           }
         }
       }
     },
     "ground_truth": {
       "type": "object",
-      "description": "Aggregate ground-truth metadata for the session.",
+      "description": "Session-level labeling metadata.",
+      "required": ["total_turns", "labeling_method", "requires_human_review"],
       "properties": {
-        "total_turns": { "type": "integer", "minimum": 1 },
+        "total_turns": {
+          "type": "integer",
+          "minimum": 1
+        },
         "complexity_tier": {
           "type": "string",
           "enum": ["trivial", "simple", "moderate", "complex"]
         },
-        "notes": { "type": "string" }
+        "labeling_method": {
+          "type": "string",
+          "enum": ["human_labeled", "assistant_output_proxy", "mixed", "external_judge"]
+        },
+        "requires_human_review": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
       },
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "held_fixed": {
       "type": "object",
-      "description": "Values that must be identical across all evaluation modes.",
+      "description": "Values fixed across all compared modes.",
       "required": ["prompt_template_hash", "context_budget_tokens", "correction_budget"],
       "properties": {
         "prompt_template_hash": {
-          "type": "string",
-          "description": "Hash of the prompt template used (for verification)."
+          "$ref": "#/$defs/sha256"
+        },
+        "prompt_template_id": {
+          "type": "string"
         },
         "context_budget_tokens": {
           "type": "integer",
-          "minimum": 1,
-          "description": "Maximum tokens of context allowed per turn."
+          "minimum": 1
         },
         "correction_budget": {
           "type": "integer",
-          "minimum": 0,
-          "description": "Maximum teacher/user corrections allowed in the session."
+          "minimum": 0
         },
         "random_seed": {
-          "type": "integer",
-          "description": "Seed for any stochastic components."
+          "type": "integer"
+        },
+        "model_family": {
+          "type": "string"
         }
       },
-      "additionalProperties": true
+      "additionalProperties": false
+    },
+    "redaction": {
+      "type": "object",
+      "description": "PII handling declaration.",
+      "required": ["redacted", "strategy"],
+      "properties": {
+        "redacted": {
+          "type": "boolean"
+        },
+        "strategy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pii_classes_removed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "person_name",
+              "email",
+              "phone",
+              "address",
+              "account_number",
+              "organization_name",
+              "other"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "conversion": {
+      "type": "object",
+      "description": "How this fixture was produced from a source trace.",
+      "required": ["converter", "converter_version", "converted_at"],
+      "properties": {
+        "converter": {
+          "type": "string",
+          "minLength": 1
+        },
+        "converter_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "converted_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "input_trace": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

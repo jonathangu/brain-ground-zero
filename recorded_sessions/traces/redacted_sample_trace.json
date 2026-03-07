@@ -1,0 +1,107 @@
+{
+  "trace_version": "openclaw_session_trace.v1",
+  "trace_id": "redacted_sample_trace_001",
+  "source": {
+    "product_version": "12.2.6",
+    "tenant_anon_id": "tenant-anon-001",
+    "session_anon_id": "session-anon-001",
+    "capture_date": "2026-03-03",
+    "capture_timezone": "America/Los_Angeles",
+    "exported_at": "2026-03-05T18:22:09Z",
+    "notes": "Redacted sample trace for fixture conversion workflow validation."
+  },
+  "session_context": {
+    "matter_type": "contract_review",
+    "workspace_config": {
+      "jurisdiction": "US-CA",
+      "language": "en"
+    },
+    "user_role": "associate",
+    "region": "us-west"
+  },
+  "prompt_template": {
+    "template_id": "openclaw-default-legal-v3",
+    "template_sha256": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+  },
+  "budgets": {
+    "context_budget_tokens": 4096,
+    "correction_budget": 2,
+    "teacher_delay": 1,
+    "random_seed": 42
+  },
+  "turns": [
+    {
+      "turn_id": 0,
+      "user_input": "What changed in the termination section between v2 and v3?",
+      "assistant_output": "Termination notice was reduced to 30 days and immediate termination for material breach was added.",
+      "expected_output": "The notice period changed from 60 days (v2) to 30 days (v3), and v3 adds immediate termination for material breach.",
+      "rubric": {
+        "accept_criteria": "Must mention 60 to 30 day change and the new material breach right.",
+        "key_entities": ["60 days", "30 days", "material breach"],
+        "partial_credit": true,
+        "notes": "Human rubric from reviewer pass 1"
+      },
+      "available_documents": [
+        {
+          "doc_id": "doc-v3-term",
+          "content": "Section 8.1 (v3): Either party may terminate with 30 days written notice. Immediate termination is allowed for material breach.",
+          "metadata": {
+            "source": "agreement-v3-redacted.pdf",
+            "page": 12
+          },
+          "redacted": true
+        },
+        {
+          "doc_id": "doc-v2-term",
+          "content": "Section 7.1 (v2): Either party may terminate with 60 days written notice.",
+          "metadata": {
+            "source": "agreement-v2-redacted.pdf",
+            "page": 10
+          },
+          "redacted": true
+        }
+      ],
+      "graph_snapshot": {
+        "nodes": [
+          { "id": "agreement-v3", "type": "contract" },
+          { "id": "agreement-v2", "type": "contract" }
+        ],
+        "edges": [
+          { "source": "agreement-v3", "target": "agreement-v2", "relation": "supersedes" }
+        ]
+      },
+      "event_ids": {
+        "user": "evt-user-0001",
+        "assistant": "evt-assistant-0001",
+        "documents": "evt-docs-0001"
+      }
+    },
+    {
+      "turn_id": 1,
+      "user_input": "Summarize the risk in one sentence for partner review.",
+      "assistant_output": "Risk increased because immediate termination for material breach now exists and the cure window is shorter.",
+      "available_documents": [
+        {
+          "doc_id": "doc-risk-note",
+          "excerpt": "Immediate termination right can increase termination exposure during disputes.",
+          "metadata": {
+            "source": "risk-memo-redacted.md",
+            "line": 8
+          },
+          "redacted": true
+        }
+      ],
+      "event_ids": {
+        "user": "evt-user-0002",
+        "assistant": "evt-assistant-0002",
+        "documents": "evt-docs-0002"
+      }
+    }
+  ],
+  "redaction": {
+    "redacted": true,
+    "strategy": "named-entity replacement + identifier tokenization",
+    "pii_classes_removed": ["person_name", "email", "organization_name"],
+    "notes": "Sample created from synthetic redacted text; no live customer data included."
+  }
+}

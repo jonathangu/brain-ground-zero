@@ -1,34 +1,49 @@
 # Recorded-Session Proof Artifacts
 
-Scored head-to-head results from replaying real OpenClaw session traces
-against multiple evaluation modes.
+Scored head-to-head results from replaying real OpenClaw session traces against multiple evaluation modes.
 
-## Status
+## Current status
 
-**No results yet.** This directory is the target for artifacts produced by
-the recorded-session evaluation workflow described in
-[`recorded_session_spec.md`](../../recorded_session_spec.md).
+- `redacted-sample-trace-001/` exists as a **scaffold bundle** only.
+- No scored real-session proof bundle is published yet.
 
-## Expected layout
+## Expected per-session layout
 
 ```
 recorded_sessions/
   <fixture_id>/
-    score_card.json     # per-turn scores for every mode
-    score_card.md       # human-readable summary
-    fixture.json        # copy of the input fixture
-  batch_<batch_id>/
-    summary_table.csv   # per-mode aggregates
-    summary_table.md
-    pairwise_delta.csv  # mode-vs-mode deltas
-    win_rate_matrix.csv
-    win_rate_matrix.md
+    README.md
+    metadata.yaml
+    fixture.json
+    score_card.json
+    score_card.md
+    verification/
+      fixture_hash.sha256
+      README.md
 ```
 
-## How to contribute results
+## Generate a scaffold bundle
 
-1. Create or obtain a session fixture (see `recorded_sessions/fixtures/`).
-2. Validate it: `python scripts/validate_fixture.py <fixture.json>`
-3. Replay through each evaluation mode and collect scores.
-4. Place artifacts here following the layout above.
-5. Update `CLAIMS.md` with the new proof scope.
+```bash
+python3 scripts/init_recorded_session_bundle.py \
+  --fixture recorded_sessions/fixtures/<fixture_id>.json
+```
+
+## Validate bundle layout
+
+```bash
+python3 scripts/validate_recorded_session_bundle.py proof-results/recorded_sessions/<fixture_id>
+```
+
+## Promotion criteria for publishable status
+
+1. Required modes scored: `no_brain`, `vector_only`, `graph_prior_only`, `learned_route`
+2. Per-turn rows completed in `score_card.json` for each required mode
+3. Aggregates populated for each required mode
+4. `metadata.yaml` status moved from `scaffold` to `draft`/`publishable`
+5. Validation passes: `python3 scripts/validate_recorded_session_bundle.py ...`
+
+## Source pipeline
+
+Trace and fixture generation contracts live in [`recorded_sessions/`](../../recorded_sessions/).
+Use [`recorded_session_spec.md`](../../recorded_session_spec.md) for the full evaluation protocol.

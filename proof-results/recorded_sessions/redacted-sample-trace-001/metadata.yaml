@@ -1,0 +1,17 @@
+format_version: recorded_session_bundle.v1
+status: scaffold
+bundle_id: redacted-sample-trace-001
+fixture_id: redacted-sample-trace-001
+created_at: '2026-03-07T08:18:10-08:00'
+fixture_file: fixture.json
+fixture_sha256: ccc3180fcca93bdbffeb7ceb872d213463a0437ea4a35e26e42596688d00015e
+required_modes:
+- no_brain
+- vector_only
+- graph_prior_only
+- learned_route
+optional_modes:
+- full_brain
+- online
+scoring_status: pending
+notes: Initialized scaffold bundle. Populate score_card.json with replay outputs.

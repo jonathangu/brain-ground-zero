@@ -24,19 +24,28 @@ containing everything needed to replay one session deterministically.
 ### Fixture format
 
 See [`recorded_sessions/schema/session_fixture.schema.json`](recorded_sessions/schema/session_fixture.schema.json)
-for the machine-readable schema. A minimal example lives at
-[`recorded_sessions/fixtures/example_minimal.json`](recorded_sessions/fixtures/example_minimal.json).
+for the machine-readable fixture schema.
+The normalized OpenClaw trace input schema is
+[`recorded_sessions/schema/openclaw_session_trace.schema.json`](recorded_sessions/schema/openclaw_session_trace.schema.json).
+
+Examples:
+- manual fixture example: [`recorded_sessions/fixtures/example_minimal.json`](recorded_sessions/fixtures/example_minimal.json)
+- redacted trace example: [`recorded_sessions/traces/redacted_sample_trace.json`](recorded_sessions/traces/redacted_sample_trace.json)
+- converted fixture example: [`recorded_sessions/fixtures/redacted-sample-trace-001.json`](recorded_sessions/fixtures/redacted-sample-trace-001.json)
 
 A fixture contains:
 
 | Field | Type | Description |
 |---|---|---|
+| `schema_version` | string | Fixture schema contract version (`recorded_session_fixture.v2`) |
 | `fixture_id` | string | Unique identifier for this fixture |
-| `source` | object | Provenance: product version, tenant (anonymized), capture date |
+| `source` | object | Provenance: product version, trace ID, export format, capture date, trace hash |
 | `session_context` | object | Initial state: matter type, workspace config, user role |
 | `turns` | array | Ordered list of session turns (see below) |
-| `ground_truth` | object | Per-turn expected outputs and rubric answers |
+| `ground_truth` | object | Session-level labeling metadata and review status |
 | `held_fixed` | object | What must not vary across modes (see Fairness Rules) |
+| `redaction` | object | PII handling declaration |
+| `conversion` | object | Converter metadata (tool/version/time/command) |
 
 Each **turn** contains:
 
@@ -47,7 +56,8 @@ Each **turn** contains:
 | `available_documents` | array | Document IDs / chunks available at this point |
 | `graph_snapshot` | object or null | Graph state at turn start (null for no_brain) |
 | `expected_output` | string | Ground-truth ideal response |
-| `rubric` | object | Per-turn scoring fields (see Scoring Rubric) |
+| `rubric` | object | Per-turn scoring fields, including ground-truth source |
+| `trace_ref` | object | Provenance link back to original trace turn/event IDs |
 
 ## Evaluation modes
 
@@ -107,9 +117,11 @@ Published to `proof-results/recorded_sessions/<fixture_id>/`:
 
 | Artifact | Format | Description |
 |---|---|---|
+| `metadata.yaml` | YAML | Bundle metadata (`status`, `fixture_sha256`, required modes) |
 | `score_card.json` | JSON | Full per-turn scores for every mode |
 | `score_card.md` | Markdown | Human-readable summary table |
 | `fixture.json` | JSON | Copy of the input fixture (for reproducibility) |
+| `verification/fixture_hash.sha256` | text | Fixture integrity hash |
 
 ### Per batch
 
@@ -148,21 +160,34 @@ Minimal path from a real product session to a scored, publishable artifact:
 Step 1: Capture
   - Record a live OpenClaw session (or export from session logs).
   - Anonymize PII (tenant name, user details, document contents if needed).
-  - Save raw trace.
+  - Save normalized trace JSON under recorded_sessions/traces/.
+  - Validate trace:
+      python scripts/validate_openclaw_trace.py recorded_sessions/traces/<trace>.json
 
 Step 2: Convert to fixture
-  - Run the fixture converter (TBD) or hand-author a fixture JSON.
-  - Validate: python scripts/validate_fixture.py recorded_sessions/fixtures/<name>.json
+  - Convert trace to fixture:
+      python scripts/convert_openclaw_trace_to_fixture.py \
+        --trace recorded_sessions/traces/<trace>.json \
+        --output recorded_sessions/fixtures/<fixture>.json
+  - Validate fixture (including trace hash check):
+      python scripts/validate_fixture.py \
+        recorded_sessions/fixtures/<fixture>.json \
+        --check-trace-hash
   - Fix any schema violations.
 
 Step 3: Replay and score
   - For each required mode, replay the fixture through the mode's pipeline.
   - Collect per-turn score rows.
-  - (This step is currently manual; harness integration is a future milestone.)
+  - Initialize publishable scaffold bundle:
+      python scripts/init_recorded_session_bundle.py \
+        --fixture recorded_sessions/fixtures/<fixture>.json
 
 Step 4: Generate artifacts
-  - Assemble score_card.json and score_card.md per session.
+  - Fill score_card.json and score_card.md per session.
   - If running a batch, generate batch-level summary/delta/win-rate artifacts.
+  - Validate bundle:
+      python scripts/validate_recorded_session_bundle.py \
+        proof-results/recorded_sessions/<fixture_id>/
 
 Step 5: Review and publish
   - Review score cards for correctness.

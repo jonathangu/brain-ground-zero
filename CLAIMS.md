@@ -90,7 +90,7 @@
 ## What is not yet proven
 
 - **Recorded head-to-head at proof scale.** The first single-seed bundle is shipped, but multi-seed recorded h2h is needed for a full proof claim.
-- **Recorded-session head-to-head on real product traces.** The spec, fixture schema, and example are defined ([`recorded_session_spec.md`](recorded_session_spec.md)), but no scored results from real sessions exist yet.
+- **Recorded-session head-to-head on real product traces.** The trace schema, converter, fixture validator, and scaffold bundle lane are now implemented ([`recorded_sessions/README.md`](recorded_sessions/README.md)), but no scored results from real sessions are published yet.
 - Performance on **memory compaction / structural plasticity stress tests** (family designed, not yet run)
 - Behavior at **larger world sizes** (current proof scales are modest: relational uses 50 entities/5 relation types; recurring uses 80 workflows/11 slots)
 - Performance with **real LLM routing** (current harness uses simulated policy functions, not live model calls)
